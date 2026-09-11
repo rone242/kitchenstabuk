@@ -1,0 +1,752 @@
+generator client {
+  provider = "prisma-client"
+  output   = "../src/generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+enum UserStatus {
+  ACTIVE
+  DISABLED
+}
+
+enum ContentStatus {
+  DRAFT
+  PUBLISHED
+  ARCHIVED
+}
+
+enum PriceType {
+  FIXED
+  STARTING_FROM
+  RANGE
+  QUOTE_REQUIRED
+}
+
+enum ServiceFieldType {
+  TEXT
+  TEXTAREA
+  NUMBER
+  SELECT
+  MULTISELECT
+  RADIO
+  CHECKBOX
+  DATE
+  TIME
+  FILE
+  IMAGE
+  BOOLEAN
+}
+
+enum ServiceRequestStatus {
+  NEW
+  CONTACTED
+  QUALIFIED
+  QUOTATION_SENT
+  CUSTOMER_APPROVED
+  SCHEDULED
+  IN_PROGRESS
+  COMPLETED
+  CANCELLED
+  REJECTED
+  SPAM
+}
+
+enum RequestPriority {
+  LOW
+  NORMAL
+  HIGH
+  URGENT
+}
+
+enum RequestSource {
+  WEBSITE
+  ADMIN
+  PHONE
+  WHATSAPP
+  REFERRAL
+  OTHER
+}
+
+enum MediaType {
+  IMAGE
+  DOCUMENT
+}
+
+enum StorageProvider {
+  LOCAL
+  S3
+  R2
+}
+
+enum HomepageSectionType {
+  HERO
+  POPULAR_CATEGORIES
+  NEARBY_SERVICES
+  HOW_IT_WORKS
+  FEATURED_SERVICES
+  RECENT_WORK
+  TRUST_INDICATORS
+  REVIEWS
+  COVERED_CITIES
+  FAQS
+  FINAL_CTA
+}
+
+enum SettingValueType {
+  TEXT
+  NUMBER
+  BOOLEAN
+  JSON
+  URL
+  PHONE
+}
+
+enum ContactSubmissionStatus {
+  NEW
+  READ
+  RESOLVED
+  SPAM
+}
+
+model User {
+  id                   String                 @id @default(uuid()) @db.Uuid
+  email                String?
+  emailNormalized      String?                @unique
+  phone                String?
+  phoneNormalized      String?                @unique
+  passwordHash         String
+  name                 String
+  status               UserStatus             @default(ACTIVE)
+  lastLoginAt          DateTime?
+  passwordChangedAt    DateTime?
+  deletedAt            DateTime?
+  createdAt            DateTime               @default(now())
+  updatedAt            DateTime               @updatedAt
+  roles                UserRole[]
+  refreshTokens        RefreshToken[]
+  assignedRequests     ServiceRequest[]       @relation("AssignedRequests")
+  requestStatusChanges RequestStatusHistory[]
+  internalNotes        InternalNote[]
+  authoredPosts        BlogPost[]
+  uploadedMedia        MediaAsset[]
+  auditLogs            AuditLog[]
+
+  @@index([status, createdAt])
+  @@index([deletedAt])
+}
+
+model Role {
+  id          String           @id @default(uuid()) @db.Uuid
+  name        String           @unique
+  nameAr      String
+  description String?
+  isSystem    Boolean          @default(false)
+  createdAt   DateTime         @default(now())
+  updatedAt   DateTime         @updatedAt
+  users       UserRole[]
+  permissions RolePermission[]
+}
+
+model Permission {
+  id          String           @id @default(uuid()) @db.Uuid
+  key         String           @unique
+  description String?
+  createdAt   DateTime         @default(now())
+  roles       RolePermission[]
+}
+
+model UserRole {
+  userId     String   @db.Uuid
+  roleId     String   @db.Uuid
+  assignedAt DateTime @default(now())
+  user       User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  role       Role     @relation(fields: [roleId], references: [id], onDelete: Cascade)
+
+  @@id([userId, roleId])
+  @@index([roleId])
+}
+
+model RolePermission {
+  roleId       String     @db.Uuid
+  permissionId String     @db.Uuid
+  role         Role       @relation(fields: [roleId], references: [id], onDelete: Cascade)
+  permission   Permission @relation(fields: [permissionId], references: [id], onDelete: Cascade)
+
+  @@id([roleId, permissionId])
+  @@index([permissionId])
+}
+
+model RefreshToken {
+  id         String    @id @default(uuid()) @db.Uuid
+  userId     String    @db.Uuid
+  tokenHash  String    @unique
+  familyId   String    @db.Uuid
+  expiresAt  DateTime
+  revokedAt  DateTime?
+  lastUsedAt DateTime?
+  ipAddress  String?
+  userAgent  String?
+  createdAt  DateTime  @default(now())
+  user       User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId, expiresAt])
+  @@index([familyId, revokedAt])
+}
+
+model Category {
+  id               String      @id @default(uuid()) @db.Uuid
+  nameAr           String
+  nameEn           String?
+  slug             String      @unique
+  shortDescription String?
+  description      String?
+  icon             String?
+  imageId          String?     @db.Uuid
+  sortOrder        Int         @default(0)
+  isFeatured       Boolean     @default(false)
+  isActive         Boolean     @default(true)
+  seoTitle         String?
+  seoDescription   String?
+  deletedAt        DateTime?
+  createdAt        DateTime    @default(now())
+  updatedAt        DateTime    @updatedAt
+  image            MediaAsset? @relation("CategoryImage", fields: [imageId], references: [id], onDelete: SetNull)
+  services         Service[]
+  faqs             Faq[]
+
+  @@index([isActive, isFeatured, sortOrder])
+  @@index([deletedAt])
+}
+
+model Service {
+  id              String            @id @default(uuid()) @db.Uuid
+  categoryId      String            @db.Uuid
+  nameAr          String
+  nameEn          String?
+  slug            String            @unique
+  summary         String
+  description     String
+  benefits        String[]
+  processSteps    String[]
+  priceType       PriceType         @default(QUOTE_REQUIRED)
+  startingPrice   Decimal?          @db.Decimal(10, 2)
+  maximumPrice    Decimal?          @db.Decimal(10, 2)
+  currency        String            @default("SAR") @db.VarChar(3)
+  durationText    String?
+  coverImageId    String?           @db.Uuid
+  isEmergency     Boolean           @default(false)
+  isFeatured      Boolean           @default(false)
+  isActive        Boolean           @default(true)
+  sortOrder       Int               @default(0)
+  seoTitle        String?
+  seoDescription  String?
+  deletedAt       DateTime?
+  createdAt       DateTime          @default(now())
+  updatedAt       DateTime          @updatedAt
+  category        Category          @relation(fields: [categoryId], references: [id], onDelete: Restrict)
+  coverImage      MediaAsset?       @relation("ServiceCoverImage", fields: [coverImageId], references: [id], onDelete: SetNull)
+  gallery         ServiceImage[]
+  fields          ServiceField[]
+  locations       ServiceLocation[]
+  requests        ServiceRequest[]
+  faqs            Faq[]
+  recentWork      PortfolioItem[]
+  analyticsEvents AnalyticsEvent[]
+
+  @@index([categoryId, isActive, sortOrder])
+  @@index([isActive, isFeatured, sortOrder])
+  @@index([deletedAt])
+}
+
+model ServiceImage {
+  serviceId String     @db.Uuid
+  mediaId   String     @db.Uuid
+  sortOrder Int        @default(0)
+  service   Service    @relation(fields: [serviceId], references: [id], onDelete: Cascade)
+  media     MediaAsset @relation(fields: [mediaId], references: [id], onDelete: Restrict)
+
+  @@id([serviceId, mediaId])
+  @@index([mediaId])
+}
+
+model ServiceField {
+  id              String                 @id @default(uuid()) @db.Uuid
+  serviceId       String                 @db.Uuid
+  key             String
+  type            ServiceFieldType
+  labelAr         String
+  labelEn         String?
+  helpTextAr      String?
+  helpTextEn      String?
+  placeholderAr   String?
+  placeholderEn   String?
+  isRequired      Boolean                @default(false)
+  validationRules Json?
+  sortOrder       Int                    @default(0)
+  isActive        Boolean                @default(true)
+  createdAt       DateTime               @default(now())
+  updatedAt       DateTime               @updatedAt
+  service         Service                @relation(fields: [serviceId], references: [id], onDelete: Cascade)
+  options         ServiceFieldOption[]
+  answers         ServiceRequestAnswer[]
+
+  @@unique([serviceId, key])
+  @@index([serviceId, isActive, sortOrder])
+}
+
+model ServiceFieldOption {
+  id        String                       @id @default(uuid()) @db.Uuid
+  fieldId   String                       @db.Uuid
+  value     String
+  labelAr   String
+  labelEn   String?
+  sortOrder Int                          @default(0)
+  isActive  Boolean                      @default(true)
+  field     ServiceField                 @relation(fields: [fieldId], references: [id], onDelete: Cascade)
+  answers   ServiceRequestAnswerOption[]
+
+  @@unique([fieldId, value])
+  @@index([fieldId, isActive, sortOrder])
+}
+
+model Country {
+  id        String   @id @default(uuid()) @db.Uuid
+  nameAr    String
+  nameEn    String?
+  isoCode   String   @unique @db.VarChar(2)
+  slug      String   @unique
+  isActive  Boolean  @default(true)
+  sortOrder Int      @default(0)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  regions   Region[]
+}
+
+model Region {
+  id             String   @id @default(uuid()) @db.Uuid
+  countryId      String   @db.Uuid
+  nameAr         String
+  nameEn         String?
+  slug           String
+  isActive       Boolean  @default(true)
+  sortOrder      Int      @default(0)
+  seoTitle       String?
+  seoDescription String?
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+  country        Country  @relation(fields: [countryId], references: [id], onDelete: Restrict)
+  cities         City[]
+
+  @@unique([countryId, slug])
+  @@index([countryId, isActive, sortOrder])
+}
+
+model City {
+  id               String            @id @default(uuid()) @db.Uuid
+  regionId         String            @db.Uuid
+  nameAr           String
+  nameEn           String?
+  slug             String            @unique
+  shortDescription String?
+  isActive         Boolean           @default(true)
+  sortOrder        Int               @default(0)
+  seoTitle         String?
+  seoDescription   String?
+  createdAt        DateTime          @default(now())
+  updatedAt        DateTime          @updatedAt
+  region           Region            @relation(fields: [regionId], references: [id], onDelete: Restrict)
+  districts        District[]
+  serviceLocations ServiceLocation[]
+  serviceRequests  ServiceRequest[]
+  recentWork       PortfolioItem[]
+
+  @@index([regionId, isActive, sortOrder])
+}
+
+model District {
+  id               String            @id @default(uuid()) @db.Uuid
+  cityId           String            @db.Uuid
+  nameAr           String
+  nameEn           String?
+  slug             String
+  isActive         Boolean           @default(true)
+  sortOrder        Int               @default(0)
+  seoTitle         String?
+  seoDescription   String?
+  createdAt        DateTime          @default(now())
+  updatedAt        DateTime          @updatedAt
+  city             City              @relation(fields: [cityId], references: [id], onDelete: Restrict)
+  serviceLocations ServiceLocation[]
+  serviceRequests  ServiceRequest[]
+
+  @@unique([cityId, slug])
+  @@index([cityId, isActive, sortOrder])
+}
+
+model ServiceLocation {
+  id                String    @id @default(uuid()) @db.Uuid
+  serviceId         String    @db.Uuid
+  cityId            String    @db.Uuid
+  districtId        String?   @db.Uuid
+  scopeKey          String
+  isActive          Boolean   @default(true)
+  localIntroduction String?
+  localPricingText  String?
+  seoTitle          String?
+  seoDescription    String?
+  createdAt         DateTime  @default(now())
+  updatedAt         DateTime  @updatedAt
+  service           Service   @relation(fields: [serviceId], references: [id], onDelete: Cascade)
+  city              City      @relation(fields: [cityId], references: [id], onDelete: Restrict)
+  district          District? @relation(fields: [districtId], references: [id], onDelete: Restrict)
+
+  @@unique([serviceId, cityId, scopeKey])
+  @@index([cityId, isActive])
+  @@index([districtId, isActive])
+}
+
+model Customer {
+  id              String           @id @default(uuid()) @db.Uuid
+  name            String
+  phone           String
+  phoneNormalized String
+  email           String?
+  createdAt       DateTime         @default(now())
+  updatedAt       DateTime         @updatedAt
+  requests        ServiceRequest[]
+
+  @@index([phoneNormalized])
+  @@index([createdAt])
+}
+
+model ServiceRequest {
+  id              String                 @id @default(uuid()) @db.Uuid
+  requestNumber   String                 @unique
+  trackingCode    String                 @unique
+  customerId      String                 @db.Uuid
+  serviceId       String                 @db.Uuid
+  cityId          String                 @db.Uuid
+  districtId      String?                @db.Uuid
+  assignedAdminId String?                @db.Uuid
+  addressNotes    String?
+  description     String
+  preferredDate   DateTime?
+  preferredTime   String?
+  isEmergency     Boolean                @default(false)
+  consentAt       DateTime
+  source          RequestSource          @default(WEBSITE)
+  utmSource       String?
+  utmMedium       String?
+  utmCampaign     String?
+  utmContent      String?
+  utmTerm         String?
+  landingPage     String?
+  referrer        String?
+  status          ServiceRequestStatus   @default(NEW)
+  priority        RequestPriority        @default(NORMAL)
+  createdAt       DateTime               @default(now())
+  updatedAt       DateTime               @updatedAt
+  customer        Customer               @relation(fields: [customerId], references: [id], onDelete: Restrict)
+  service         Service                @relation(fields: [serviceId], references: [id], onDelete: Restrict)
+  city            City                   @relation(fields: [cityId], references: [id], onDelete: Restrict)
+  district        District?              @relation(fields: [districtId], references: [id], onDelete: Restrict)
+  assignedAdmin   User?                  @relation("AssignedRequests", fields: [assignedAdminId], references: [id], onDelete: SetNull)
+  answers         ServiceRequestAnswer[]
+  attachments     RequestAttachment[]
+  statusHistory   RequestStatusHistory[]
+  internalNotes   InternalNote[]
+  analyticsEvents AnalyticsEvent[]
+
+  @@index([status, createdAt])
+  @@index([serviceId, createdAt])
+  @@index([cityId, createdAt])
+  @@index([customerId, createdAt])
+  @@index([assignedAdminId, status])
+  @@index([priority, createdAt])
+}
+
+model ServiceRequestAnswer {
+  id               String                       @id @default(uuid()) @db.Uuid
+  serviceRequestId String                       @db.Uuid
+  serviceFieldId   String                       @db.Uuid
+  valueText        String?
+  valueNumber      Decimal?                     @db.Decimal(14, 3)
+  valueBoolean     Boolean?
+  valueDate        DateTime?
+  createdAt        DateTime                     @default(now())
+  serviceRequest   ServiceRequest               @relation(fields: [serviceRequestId], references: [id], onDelete: Cascade)
+  serviceField     ServiceField                 @relation(fields: [serviceFieldId], references: [id], onDelete: Restrict)
+  selectedOptions  ServiceRequestAnswerOption[]
+
+  @@unique([serviceRequestId, serviceFieldId])
+  @@index([serviceFieldId])
+}
+
+model ServiceRequestAnswerOption {
+  answerId String               @db.Uuid
+  optionId String               @db.Uuid
+  answer   ServiceRequestAnswer @relation(fields: [answerId], references: [id], onDelete: Cascade)
+  option   ServiceFieldOption   @relation(fields: [optionId], references: [id], onDelete: Restrict)
+
+  @@id([answerId, optionId])
+  @@index([optionId])
+}
+
+model RequestAttachment {
+  id               String         @id @default(uuid()) @db.Uuid
+  serviceRequestId String         @db.Uuid
+  mediaId          String         @db.Uuid
+  createdAt        DateTime       @default(now())
+  serviceRequest   ServiceRequest @relation(fields: [serviceRequestId], references: [id], onDelete: Cascade)
+  media            MediaAsset     @relation(fields: [mediaId], references: [id], onDelete: Restrict)
+
+  @@unique([serviceRequestId, mediaId])
+  @@index([mediaId])
+}
+
+model RequestStatusHistory {
+  id               String                @id @default(uuid()) @db.Uuid
+  serviceRequestId String                @db.Uuid
+  previousStatus   ServiceRequestStatus?
+  newStatus        ServiceRequestStatus
+  changedById      String?               @db.Uuid
+  note             String?
+  createdAt        DateTime              @default(now())
+  serviceRequest   ServiceRequest        @relation(fields: [serviceRequestId], references: [id], onDelete: Cascade)
+  changedBy        User?                 @relation(fields: [changedById], references: [id], onDelete: SetNull)
+
+  @@index([serviceRequestId, createdAt])
+  @@index([changedById])
+}
+
+model InternalNote {
+  id               String         @id @default(uuid()) @db.Uuid
+  serviceRequestId String         @db.Uuid
+  authorId         String         @db.Uuid
+  body             String
+  createdAt        DateTime       @default(now())
+  updatedAt        DateTime       @updatedAt
+  serviceRequest   ServiceRequest @relation(fields: [serviceRequestId], references: [id], onDelete: Cascade)
+  author           User           @relation(fields: [authorId], references: [id], onDelete: Restrict)
+
+  @@index([serviceRequestId, createdAt])
+  @@index([authorId])
+}
+
+model Page {
+  id             String        @id @default(uuid()) @db.Uuid
+  titleAr        String
+  titleEn        String?
+  slug           String        @unique
+  excerpt        String?
+  content        String
+  status         ContentStatus @default(DRAFT)
+  seoTitle       String?
+  seoDescription String?
+  publishedAt    DateTime?
+  createdAt      DateTime      @default(now())
+  updatedAt      DateTime      @updatedAt
+
+  @@index([status, publishedAt])
+}
+
+model BlogPost {
+  id             String        @id @default(uuid()) @db.Uuid
+  authorId       String?       @db.Uuid
+  coverImageId   String?       @db.Uuid
+  titleAr        String
+  titleEn        String?
+  slug           String        @unique
+  excerpt        String
+  content        String
+  status         ContentStatus @default(DRAFT)
+  seoTitle       String?
+  seoDescription String?
+  publishedAt    DateTime?
+  createdAt      DateTime      @default(now())
+  updatedAt      DateTime      @updatedAt
+  author         User?         @relation(fields: [authorId], references: [id], onDelete: SetNull)
+  coverImage     MediaAsset?   @relation("BlogCoverImage", fields: [coverImageId], references: [id], onDelete: SetNull)
+
+  @@index([status, publishedAt])
+  @@index([authorId])
+}
+
+model Faq {
+  id         String    @id @default(uuid()) @db.Uuid
+  serviceId  String?   @db.Uuid
+  categoryId String?   @db.Uuid
+  questionAr String
+  questionEn String?
+  answerAr   String
+  answerEn   String?
+  sortOrder  Int       @default(0)
+  isActive   Boolean   @default(true)
+  createdAt  DateTime  @default(now())
+  updatedAt  DateTime  @updatedAt
+  service    Service?  @relation(fields: [serviceId], references: [id], onDelete: Cascade)
+  category   Category? @relation(fields: [categoryId], references: [id], onDelete: Cascade)
+
+  @@index([serviceId, isActive, sortOrder])
+  @@index([categoryId, isActive, sortOrder])
+  @@index([isActive, sortOrder])
+}
+
+model HomepageSection {
+  id        String              @id @default(uuid()) @db.Uuid
+  key       String              @unique
+  type      HomepageSectionType
+  titleAr   String?
+  titleEn   String?
+  config    Json?
+  isEnabled Boolean             @default(true)
+  sortOrder Int                 @default(0)
+  createdAt DateTime            @default(now())
+  updatedAt DateTime            @updatedAt
+
+  @@index([isEnabled, sortOrder])
+}
+
+model MediaAsset {
+  id                 String              @id @default(uuid()) @db.Uuid
+  type               MediaType           @default(IMAGE)
+  provider           StorageProvider     @default(LOCAL)
+  storageKey         String              @unique
+  originalName       String
+  mimeType           String
+  sizeBytes          Int
+  width              Int?
+  height             Int?
+  altTextAr          String?
+  altTextEn          String?
+  publicUrl          String?
+  uploadedById       String?             @db.Uuid
+  createdAt          DateTime            @default(now())
+  uploadedBy         User?               @relation(fields: [uploadedById], references: [id], onDelete: SetNull)
+  categoryImages     Category[]          @relation("CategoryImage")
+  serviceCoverImages Service[]           @relation("ServiceCoverImage")
+  serviceGallery     ServiceImage[]
+  requestAttachments RequestAttachment[]
+  blogCoverImages    BlogPost[]          @relation("BlogCoverImage")
+  portfolioImages    PortfolioItem[]
+
+  @@index([type, createdAt])
+  @@index([uploadedById])
+}
+
+model Redirect {
+  id         String   @id @default(uuid()) @db.Uuid
+  sourcePath String   @unique
+  targetPath String
+  statusCode Int      @default(301)
+  isActive   Boolean  @default(true)
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+
+  @@index([isActive])
+}
+
+model SiteSetting {
+  id          String           @id @default(uuid()) @db.Uuid
+  key         String           @unique
+  value       String
+  valueType   SettingValueType @default(TEXT)
+  isPublic    Boolean          @default(false)
+  description String?
+  createdAt   DateTime         @default(now())
+  updatedAt   DateTime         @updatedAt
+}
+
+model ContactSubmission {
+  id              String                  @id @default(uuid()) @db.Uuid
+  name            String
+  phone           String?
+  phoneNormalized String?
+  email           String?
+  subject         String?
+  message         String
+  status          ContactSubmissionStatus @default(NEW)
+  createdAt       DateTime                @default(now())
+  updatedAt       DateTime                @updatedAt
+
+  @@index([status, createdAt])
+  @@index([phoneNormalized])
+}
+
+model AnalyticsEvent {
+  id               String          @id @default(uuid()) @db.Uuid
+  eventName        String
+  anonymousId      String?
+  serviceId        String?         @db.Uuid
+  serviceRequestId String?         @db.Uuid
+  landingPage      String?
+  referrer         String?
+  utmSource        String?
+  utmMedium        String?
+  utmCampaign      String?
+  deviceCategory   String?
+  metadata         Json?
+  createdAt        DateTime        @default(now())
+  service          Service?        @relation(fields: [serviceId], references: [id], onDelete: SetNull)
+  serviceRequest   ServiceRequest? @relation(fields: [serviceRequestId], references: [id], onDelete: SetNull)
+
+  @@index([eventName, createdAt])
+  @@index([serviceId, createdAt])
+  @@index([serviceRequestId])
+}
+
+model AuditLog {
+  id         String   @id @default(uuid()) @db.Uuid
+  actorId    String?  @db.Uuid
+  action     String
+  entityType String
+  entityId   String?
+  summary    String?
+  changes    Json?
+  ipAddress  String?
+  userAgent  String?
+  createdAt  DateTime @default(now())
+  actor      User?    @relation(fields: [actorId], references: [id], onDelete: SetNull)
+
+  @@index([actorId, createdAt])
+  @@index([entityType, entityId, createdAt])
+  @@index([action, createdAt])
+}
+
+model CustomerReview {
+  id           String   @id @default(uuid()) @db.Uuid
+  customerName String
+  cityName     String?
+  rating       Int
+  body         String
+  isFeatured   Boolean  @default(false)
+  isActive     Boolean  @default(true)
+  sortOrder    Int      @default(0)
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+
+  @@index([isActive, isFeatured, sortOrder])
+}
+
+model PortfolioItem {
+  id          String      @id @default(uuid()) @db.Uuid
+  serviceId   String      @db.Uuid
+  cityId      String?     @db.Uuid
+  imageId     String?     @db.Uuid
+  titleAr     String
+  description String?
+  completedAt DateTime?
+  isPublished Boolean     @default(false)
+  sortOrder   Int         @default(0)
+  createdAt   DateTime    @default(now())
+  updatedAt   DateTime    @updatedAt
+  service     Service     @relation(fields: [serviceId], references: [id], onDelete: Restrict)
+  city        City?       @relation(fields: [cityId], references: [id], onDelete: SetNull)
+  image       MediaAsset? @relation(fields: [imageId], references: [id], onDelete: SetNull)
+
+  @@index([serviceId, isPublished, sortOrder])
+  @@index([cityId, completedAt])
+}

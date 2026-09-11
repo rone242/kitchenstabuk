@@ -1,0 +1,21 @@
+"use client";
+
+import { Plus, Trash2 } from "lucide-react";
+import { FormEvent, useEffect, useState } from "react";
+import { apiFetch } from "@/lib/api";
+
+interface Field { id: string; key: string; type: string; labelAr: string; isRequired: boolean; isActive: boolean; options: Array<{ labelAr: string }> }
+const types = ["TEXT", "TEXTAREA", "NUMBER", "SELECT", "MULTISELECT", "RADIO", "CHECKBOX", "DATE", "TIME", "FILE", "IMAGE", "BOOLEAN"];
+
+export function ServiceFieldsEditor({ serviceId }: { serviceId: string }) {
+  const [fields, setFields] = useState<Field[]>([]); const [error, setError] = useState(""); const [refresh, setRefresh] = useState(0);
+  useEffect(() => { apiFetch<Field[]>(`/admin/services/${serviceId}/fields`).then(setFields).catch(() => setError("تعذر تحميل الحقول.")); }, [serviceId, refresh]);
+  async function add(event: FormEvent<HTMLFormElement>) {
+    event.preventDefault(); setError(""); const form = new FormData(event.currentTarget); const type = String(form.get("type"));
+    const options = String(form.get("options") ?? "").split("\n").map((line, index) => { const [value, ...label] = line.split("|"); return { value: value?.trim(), labelAr: label.join("|").trim(), sortOrder: index }; }).filter((item) => item.value && item.labelAr);
+    try { await apiFetch(`/admin/services/${serviceId}/fields`, { method: "POST", body: JSON.stringify({ key: String(form.get("key")), labelAr: String(form.get("labelAr")), type, isRequired: form.get("isRequired") === "on", isActive: true, options }) }); event.currentTarget.reset(); setRefresh((value) => value + 1); } catch (reason) { setError(reason instanceof Error ? reason.message : "تعذر إضافة الحقل."); }
+  }
+  async function toggle(field: Field) { await apiFetch(`/admin/services/${serviceId}/fields/${field.id}`, { method: "PATCH", body: JSON.stringify({ isActive: !field.isActive }) }); setRefresh((value) => value + 1); }
+  async function remove(field: Field) { if (!confirm(`حذف الحقل «${field.labelAr}»؟`)) return; try { await apiFetch(`/admin/services/${serviceId}/fields/${field.id}`, { method: "DELETE" }); setRefresh((value) => value + 1); } catch (reason) { setError(reason instanceof Error ? reason.message : "تعذر حذف الحقل."); } }
+  return <section className="panel"><div><p className="eyebrow">نموذج الطلب</p><h2 className="form-section-title mt-1">الحقول الديناميكية</h2></div>{error ? <p className="error-banner mt-4">{error}</p> : null}<div className="mt-5 grid gap-3">{fields.map((field) => <article className="flex flex-col gap-3 rounded-xl border border-slate-200 p-4 sm:flex-row sm:items-center sm:justify-between" key={field.id}><div><strong>{field.labelAr}</strong><p className="mt-1 text-xs text-slate-400" dir="ltr">{field.key} · {field.type}{field.options.length ? ` · ${field.options.length} options` : ""}</p></div><div className="flex gap-2"><button type="button" className={field.isActive ? "status-pill" : "status-pill status-muted"} onClick={() => toggle(field)}>{field.isActive ? "نشط" : "متوقف"}</button><button type="button" className="icon-button danger" onClick={() => remove(field)}><Trash2 className="size-4" /></button></div></article>)}{!fields.length ? <p className="empty-inline">لم تُضف أسئلة مخصصة لهذه الخدمة.</p> : null}</div><form onSubmit={add} className="mt-6 rounded-xl bg-slate-50 p-4"><h3 className="font-bold text-slate-800">إضافة حقل</h3><div className="form-grid mt-4"><label className="field"><span>المفتاح البرمجي</span><input name="key" dir="ltr" pattern="[a-z][a-z0-9_]*" required /></label><label className="field"><span>العنوان بالعربية</span><input name="labelAr" required /></label><label className="field"><span>نوع الحقل</span><select name="type">{types.map((type) => <option key={type}>{type}</option>)}</select></label><label className="check-field"><input type="checkbox" name="isRequired" /><span>إجابة مطلوبة</span></label><label className="field sm:col-span-2"><span>خيارات حقول الاختيار — value|العنوان، سطر لكل خيار</span><textarea name="options" rows={4} dir="ltr" placeholder={"small|صغير\nlarge|كبير"} /></label></div><button className="secondary-button mt-4" type="submit"><Plus className="size-4" /> إضافة الحقل</button></form></section>;
+}

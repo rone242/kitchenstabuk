@@ -36,3 +36,7 @@ yarn-error.log*
 # Misc
 .DS_Store
 *.pem
+
+# Local compiler cache and uploaded files
+*.tsbuildinfo
+apps/api/uploads/

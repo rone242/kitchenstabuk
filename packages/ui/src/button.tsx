@@ -1,20 +1,21 @@
-"use client";
+import type { ComponentProps } from "react";
 
-import { ReactNode } from "react";
-
-interface ButtonProps {
-  children: ReactNode;
-  className?: string;
-  appName: string;
+export interface ButtonProps extends ComponentProps<"button"> {
+  variant?: "primary" | "secondary" | "ghost";
 }
 
-export const Button = ({ children, className, appName }: ButtonProps) => {
+export function Button({
+  className = "",
+  type = "button",
+  variant = "primary",
+  ...props
+}: ButtonProps) {
   return (
     <button
-      className={className}
-      onClick={() => alert(`Hello from your ${appName} app!`)}
-    >
-      {children}
-    </button>
+      className={`ui-button ui-button--${variant} ${className}`.trim()}
+      data-variant={variant}
+      type={type}
+      {...props}
+    />
   );
-};
+}

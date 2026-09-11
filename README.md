@@ -1,159 +1,136 @@
-# Turborepo starter
+# Kitchenstabuk
 
-This Turborepo starter is maintained by the Turborepo core team.
+Arabic-first local service and lead-generation platform for Saudi Arabia. The
+repository is a pnpm/Turborepo monorepo and is being delivered in explicit
+phases. Phases 1–3 establish the application boundaries, configuration, API
+hardening, local infrastructure, complete relational model, migrations,
+repeatable Arabic development data, and secure administrative access.
 
-## Using this example
+## Workspace
 
-Run the following command:
+- `apps/web` — public Next.js website on port `3000`
+- `apps/admin` — protected Next.js administration app on port `3001`
+- `apps/api` — NestJS API on port `4000`, globally prefixed with `/api`
+- `packages/database` — Prisma schema and PostgreSQL client
+- `packages/ui` — shared React components
+- `packages/types` — shared transport-safe TypeScript types
+- `packages/validation` — shared Zod validation
+- `packages/config` — locale and platform constants
 
-```sh
-npx create-turbo@latest
+The default product locale is `ar-SA`, direction is RTL, currency is SAR, and
+timezone is `Asia/Riyadh`.
+
+## Requirements
+
+- Node.js 24 or newer
+- pnpm 11.25.0
+- Docker with Compose
+
+## Local setup
+
+```bash
+cp .env.example .env
+cp .env.example apps/api/.env
+pnpm install
+docker compose up -d postgres redis
+pnpm db:migrate:deploy
+pnpm db:seed
+pnpm dev
 ```
 
-## What's inside?
+Open the public site at `http://localhost:3000`, admin at
+`http://localhost:3001`, API health at `http://localhost:4000/api/health`, and
+Swagger during development at `http://localhost:4000/api/docs`.
 
-This Turborepo includes the following packages/apps:
+## Quality commands
 
-### Apps and Packages
-
-- `docs`: a [Next.js](https://nextjs.org/) app
-- `web`: another [Next.js](https://nextjs.org/) app
-- `@repo/ui`: a stub React component library shared by both `web` and `docs` applications
-- `@repo/eslint-config`: `eslint` configurations (includes `@next/eslint-plugin-next` and `eslint-config-prettier`)
-- `@repo/typescript-config`: `tsconfig.json`s used throughout the monorepo
-
-Each package/app is 100% [TypeScript](https://www.typescriptlang.org/).
-
-### Utilities
-
-This Turborepo has some additional tools already setup for you:
-
-- [TypeScript](https://www.typescriptlang.org/) for static type checking
-- [ESLint](https://eslint.org/) for code linting
-- [Prettier](https://prettier.io) for code formatting
-
-### Build
-
-To build all apps and packages, run the following command:
-
-With [global `turbo`](https://turborepo.dev/docs/getting-started/installation#global-installation) installed (recommended):
-
-```sh
-cd my-turborepo
-turbo build
+```bash
+pnpm lint
+pnpm check-types
+pnpm test
+E2E_DATABASE_URL="$DATABASE_URL" pnpm --filter api test:e2e
+pnpm build
+pnpm db:format
+pnpm db:validate
+pnpm db:verify
 ```
 
-Without global `turbo`, use your package manager:
+## Database workflow
 
-```sh
-cd my-turborepo
-npx turbo build
-pnpm exec turbo build
-pnpm exec turbo build
+Prisma uses PostgreSQL through the `@prisma/adapter-pg` driver adapter. The
+schema covers the service catalogue, Saudi location hierarchy, dynamic request
+fields and answers, lead workflow, RBAC, CMS, media, settings, analytics, and
+audit records.
+
+Create a named development migration after changing the schema:
+
+```bash
+pnpm --filter database exec prisma migrate dev --name describe_the_change
 ```
 
-You can build a specific package by using a [filter](https://turborepo.dev/docs/crafting-your-repository/running-tasks#using-filters):
+Apply committed migrations in production without creating new ones:
 
-With [global `turbo`](https://turborepo.dev/docs/getting-started/installation#global-installation) installed:
-
-```sh
-turbo build --filter=docs
+```bash
+pnpm db:migrate:deploy
 ```
 
-Without global `turbo`:
+The development seed requires `ADMIN_SEED_EMAIL`, `ADMIN_SEED_PHONE`, and
+`ADMIN_SEED_PASSWORD`. It is idempotent and may be run repeatedly:
 
-```sh
-npx turbo build --filter=docs
-pnpm exec turbo build --filter=docs
-pnpm exec turbo build --filter=docs
+```bash
+pnpm db:seed
+pnpm db:verify
 ```
 
-### Develop
+## Environment
 
-To develop all apps and packages, run the following command:
+Copy `.env.example` for local development and replace every secret placeholder.
+Production startup validates critical API variables. Never commit real `.env`
+files or expose backend secrets through `NEXT_PUBLIC_` variables.
 
-With [global `turbo`](https://turborepo.dev/docs/getting-started/installation#global-installation) installed (recommended):
+## Administrative access
 
-```sh
-cd my-turborepo
-turbo dev
-```
+The seed creates or updates the initial super administrator from
+`ADMIN_SEED_EMAIL`, `ADMIN_SEED_PHONE`, and `ADMIN_SEED_PASSWORD`. Sign in at
+`http://localhost:3001/login` with either identifier. Access and rotating
+refresh tokens are stored only in HttpOnly cookies; the companion CSRF cookie
+must match the request header for refresh and logout operations.
 
-Without global `turbo`, use your package manager:
+For production subdomains, set `AUTH_COOKIE_DOMAIN` to the shared parent domain
+and leave `AUTH_COOKIE_SECURE` unset (secure cookies are the production
+default). API authorization is deny-by-default and permission checks are
+enforced on the server.
 
-```sh
-cd my-turborepo
-npx turbo dev
-pnpm exec turbo dev
-pnpm exec turbo dev
-```
+## Delivery phases
 
-You can develop a specific package by using a [filter](https://turborepo.dev/docs/crafting-your-repository/running-tasks#using-filters):
+1. Foundation and workspace repair — complete
+2. Database models, migrations, and Arabic development seed — complete
+3. Admin authentication, session rotation, RBAC, and audit logging — complete
+4. Admin catalogue, locations, dynamic fields, and media — implemented; browser and media-flow verification pending
+5. Arabic public website and location-aware service discovery — homepage, filters, and service details implemented; browser review pending
+6. Service request workflow, tracking, attachments, and notifications
+7. CMS, SEO, structured data, sitemap, and redirects
+8. Security, accessibility, performance, Docker, and deployment hardening
 
-With [global `turbo`](https://turborepo.dev/docs/getting-started/installation#global-installation) installed:
+## Development checkpoint — 2026-09-11
 
-```sh
-turbo dev --filter=web
-```
+The public homepage now reads live catalogue data, supports Arabic search,
+category and city filters, and pagination, and links to service detail pages.
+Public endpoints under `/api/catalogue` expose active services in active
+categories only. City filtering also checks active location ancestors and districts.
+The website shows explicit empty and unavailable states when appropriate.
+Set `API_INTERNAL_URL` to the API base URL (including `/api`) when server-side
+requests need a different address from `NEXT_PUBLIC_API_URL`.
 
-Without global `turbo`:
+Catalogue verification fixed partial price validation, pricing-mode changes,
+field type/option validation, and the city-wide service coverage scope key.
+Express is now declared as a direct API runtime dependency.
 
-```sh
-npx turbo dev --filter=web
-pnpm exec turbo dev --filter=web
-pnpm exec turbo dev --filter=web
-```
-
-### Remote Caching
-
-> [!TIP]
-> Vercel Remote Cache is free for all plans. Get started today at [vercel.com](https://vercel.com/signup?utm_source=remote-cache-sdk&utm_campaign=free_remote_cache).
-
-Turborepo can use a technique known as [Remote Caching](https://turborepo.dev/docs/core-concepts/remote-caching) to share cache artifacts across machines, enabling you to share build caches with your team and CI/CD pipelines.
-
-By default, Turborepo will cache locally. To enable Remote Caching you will need an account with Vercel. If you don't have an account you can [create one](https://vercel.com/signup?utm_source=turborepo-examples), then enter the following commands:
-
-With [global `turbo`](https://turborepo.dev/docs/getting-started/installation#global-installation) installed (recommended):
-
-```sh
-cd my-turborepo
-turbo login
-```
-
-Without global `turbo`, use your package manager:
-
-```sh
-cd my-turborepo
-npx turbo login
-pnpm exec turbo login
-pnpm exec turbo login
-```
-
-This will authenticate the Turborepo CLI with your [Vercel account](https://vercel.com/docs/concepts/personal-accounts/overview).
-
-Next, you can link your Turborepo to your Remote Cache by running the following command from the root of your Turborepo:
-
-With [global `turbo`](https://turborepo.dev/docs/getting-started/installation#global-installation) installed:
-
-```sh
-turbo link
-```
-
-Without global `turbo`:
-
-```sh
-npx turbo link
-pnpm exec turbo link
-pnpm exec turbo link
-```
-
-## Useful Links
-
-Learn more about the power of Turborepo:
-
-- [Tasks](https://turborepo.dev/docs/crafting-your-repository/running-tasks)
-- [Caching](https://turborepo.dev/docs/crafting-your-repository/caching)
-- [Remote Caching](https://turborepo.dev/docs/core-concepts/remote-caching)
-- [Filtering](https://turborepo.dev/docs/crafting-your-repository/running-tasks#using-filters)
-- [Configuration Options](https://turborepo.dev/docs/reference/configuration)
-- [CLI Usage](https://turborepo.dev/docs/reference/command-line-reference)
+Verified: 12 unit tests, 4 database-backed integration tests, workspace type
+checks, lint, production builds, and development seed verification. Integration
+coverage includes authentication rotation/replay/logout, catalogue creation,
+invalid updates, city coverage, anonymous admin denial, and public visibility.
+Live HTTP smoke checks also passed for homepage rendering with database services,
+service details, and missing-service 404 responses. Browser interaction and
+media upload/storage flows still need verification.
+Customer request submission and tracking remain in Phase 6.
