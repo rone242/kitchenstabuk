@@ -38,6 +38,90 @@ services:
       timeout: 5s
       retries: 5
 
+  migrate:
+    build:
+      context: .
+      target: migrate
+    command: ["pnpm", "--filter", "database", "db:migrate:deploy"]
+    environment:
+      NODE_ENV: development
+      DATABASE_URL: postgresql://${POSTGRES_USER:-kitchenstabuk}:${POSTGRES_PASSWORD:-password}@postgres:5432/${POSTGRES_DB:-kitchenstabuk}?schema=public
+      DIRECT_URL: postgresql://${POSTGRES_USER:-kitchenstabuk}:${POSTGRES_PASSWORD:-password}@postgres:5432/${POSTGRES_DB:-kitchenstabuk}?schema=public
+    depends_on:
+      postgres:
+        condition: service_healthy
+    restart: "no"
+
+  api:
+    build:
+      context: .
+      target: api
+    restart: unless-stopped
+    environment:
+      NODE_ENV: development
+      API_PORT: 4000
+      DATABASE_URL: postgresql://${POSTGRES_USER:-kitchenstabuk}:${POSTGRES_PASSWORD:-password}@postgres:5432/${POSTGRES_DB:-kitchenstabuk}?schema=public
+      DIRECT_URL: postgresql://${POSTGRES_USER:-kitchenstabuk}:${POSTGRES_PASSWORD:-password}@postgres:5432/${POSTGRES_DB:-kitchenstabuk}?schema=public
+      REDIS_HOST: redis
+      REDIS_PORT: 6379
+      JWT_ACCESS_SECRET: ${JWT_ACCESS_SECRET:-local-development-access-secret-change-me}
+      JWT_REFRESH_SECRET: ${JWT_REFRESH_SECRET:-local-development-refresh-secret-change-me}
+      JWT_ACCESS_EXPIRES_IN: ${JWT_ACCESS_EXPIRES_IN:-15m}
+      JWT_REFRESH_EXPIRES_IN: ${JWT_REFRESH_EXPIRES_IN:-30d}
+      AUTH_COOKIE_SECURE: "false"
+      WEB_URL: ${WEB_URL:-http://localhost:3000}
+      ADMIN_URL: ${ADMIN_URL:-http://localhost:3001}
+      CORS_ORIGINS: ${CORS_ORIGINS:-http://localhost:3000,http://localhost:3001}
+      UPLOAD_PROVIDER: ${UPLOAD_PROVIDER:-local}
+      UPLOAD_LOCAL_DIR: /app/uploads
+    volumes:
+      - kitchenstabuk_uploads_data:/app/uploads
+    ports:
+      - "${API_PORT:-4000}:4000"
+    depends_on:
+      migrate:
+        condition: service_completed_successfully
+      redis:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD", "wget", "-qO-", "http://127.0.0.1:4000/api/health"]
+      interval: 20s
+      timeout: 5s
+      retries: 5
+
+  web:
+    build:
+      context: .
+      target: web
+      args:
+        NEXT_PUBLIC_API_URL: ${NEXT_PUBLIC_API_URL:-http://localhost:4000/api}
+        NEXT_PUBLIC_SITE_URL: ${NEXT_PUBLIC_SITE_URL:-http://localhost:3000}
+    restart: unless-stopped
+    environment:
+      NODE_ENV: development
+      API_INTERNAL_URL: http://api:4000/api
+    ports:
+      - "${WEB_PORT:-3000}:3000"
+    depends_on:
+      api:
+        condition: service_healthy
+
+  admin:
+    build:
+      context: .
+      target: admin
+      args:
+        NEXT_PUBLIC_API_URL: ${NEXT_PUBLIC_API_URL:-http://localhost:4000/api}
+    restart: unless-stopped
+    environment:
+      NODE_ENV: development
+    ports:
+      - "${ADMIN_PORT:-3001}:3001"
+    depends_on:
+      api:
+        condition: service_healthy
+
 volumes:
   kitchenstabuk_postgres_data:
   kitchenstabuk_redis_data:
+  kitchenstabuk_uploads_data:

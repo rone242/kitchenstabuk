@@ -82,6 +82,21 @@ HTTP virtual hosts are reachable.
 
 ## Local setup
 
+### Full local Docker stack
+
+To run the whole application locally in Docker (PostgreSQL, Redis, migrations,
+API, public website, and admin), start it from the repository root:
+
+```bash
+docker compose up -d --build
+```
+
+Open the public website at `http://localhost:3000`, admin at
+`http://localhost:3001`, and API health at `http://localhost:4000/api/health`.
+Use `docker compose logs -f` to follow startup. The first run applies committed
+database migrations automatically. Stop the stack with `docker compose down`;
+named volumes keep your local data.
+
 ```bash
 cp .env.example .env
 cp .env.example apps/api/.env

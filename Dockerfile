@@ -17,6 +17,10 @@ RUN pnpm install --frozen-lockfile
 FROM dependencies AS source
 COPY . .
 
+# Keep migrations separate from the API packaging stage. `pnpm deploy` changes
+# workspace modules, while Prisma migrations need the original workspace setup.
+FROM source AS migrate
+
 FROM source AS api-build
 # Prisma loads its datasource configuration during client generation. This URL
 # is syntactically valid but is used only while building the image; the real
@@ -25,7 +29,7 @@ ENV DIRECT_URL=postgresql://build:build@localhost:5432/build
 RUN pnpm --filter database db:generate \
  && pnpm --filter database build \
  && pnpm --filter api build \
- && pnpm --filter api --prod deploy /opt/api
+ && pnpm --filter api --prod deploy --legacy /opt/api
 
 FROM base AS api
 ENV NODE_ENV=production \
