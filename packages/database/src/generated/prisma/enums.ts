@@ -102,6 +102,7 @@ export type MediaType = (typeof MediaType)[keyof typeof MediaType]
 
 
 export const StorageProvider = {
+  CLOUDINARY: 'CLOUDINARY',
   LOCAL: 'LOCAL',
   S3: 'S3',
   R2: 'R2'

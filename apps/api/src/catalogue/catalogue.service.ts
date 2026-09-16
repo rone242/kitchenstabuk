@@ -20,6 +20,7 @@ import {
   CreateServiceFieldDto,
   UpdateServiceFieldDto,
 } from './dto/service-field.dto.js';
+import { CreatePortfolioDto, UpdatePortfolioDto } from './dto/portfolio.dto.js';
 
 interface MutationContext {
   actorId: string;
@@ -30,6 +31,65 @@ interface MutationContext {
 @Injectable()
 export class CatalogueService {
   constructor(private readonly prisma: PrismaService) {}
+
+  async portfolio() {
+    return this.prisma.client.portfolioItem.findMany({
+      orderBy: [{ sortOrder: 'asc' }, { completedAt: 'desc' }],
+      include: { service: true, city: true, image: true, beforeImage: true },
+    });
+  }
+
+  async createPortfolio(input: CreatePortfolioDto, context: MutationContext) {
+    if (input.beforeImageId) await this.ensureImage(input.beforeImageId);
+    if (input.imageId) await this.ensureImage(input.imageId);
+    const { completedAt, ...data } = input;
+    return this.prisma.client.$transaction(async (transaction) => {
+      const project = await transaction.portfolioItem.create({
+        data: {
+          ...data,
+          completedAt: completedAt ? new Date(completedAt) : null,
+        },
+      });
+      await transaction.auditLog.create({
+        data: auditData(
+          context,
+          'portfolio.created',
+          'PortfolioItem',
+          project.id,
+        ),
+      });
+      return project;
+    });
+  }
+
+  async updatePortfolio(
+    id: string,
+    input: UpdatePortfolioDto,
+    context: MutationContext,
+  ) {
+    const existing = await this.prisma.client.portfolioItem.findUnique({
+      where: { id },
+    });
+    if (!existing) throw new NotFoundException('Project not found');
+    if (input.beforeImageId) await this.ensureImage(input.beforeImageId);
+    if (input.imageId) await this.ensureImage(input.imageId);
+    const { completedAt, ...data } = input;
+    return this.prisma.client.$transaction(async (transaction) => {
+      const project = await transaction.portfolioItem.update({
+        where: { id },
+        data: {
+          ...data,
+          ...(completedAt !== undefined
+            ? { completedAt: completedAt ? new Date(completedAt) : null }
+            : {}),
+        },
+      });
+      await transaction.auditLog.create({
+        data: auditData(context, 'portfolio.updated', 'PortfolioItem', id),
+      });
+      return project;
+    });
+  }
 
   async categories(query: CategoryQueryDto) {
     const where: Prisma.CategoryWhereInput = {
@@ -173,7 +233,7 @@ export class CatalogueService {
         take: query.pageSize,
         orderBy: { [query.sortBy]: query.sortDirection },
         include: {
-          category: { select: { id: true, nameAr: true } },
+          category: { select: { id: true, nameAr: true, nameEn: true } },
           coverImage: true,
           _count: { select: { fields: true, locations: true, gallery: true } },
         },
@@ -491,7 +551,11 @@ export class CatalogueService {
     const selectable = ['SELECT', 'MULTISELECT', 'RADIO', 'CHECKBOX'].includes(
       type,
     );
-    if (selectable && !options.some((option) => option.isActive !== false)) {
+    if (
+      selectable &&
+      type !== 'CHECKBOX' &&
+      !options.some((option) => option.isActive !== false)
+    ) {
       throw new ConflictException(
         'Selectable fields require at least one option',
       );

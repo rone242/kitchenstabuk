@@ -37,6 +37,8 @@ export type CustomerReviewSumAggregateOutputType = {
 }
 
 export type CustomerReviewMinAggregateOutputType = {
+  email: string | null
+  status: string | null
   id: string | null
   customerName: string | null
   cityName: string | null
@@ -50,6 +52,8 @@ export type CustomerReviewMinAggregateOutputType = {
 }
 
 export type CustomerReviewMaxAggregateOutputType = {
+  email: string | null
+  status: string | null
   id: string | null
   customerName: string | null
   cityName: string | null
@@ -63,6 +67,8 @@ export type CustomerReviewMaxAggregateOutputType = {
 }
 
 export type CustomerReviewCountAggregateOutputType = {
+  email: number
+  status: number
   id: number
   customerName: number
   cityName: number
@@ -88,6 +94,8 @@ export type CustomerReviewSumAggregateInputType = {
 }
 
 export type CustomerReviewMinAggregateInputType = {
+  email?: true
+  status?: true
   id?: true
   customerName?: true
   cityName?: true
@@ -101,6 +109,8 @@ export type CustomerReviewMinAggregateInputType = {
 }
 
 export type CustomerReviewMaxAggregateInputType = {
+  email?: true
+  status?: true
   id?: true
   customerName?: true
   cityName?: true
@@ -114,6 +124,8 @@ export type CustomerReviewMaxAggregateInputType = {
 }
 
 export type CustomerReviewCountAggregateInputType = {
+  email?: true
+  status?: true
   id?: true
   customerName?: true
   cityName?: true
@@ -214,6 +226,8 @@ export type CustomerReviewGroupByArgs<ExtArgs extends runtime.Types.Extensions.I
 }
 
 export type CustomerReviewGroupByOutputType = {
+  email: string | null
+  status: string
   id: string
   customerName: string
   cityName: string | null
@@ -250,6 +264,8 @@ export type CustomerReviewWhereInput = {
   AND?: Prisma.CustomerReviewWhereInput | Prisma.CustomerReviewWhereInput[]
   OR?: Prisma.CustomerReviewWhereInput[]
   NOT?: Prisma.CustomerReviewWhereInput | Prisma.CustomerReviewWhereInput[]
+  email?: Prisma.StringNullableFilter<"CustomerReview"> | string | null
+  status?: Prisma.StringFilter<"CustomerReview"> | string
   id?: Prisma.UuidFilter<"CustomerReview"> | string
   customerName?: Prisma.StringFilter<"CustomerReview"> | string
   cityName?: Prisma.StringNullableFilter<"CustomerReview"> | string | null
@@ -263,6 +279,8 @@ export type CustomerReviewWhereInput = {
 }
 
 export type CustomerReviewOrderByWithRelationInput = {
+  email?: Prisma.SortOrderInput | Prisma.SortOrder
+  status?: Prisma.SortOrder
   id?: Prisma.SortOrder
   customerName?: Prisma.SortOrder
   cityName?: Prisma.SortOrderInput | Prisma.SortOrder
@@ -280,6 +298,8 @@ export type CustomerReviewWhereUniqueInput = Prisma.AtLeast<{
   AND?: Prisma.CustomerReviewWhereInput | Prisma.CustomerReviewWhereInput[]
   OR?: Prisma.CustomerReviewWhereInput[]
   NOT?: Prisma.CustomerReviewWhereInput | Prisma.CustomerReviewWhereInput[]
+  email?: Prisma.StringNullableFilter<"CustomerReview"> | string | null
+  status?: Prisma.StringFilter<"CustomerReview"> | string
   customerName?: Prisma.StringFilter<"CustomerReview"> | string
   cityName?: Prisma.StringNullableFilter<"CustomerReview"> | string | null
   rating?: Prisma.IntFilter<"CustomerReview"> | number
@@ -292,6 +312,8 @@ export type CustomerReviewWhereUniqueInput = Prisma.AtLeast<{
 }, "id">
 
 export type CustomerReviewOrderByWithAggregationInput = {
+  email?: Prisma.SortOrderInput | Prisma.SortOrder
+  status?: Prisma.SortOrder
   id?: Prisma.SortOrder
   customerName?: Prisma.SortOrder
   cityName?: Prisma.SortOrderInput | Prisma.SortOrder
@@ -313,6 +335,8 @@ export type CustomerReviewScalarWhereWithAggregatesInput = {
   AND?: Prisma.CustomerReviewScalarWhereWithAggregatesInput | Prisma.CustomerReviewScalarWhereWithAggregatesInput[]
   OR?: Prisma.CustomerReviewScalarWhereWithAggregatesInput[]
   NOT?: Prisma.CustomerReviewScalarWhereWithAggregatesInput | Prisma.CustomerReviewScalarWhereWithAggregatesInput[]
+  email?: Prisma.StringNullableWithAggregatesFilter<"CustomerReview"> | string | null
+  status?: Prisma.StringWithAggregatesFilter<"CustomerReview"> | string
   id?: Prisma.UuidWithAggregatesFilter<"CustomerReview"> | string
   customerName?: Prisma.StringWithAggregatesFilter<"CustomerReview"> | string
   cityName?: Prisma.StringNullableWithAggregatesFilter<"CustomerReview"> | string | null
@@ -326,6 +350,8 @@ export type CustomerReviewScalarWhereWithAggregatesInput = {
 }
 
 export type CustomerReviewCreateInput = {
+  email?: string | null
+  status?: string
   id?: string
   customerName: string
   cityName?: string | null
@@ -339,6 +365,8 @@ export type CustomerReviewCreateInput = {
 }
 
 export type CustomerReviewUncheckedCreateInput = {
+  email?: string | null
+  status?: string
   id?: string
   customerName: string
   cityName?: string | null
@@ -352,6 +380,8 @@ export type CustomerReviewUncheckedCreateInput = {
 }
 
 export type CustomerReviewUpdateInput = {
+  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  status?: Prisma.StringFieldUpdateOperationsInput | string
   id?: Prisma.StringFieldUpdateOperationsInput | string
   customerName?: Prisma.StringFieldUpdateOperationsInput | string
   cityName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -365,6 +395,8 @@ export type CustomerReviewUpdateInput = {
 }
 
 export type CustomerReviewUncheckedUpdateInput = {
+  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  status?: Prisma.StringFieldUpdateOperationsInput | string
   id?: Prisma.StringFieldUpdateOperationsInput | string
   customerName?: Prisma.StringFieldUpdateOperationsInput | string
   cityName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -378,6 +410,8 @@ export type CustomerReviewUncheckedUpdateInput = {
 }
 
 export type CustomerReviewCreateManyInput = {
+  email?: string | null
+  status?: string
   id?: string
   customerName: string
   cityName?: string | null
@@ -391,6 +425,8 @@ export type CustomerReviewCreateManyInput = {
 }
 
 export type CustomerReviewUpdateManyMutationInput = {
+  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  status?: Prisma.StringFieldUpdateOperationsInput | string
   id?: Prisma.StringFieldUpdateOperationsInput | string
   customerName?: Prisma.StringFieldUpdateOperationsInput | string
   cityName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -404,6 +440,8 @@ export type CustomerReviewUpdateManyMutationInput = {
 }
 
 export type CustomerReviewUncheckedUpdateManyInput = {
+  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  status?: Prisma.StringFieldUpdateOperationsInput | string
   id?: Prisma.StringFieldUpdateOperationsInput | string
   customerName?: Prisma.StringFieldUpdateOperationsInput | string
   cityName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -417,6 +455,8 @@ export type CustomerReviewUncheckedUpdateManyInput = {
 }
 
 export type CustomerReviewCountOrderByAggregateInput = {
+  email?: Prisma.SortOrder
+  status?: Prisma.SortOrder
   id?: Prisma.SortOrder
   customerName?: Prisma.SortOrder
   cityName?: Prisma.SortOrder
@@ -435,6 +475,8 @@ export type CustomerReviewAvgOrderByAggregateInput = {
 }
 
 export type CustomerReviewMaxOrderByAggregateInput = {
+  email?: Prisma.SortOrder
+  status?: Prisma.SortOrder
   id?: Prisma.SortOrder
   customerName?: Prisma.SortOrder
   cityName?: Prisma.SortOrder
@@ -448,6 +490,8 @@ export type CustomerReviewMaxOrderByAggregateInput = {
 }
 
 export type CustomerReviewMinOrderByAggregateInput = {
+  email?: Prisma.SortOrder
+  status?: Prisma.SortOrder
   id?: Prisma.SortOrder
   customerName?: Prisma.SortOrder
   cityName?: Prisma.SortOrder
@@ -468,6 +512,8 @@ export type CustomerReviewSumOrderByAggregateInput = {
 
 
 export type CustomerReviewSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
+  email?: boolean
+  status?: boolean
   id?: boolean
   customerName?: boolean
   cityName?: boolean
@@ -481,6 +527,8 @@ export type CustomerReviewSelect<ExtArgs extends runtime.Types.Extensions.Intern
 }, ExtArgs["result"]["customerReview"]>
 
 export type CustomerReviewSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
+  email?: boolean
+  status?: boolean
   id?: boolean
   customerName?: boolean
   cityName?: boolean
@@ -494,6 +542,8 @@ export type CustomerReviewSelectCreateManyAndReturn<ExtArgs extends runtime.Type
 }, ExtArgs["result"]["customerReview"]>
 
 export type CustomerReviewSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
+  email?: boolean
+  status?: boolean
   id?: boolean
   customerName?: boolean
   cityName?: boolean
@@ -507,6 +557,8 @@ export type CustomerReviewSelectUpdateManyAndReturn<ExtArgs extends runtime.Type
 }, ExtArgs["result"]["customerReview"]>
 
 export type CustomerReviewSelectScalar = {
+  email?: boolean
+  status?: boolean
   id?: boolean
   customerName?: boolean
   cityName?: boolean
@@ -519,12 +571,14 @@ export type CustomerReviewSelectScalar = {
   updatedAt?: boolean
 }
 
-export type CustomerReviewOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "customerName" | "cityName" | "rating" | "body" | "isFeatured" | "isActive" | "sortOrder" | "createdAt" | "updatedAt", ExtArgs["result"]["customerReview"]>
+export type CustomerReviewOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"email" | "status" | "id" | "customerName" | "cityName" | "rating" | "body" | "isFeatured" | "isActive" | "sortOrder" | "createdAt" | "updatedAt", ExtArgs["result"]["customerReview"]>
 
 export type $CustomerReviewPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "CustomerReview"
   objects: {}
   scalars: runtime.Types.Extensions.GetPayloadResult<{
+    email: string | null
+    status: string
     id: string
     customerName: string
     cityName: string | null
@@ -618,8 +672,8 @@ export interface CustomerReviewDelegate<ExtArgs extends runtime.Types.Extensions
    * // Get first 10 CustomerReviews
    * const customerReviews = await prisma.customerReview.findMany({ take: 10 })
    * 
-   * // Only select the `id`
-   * const customerReviewWithIdOnly = await prisma.customerReview.findMany({ select: { id: true } })
+   * // Only select the `email`
+   * const customerReviewWithEmailOnly = await prisma.customerReview.findMany({ select: { email: true } })
    * 
    */
   findMany<T extends CustomerReviewFindManyArgs>(args?: Prisma.SelectSubset<T, CustomerReviewFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$CustomerReviewPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
@@ -663,9 +717,9 @@ export interface CustomerReviewDelegate<ExtArgs extends runtime.Types.Extensions
    *   ]
    * })
    * 
-   * // Create many CustomerReviews and only return the `id`
-   * const customerReviewWithIdOnly = await prisma.customerReview.createManyAndReturn({
-   *   select: { id: true },
+   * // Create many CustomerReviews and only return the `email`
+   * const customerReviewWithEmailOnly = await prisma.customerReview.createManyAndReturn({
+   *   select: { email: true },
    *   data: [
    *     // ... provide data here
    *   ]
@@ -754,9 +808,9 @@ export interface CustomerReviewDelegate<ExtArgs extends runtime.Types.Extensions
    *   ]
    * })
    * 
-   * // Update zero or more CustomerReviews and only return the `id`
-   * const customerReviewWithIdOnly = await prisma.customerReview.updateManyAndReturn({
-   *   select: { id: true },
+   * // Update zero or more CustomerReviews and only return the `email`
+   * const customerReviewWithEmailOnly = await prisma.customerReview.updateManyAndReturn({
+   *   select: { email: true },
    *   where: {
    *     // ... provide filter here
    *   },
@@ -958,6 +1012,8 @@ export interface Prisma__CustomerReviewClient<T, Null = never, ExtArgs extends r
  * Fields of the CustomerReview model
  */
 export interface CustomerReviewFieldRefs {
+  readonly email: Prisma.FieldRef<"CustomerReview", 'String'>
+  readonly status: Prisma.FieldRef<"CustomerReview", 'String'>
   readonly id: Prisma.FieldRef<"CustomerReview", 'String'>
   readonly customerName: Prisma.FieldRef<"CustomerReview", 'String'>
   readonly cityName: Prisma.FieldRef<"CustomerReview", 'String'>

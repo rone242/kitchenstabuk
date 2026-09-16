@@ -20,11 +20,7 @@ const environmentSchema = z
       .transform((value) => value === 'true')
       .optional(),
     LOGIN_RATE_LIMIT_MAX: z.coerce.number().int().positive().default(5),
-    LOGIN_RATE_LIMIT_TTL_MS: z.coerce
-      .number()
-      .int()
-      .positive()
-      .default(60_000),
+    LOGIN_RATE_LIMIT_TTL_MS: z.coerce.number().int().positive().default(60_000),
     WEB_URL: z.string().url().default('http://localhost:3000'),
     ADMIN_URL: z.string().url().default('http://localhost:3001'),
     CORS_ORIGINS: z
@@ -33,8 +29,20 @@ const environmentSchema = z
     RATE_LIMIT_TTL_MS: z.coerce.number().int().positive().default(60_000),
     RATE_LIMIT_MAX: z.coerce.number().int().positive().default(120),
     MAX_UPLOAD_SIZE_MB: z.coerce.number().positive().max(50).default(10),
-    UPLOAD_PROVIDER: z.enum(['local', 's3', 'r2']).default('local'),
+    UPLOAD_PROVIDER: z
+      .enum(['local', 's3', 'r2', 'cloudinary'])
+      .default('local'),
     UPLOAD_LOCAL_DIR: z.string().min(1).default('uploads'),
+    CLOUDINARY_CLOUD_NAME: z
+      .string()
+      .regex(/^[a-zA-Z0-9_-]+$/)
+      .optional(),
+    CLOUDINARY_API_KEY: z.string().min(1).optional(),
+    CLOUDINARY_API_SECRET: z.string().min(1).optional(),
+    CLOUDINARY_FOLDER: z
+      .string()
+      .regex(/^[a-zA-Z0-9_/-]+$/)
+      .default('kitchenstabuk'),
     STORAGE_ENDPOINT: z.string().url().optional(),
     STORAGE_REGION: z.string().min(1).default('auto'),
     STORAGE_BUCKET: z.string().min(1).optional(),
@@ -60,6 +68,20 @@ export function validateEnvironment(
     throw new Error(`Invalid API environment: ${details}`);
   }
 
+  if (result.data.UPLOAD_PROVIDER === 'cloudinary') {
+    const missing = (
+      [
+        'CLOUDINARY_CLOUD_NAME',
+        'CLOUDINARY_API_KEY',
+        'CLOUDINARY_API_SECRET',
+      ] as const
+    ).filter((key) => !result.data[key]);
+    if (missing.length)
+      throw new Error(
+        `Invalid API environment: Cloudinary requires ${missing.join(', ')}`,
+      );
+  }
+
   if (result.data.NODE_ENV === 'production') {
     const required = [
       'DATABASE_URL',
@@ -74,7 +96,7 @@ export function validateEnvironment(
       );
     }
     if (
-      result.data.UPLOAD_PROVIDER !== 'local' &&
+      ['s3', 'r2'].includes(result.data.UPLOAD_PROVIDER) &&
       (!result.data.STORAGE_BUCKET || !result.data.STORAGE_PUBLIC_URL)
     ) {
       throw new Error(

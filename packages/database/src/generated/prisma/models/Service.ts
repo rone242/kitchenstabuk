@@ -39,6 +39,11 @@ export type ServiceSumAggregateOutputType = {
 }
 
 export type ServiceMinAggregateOutputType = {
+  summaryEn: string | null
+  descriptionEn: string | null
+  durationTextEn: string | null
+  seoTitleEn: string | null
+  seoDescriptionEn: string | null
   id: string | null
   categoryId: string | null
   nameAr: string | null
@@ -64,6 +69,11 @@ export type ServiceMinAggregateOutputType = {
 }
 
 export type ServiceMaxAggregateOutputType = {
+  summaryEn: string | null
+  descriptionEn: string | null
+  durationTextEn: string | null
+  seoTitleEn: string | null
+  seoDescriptionEn: string | null
   id: string | null
   categoryId: string | null
   nameAr: string | null
@@ -89,6 +99,13 @@ export type ServiceMaxAggregateOutputType = {
 }
 
 export type ServiceCountAggregateOutputType = {
+  summaryEn: number
+  descriptionEn: number
+  benefitsEn: number
+  processStepsEn: number
+  durationTextEn: number
+  seoTitleEn: number
+  seoDescriptionEn: number
   id: number
   categoryId: number
   nameAr: number
@@ -130,6 +147,11 @@ export type ServiceSumAggregateInputType = {
 }
 
 export type ServiceMinAggregateInputType = {
+  summaryEn?: true
+  descriptionEn?: true
+  durationTextEn?: true
+  seoTitleEn?: true
+  seoDescriptionEn?: true
   id?: true
   categoryId?: true
   nameAr?: true
@@ -155,6 +177,11 @@ export type ServiceMinAggregateInputType = {
 }
 
 export type ServiceMaxAggregateInputType = {
+  summaryEn?: true
+  descriptionEn?: true
+  durationTextEn?: true
+  seoTitleEn?: true
+  seoDescriptionEn?: true
   id?: true
   categoryId?: true
   nameAr?: true
@@ -180,6 +207,13 @@ export type ServiceMaxAggregateInputType = {
 }
 
 export type ServiceCountAggregateInputType = {
+  summaryEn?: true
+  descriptionEn?: true
+  benefitsEn?: true
+  processStepsEn?: true
+  durationTextEn?: true
+  seoTitleEn?: true
+  seoDescriptionEn?: true
   id?: true
   categoryId?: true
   nameAr?: true
@@ -294,6 +328,13 @@ export type ServiceGroupByArgs<ExtArgs extends runtime.Types.Extensions.Internal
 }
 
 export type ServiceGroupByOutputType = {
+  summaryEn: string | null
+  descriptionEn: string | null
+  benefitsEn: string[]
+  processStepsEn: string[]
+  durationTextEn: string | null
+  seoTitleEn: string | null
+  seoDescriptionEn: string | null
   id: string
   categoryId: string
   nameAr: string
@@ -344,6 +385,13 @@ export type ServiceWhereInput = {
   AND?: Prisma.ServiceWhereInput | Prisma.ServiceWhereInput[]
   OR?: Prisma.ServiceWhereInput[]
   NOT?: Prisma.ServiceWhereInput | Prisma.ServiceWhereInput[]
+  summaryEn?: Prisma.StringNullableFilter<"Service"> | string | null
+  descriptionEn?: Prisma.StringNullableFilter<"Service"> | string | null
+  benefitsEn?: Prisma.StringNullableListFilter<"Service">
+  processStepsEn?: Prisma.StringNullableListFilter<"Service">
+  durationTextEn?: Prisma.StringNullableFilter<"Service"> | string | null
+  seoTitleEn?: Prisma.StringNullableFilter<"Service"> | string | null
+  seoDescriptionEn?: Prisma.StringNullableFilter<"Service"> | string | null
   id?: Prisma.UuidFilter<"Service"> | string
   categoryId?: Prisma.UuidFilter<"Service"> | string
   nameAr?: Prisma.StringFilter<"Service"> | string
@@ -380,6 +428,13 @@ export type ServiceWhereInput = {
 }
 
 export type ServiceOrderByWithRelationInput = {
+  summaryEn?: Prisma.SortOrderInput | Prisma.SortOrder
+  descriptionEn?: Prisma.SortOrderInput | Prisma.SortOrder
+  benefitsEn?: Prisma.SortOrder
+  processStepsEn?: Prisma.SortOrder
+  durationTextEn?: Prisma.SortOrderInput | Prisma.SortOrder
+  seoTitleEn?: Prisma.SortOrderInput | Prisma.SortOrder
+  seoDescriptionEn?: Prisma.SortOrderInput | Prisma.SortOrder
   id?: Prisma.SortOrder
   categoryId?: Prisma.SortOrder
   nameAr?: Prisma.SortOrder
@@ -421,6 +476,13 @@ export type ServiceWhereUniqueInput = Prisma.AtLeast<{
   AND?: Prisma.ServiceWhereInput | Prisma.ServiceWhereInput[]
   OR?: Prisma.ServiceWhereInput[]
   NOT?: Prisma.ServiceWhereInput | Prisma.ServiceWhereInput[]
+  summaryEn?: Prisma.StringNullableFilter<"Service"> | string | null
+  descriptionEn?: Prisma.StringNullableFilter<"Service"> | string | null
+  benefitsEn?: Prisma.StringNullableListFilter<"Service">
+  processStepsEn?: Prisma.StringNullableListFilter<"Service">
+  durationTextEn?: Prisma.StringNullableFilter<"Service"> | string | null
+  seoTitleEn?: Prisma.StringNullableFilter<"Service"> | string | null
+  seoDescriptionEn?: Prisma.StringNullableFilter<"Service"> | string | null
   categoryId?: Prisma.UuidFilter<"Service"> | string
   nameAr?: Prisma.StringFilter<"Service"> | string
   nameEn?: Prisma.StringNullableFilter<"Service"> | string | null
@@ -455,6 +517,13 @@ export type ServiceWhereUniqueInput = Prisma.AtLeast<{
 }, "id" | "slug">
 
 export type ServiceOrderByWithAggregationInput = {
+  summaryEn?: Prisma.SortOrderInput | Prisma.SortOrder
+  descriptionEn?: Prisma.SortOrderInput | Prisma.SortOrder
+  benefitsEn?: Prisma.SortOrder
+  processStepsEn?: Prisma.SortOrder
+  durationTextEn?: Prisma.SortOrderInput | Prisma.SortOrder
+  seoTitleEn?: Prisma.SortOrderInput | Prisma.SortOrder
+  seoDescriptionEn?: Prisma.SortOrderInput | Prisma.SortOrder
   id?: Prisma.SortOrder
   categoryId?: Prisma.SortOrder
   nameAr?: Prisma.SortOrder
@@ -490,6 +559,13 @@ export type ServiceScalarWhereWithAggregatesInput = {
   AND?: Prisma.ServiceScalarWhereWithAggregatesInput | Prisma.ServiceScalarWhereWithAggregatesInput[]
   OR?: Prisma.ServiceScalarWhereWithAggregatesInput[]
   NOT?: Prisma.ServiceScalarWhereWithAggregatesInput | Prisma.ServiceScalarWhereWithAggregatesInput[]
+  summaryEn?: Prisma.StringNullableWithAggregatesFilter<"Service"> | string | null
+  descriptionEn?: Prisma.StringNullableWithAggregatesFilter<"Service"> | string | null
+  benefitsEn?: Prisma.StringNullableListFilter<"Service">
+  processStepsEn?: Prisma.StringNullableListFilter<"Service">
+  durationTextEn?: Prisma.StringNullableWithAggregatesFilter<"Service"> | string | null
+  seoTitleEn?: Prisma.StringNullableWithAggregatesFilter<"Service"> | string | null
+  seoDescriptionEn?: Prisma.StringNullableWithAggregatesFilter<"Service"> | string | null
   id?: Prisma.UuidWithAggregatesFilter<"Service"> | string
   categoryId?: Prisma.UuidWithAggregatesFilter<"Service"> | string
   nameAr?: Prisma.StringWithAggregatesFilter<"Service"> | string
@@ -517,6 +593,13 @@ export type ServiceScalarWhereWithAggregatesInput = {
 }
 
 export type ServiceCreateInput = {
+  summaryEn?: string | null
+  descriptionEn?: string | null
+  benefitsEn?: Prisma.ServiceCreatebenefitsEnInput | string[]
+  processStepsEn?: Prisma.ServiceCreateprocessStepsEnInput | string[]
+  durationTextEn?: string | null
+  seoTitleEn?: string | null
+  seoDescriptionEn?: string | null
   id?: string
   nameAr: string
   nameEn?: string | null
@@ -551,6 +634,13 @@ export type ServiceCreateInput = {
 }
 
 export type ServiceUncheckedCreateInput = {
+  summaryEn?: string | null
+  descriptionEn?: string | null
+  benefitsEn?: Prisma.ServiceCreatebenefitsEnInput | string[]
+  processStepsEn?: Prisma.ServiceCreateprocessStepsEnInput | string[]
+  durationTextEn?: string | null
+  seoTitleEn?: string | null
+  seoDescriptionEn?: string | null
   id?: string
   categoryId: string
   nameAr: string
@@ -585,6 +675,13 @@ export type ServiceUncheckedCreateInput = {
 }
 
 export type ServiceUpdateInput = {
+  summaryEn?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  descriptionEn?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  benefitsEn?: Prisma.ServiceUpdatebenefitsEnInput | string[]
+  processStepsEn?: Prisma.ServiceUpdateprocessStepsEnInput | string[]
+  durationTextEn?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  seoTitleEn?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  seoDescriptionEn?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   id?: Prisma.StringFieldUpdateOperationsInput | string
   nameAr?: Prisma.StringFieldUpdateOperationsInput | string
   nameEn?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -619,6 +716,13 @@ export type ServiceUpdateInput = {
 }
 
 export type ServiceUncheckedUpdateInput = {
+  summaryEn?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  descriptionEn?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  benefitsEn?: Prisma.ServiceUpdatebenefitsEnInput | string[]
+  processStepsEn?: Prisma.ServiceUpdateprocessStepsEnInput | string[]
+  durationTextEn?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  seoTitleEn?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  seoDescriptionEn?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   id?: Prisma.StringFieldUpdateOperationsInput | string
   categoryId?: Prisma.StringFieldUpdateOperationsInput | string
   nameAr?: Prisma.StringFieldUpdateOperationsInput | string
@@ -653,6 +757,13 @@ export type ServiceUncheckedUpdateInput = {
 }
 
 export type ServiceCreateManyInput = {
+  summaryEn?: string | null
+  descriptionEn?: string | null
+  benefitsEn?: Prisma.ServiceCreatebenefitsEnInput | string[]
+  processStepsEn?: Prisma.ServiceCreateprocessStepsEnInput | string[]
+  durationTextEn?: string | null
+  seoTitleEn?: string | null
+  seoDescriptionEn?: string | null
   id?: string
   categoryId: string
   nameAr: string
@@ -680,6 +791,13 @@ export type ServiceCreateManyInput = {
 }
 
 export type ServiceUpdateManyMutationInput = {
+  summaryEn?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  descriptionEn?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  benefitsEn?: Prisma.ServiceUpdatebenefitsEnInput | string[]
+  processStepsEn?: Prisma.ServiceUpdateprocessStepsEnInput | string[]
+  durationTextEn?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  seoTitleEn?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  seoDescriptionEn?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   id?: Prisma.StringFieldUpdateOperationsInput | string
   nameAr?: Prisma.StringFieldUpdateOperationsInput | string
   nameEn?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -705,6 +823,13 @@ export type ServiceUpdateManyMutationInput = {
 }
 
 export type ServiceUncheckedUpdateManyInput = {
+  summaryEn?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  descriptionEn?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  benefitsEn?: Prisma.ServiceUpdatebenefitsEnInput | string[]
+  processStepsEn?: Prisma.ServiceUpdateprocessStepsEnInput | string[]
+  durationTextEn?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  seoTitleEn?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  seoDescriptionEn?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   id?: Prisma.StringFieldUpdateOperationsInput | string
   categoryId?: Prisma.StringFieldUpdateOperationsInput | string
   nameAr?: Prisma.StringFieldUpdateOperationsInput | string
@@ -750,6 +875,13 @@ export type StringNullableListFilter<$PrismaModel = never> = {
 }
 
 export type ServiceCountOrderByAggregateInput = {
+  summaryEn?: Prisma.SortOrder
+  descriptionEn?: Prisma.SortOrder
+  benefitsEn?: Prisma.SortOrder
+  processStepsEn?: Prisma.SortOrder
+  durationTextEn?: Prisma.SortOrder
+  seoTitleEn?: Prisma.SortOrder
+  seoDescriptionEn?: Prisma.SortOrder
   id?: Prisma.SortOrder
   categoryId?: Prisma.SortOrder
   nameAr?: Prisma.SortOrder
@@ -783,6 +915,11 @@ export type ServiceAvgOrderByAggregateInput = {
 }
 
 export type ServiceMaxOrderByAggregateInput = {
+  summaryEn?: Prisma.SortOrder
+  descriptionEn?: Prisma.SortOrder
+  durationTextEn?: Prisma.SortOrder
+  seoTitleEn?: Prisma.SortOrder
+  seoDescriptionEn?: Prisma.SortOrder
   id?: Prisma.SortOrder
   categoryId?: Prisma.SortOrder
   nameAr?: Prisma.SortOrder
@@ -808,6 +945,11 @@ export type ServiceMaxOrderByAggregateInput = {
 }
 
 export type ServiceMinOrderByAggregateInput = {
+  summaryEn?: Prisma.SortOrder
+  descriptionEn?: Prisma.SortOrder
+  durationTextEn?: Prisma.SortOrder
+  seoTitleEn?: Prisma.SortOrder
+  seoDescriptionEn?: Prisma.SortOrder
   id?: Prisma.SortOrder
   categoryId?: Prisma.SortOrder
   nameAr?: Prisma.SortOrder
@@ -890,12 +1032,30 @@ export type ServiceUncheckedUpdateManyWithoutCategoryNestedInput = {
   deleteMany?: Prisma.ServiceScalarWhereInput | Prisma.ServiceScalarWhereInput[]
 }
 
+export type ServiceCreatebenefitsEnInput = {
+  set: string[]
+}
+
+export type ServiceCreateprocessStepsEnInput = {
+  set: string[]
+}
+
 export type ServiceCreatebenefitsInput = {
   set: string[]
 }
 
 export type ServiceCreateprocessStepsInput = {
   set: string[]
+}
+
+export type ServiceUpdatebenefitsEnInput = {
+  set?: string[]
+  push?: string | string[]
+}
+
+export type ServiceUpdateprocessStepsEnInput = {
+  set?: string[]
+  push?: string | string[]
 }
 
 export type ServiceUpdatebenefitsInput = {
@@ -1065,6 +1225,13 @@ export type ServiceUpdateOneRequiredWithoutRecentWorkNestedInput = {
 }
 
 export type ServiceCreateWithoutCategoryInput = {
+  summaryEn?: string | null
+  descriptionEn?: string | null
+  benefitsEn?: Prisma.ServiceCreatebenefitsEnInput | string[]
+  processStepsEn?: Prisma.ServiceCreateprocessStepsEnInput | string[]
+  durationTextEn?: string | null
+  seoTitleEn?: string | null
+  seoDescriptionEn?: string | null
   id?: string
   nameAr: string
   nameEn?: string | null
@@ -1098,6 +1265,13 @@ export type ServiceCreateWithoutCategoryInput = {
 }
 
 export type ServiceUncheckedCreateWithoutCategoryInput = {
+  summaryEn?: string | null
+  descriptionEn?: string | null
+  benefitsEn?: Prisma.ServiceCreatebenefitsEnInput | string[]
+  processStepsEn?: Prisma.ServiceCreateprocessStepsEnInput | string[]
+  durationTextEn?: string | null
+  seoTitleEn?: string | null
+  seoDescriptionEn?: string | null
   id?: string
   nameAr: string
   nameEn?: string | null
@@ -1160,6 +1334,13 @@ export type ServiceScalarWhereInput = {
   AND?: Prisma.ServiceScalarWhereInput | Prisma.ServiceScalarWhereInput[]
   OR?: Prisma.ServiceScalarWhereInput[]
   NOT?: Prisma.ServiceScalarWhereInput | Prisma.ServiceScalarWhereInput[]
+  summaryEn?: Prisma.StringNullableFilter<"Service"> | string | null
+  descriptionEn?: Prisma.StringNullableFilter<"Service"> | string | null
+  benefitsEn?: Prisma.StringNullableListFilter<"Service">
+  processStepsEn?: Prisma.StringNullableListFilter<"Service">
+  durationTextEn?: Prisma.StringNullableFilter<"Service"> | string | null
+  seoTitleEn?: Prisma.StringNullableFilter<"Service"> | string | null
+  seoDescriptionEn?: Prisma.StringNullableFilter<"Service"> | string | null
   id?: Prisma.UuidFilter<"Service"> | string
   categoryId?: Prisma.UuidFilter<"Service"> | string
   nameAr?: Prisma.StringFilter<"Service"> | string
@@ -1187,6 +1368,13 @@ export type ServiceScalarWhereInput = {
 }
 
 export type ServiceCreateWithoutGalleryInput = {
+  summaryEn?: string | null
+  descriptionEn?: string | null
+  benefitsEn?: Prisma.ServiceCreatebenefitsEnInput | string[]
+  processStepsEn?: Prisma.ServiceCreateprocessStepsEnInput | string[]
+  durationTextEn?: string | null
+  seoTitleEn?: string | null
+  seoDescriptionEn?: string | null
   id?: string
   nameAr: string
   nameEn?: string | null
@@ -1220,6 +1408,13 @@ export type ServiceCreateWithoutGalleryInput = {
 }
 
 export type ServiceUncheckedCreateWithoutGalleryInput = {
+  summaryEn?: string | null
+  descriptionEn?: string | null
+  benefitsEn?: Prisma.ServiceCreatebenefitsEnInput | string[]
+  processStepsEn?: Prisma.ServiceCreateprocessStepsEnInput | string[]
+  durationTextEn?: string | null
+  seoTitleEn?: string | null
+  seoDescriptionEn?: string | null
   id?: string
   categoryId: string
   nameAr: string
@@ -1269,6 +1464,13 @@ export type ServiceUpdateToOneWithWhereWithoutGalleryInput = {
 }
 
 export type ServiceUpdateWithoutGalleryInput = {
+  summaryEn?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  descriptionEn?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  benefitsEn?: Prisma.ServiceUpdatebenefitsEnInput | string[]
+  processStepsEn?: Prisma.ServiceUpdateprocessStepsEnInput | string[]
+  durationTextEn?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  seoTitleEn?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  seoDescriptionEn?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   id?: Prisma.StringFieldUpdateOperationsInput | string
   nameAr?: Prisma.StringFieldUpdateOperationsInput | string
   nameEn?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -1302,6 +1504,13 @@ export type ServiceUpdateWithoutGalleryInput = {
 }
 
 export type ServiceUncheckedUpdateWithoutGalleryInput = {
+  summaryEn?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  descriptionEn?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  benefitsEn?: Prisma.ServiceUpdatebenefitsEnInput | string[]
+  processStepsEn?: Prisma.ServiceUpdateprocessStepsEnInput | string[]
+  durationTextEn?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  seoTitleEn?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  seoDescriptionEn?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   id?: Prisma.StringFieldUpdateOperationsInput | string
   categoryId?: Prisma.StringFieldUpdateOperationsInput | string
   nameAr?: Prisma.StringFieldUpdateOperationsInput | string
@@ -1335,6 +1544,13 @@ export type ServiceUncheckedUpdateWithoutGalleryInput = {
 }
 
 export type ServiceCreateWithoutFieldsInput = {
+  summaryEn?: string | null
+  descriptionEn?: string | null
+  benefitsEn?: Prisma.ServiceCreatebenefitsEnInput | string[]
+  processStepsEn?: Prisma.ServiceCreateprocessStepsEnInput | string[]
+  durationTextEn?: string | null
+  seoTitleEn?: string | null
+  seoDescriptionEn?: string | null
   id?: string
   nameAr: string
   nameEn?: string | null
@@ -1368,6 +1584,13 @@ export type ServiceCreateWithoutFieldsInput = {
 }
 
 export type ServiceUncheckedCreateWithoutFieldsInput = {
+  summaryEn?: string | null
+  descriptionEn?: string | null
+  benefitsEn?: Prisma.ServiceCreatebenefitsEnInput | string[]
+  processStepsEn?: Prisma.ServiceCreateprocessStepsEnInput | string[]
+  durationTextEn?: string | null
+  seoTitleEn?: string | null
+  seoDescriptionEn?: string | null
   id?: string
   categoryId: string
   nameAr: string
@@ -1417,6 +1640,13 @@ export type ServiceUpdateToOneWithWhereWithoutFieldsInput = {
 }
 
 export type ServiceUpdateWithoutFieldsInput = {
+  summaryEn?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  descriptionEn?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  benefitsEn?: Prisma.ServiceUpdatebenefitsEnInput | string[]
+  processStepsEn?: Prisma.ServiceUpdateprocessStepsEnInput | string[]
+  durationTextEn?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  seoTitleEn?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  seoDescriptionEn?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   id?: Prisma.StringFieldUpdateOperationsInput | string
   nameAr?: Prisma.StringFieldUpdateOperationsInput | string
   nameEn?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -1450,6 +1680,13 @@ export type ServiceUpdateWithoutFieldsInput = {
 }
 
 export type ServiceUncheckedUpdateWithoutFieldsInput = {
+  summaryEn?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  descriptionEn?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  benefitsEn?: Prisma.ServiceUpdatebenefitsEnInput | string[]
+  processStepsEn?: Prisma.ServiceUpdateprocessStepsEnInput | string[]
+  durationTextEn?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  seoTitleEn?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  seoDescriptionEn?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   id?: Prisma.StringFieldUpdateOperationsInput | string
   categoryId?: Prisma.StringFieldUpdateOperationsInput | string
   nameAr?: Prisma.StringFieldUpdateOperationsInput | string
@@ -1483,6 +1720,13 @@ export type ServiceUncheckedUpdateWithoutFieldsInput = {
 }
 
 export type ServiceCreateWithoutLocationsInput = {
+  summaryEn?: string | null
+  descriptionEn?: string | null
+  benefitsEn?: Prisma.ServiceCreatebenefitsEnInput | string[]
+  processStepsEn?: Prisma.ServiceCreateprocessStepsEnInput | string[]
+  durationTextEn?: string | null
+  seoTitleEn?: string | null
+  seoDescriptionEn?: string | null
   id?: string
   nameAr: string
   nameEn?: string | null
@@ -1516,6 +1760,13 @@ export type ServiceCreateWithoutLocationsInput = {
 }
 
 export type ServiceUncheckedCreateWithoutLocationsInput = {
+  summaryEn?: string | null
+  descriptionEn?: string | null
+  benefitsEn?: Prisma.ServiceCreatebenefitsEnInput | string[]
+  processStepsEn?: Prisma.ServiceCreateprocessStepsEnInput | string[]
+  durationTextEn?: string | null
+  seoTitleEn?: string | null
+  seoDescriptionEn?: string | null
   id?: string
   categoryId: string
   nameAr: string
@@ -1565,6 +1816,13 @@ export type ServiceUpdateToOneWithWhereWithoutLocationsInput = {
 }
 
 export type ServiceUpdateWithoutLocationsInput = {
+  summaryEn?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  descriptionEn?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  benefitsEn?: Prisma.ServiceUpdatebenefitsEnInput | string[]
+  processStepsEn?: Prisma.ServiceUpdateprocessStepsEnInput | string[]
+  durationTextEn?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  seoTitleEn?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  seoDescriptionEn?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   id?: Prisma.StringFieldUpdateOperationsInput | string
   nameAr?: Prisma.StringFieldUpdateOperationsInput | string
   nameEn?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -1598,6 +1856,13 @@ export type ServiceUpdateWithoutLocationsInput = {
 }
 
 export type ServiceUncheckedUpdateWithoutLocationsInput = {
+  summaryEn?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  descriptionEn?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  benefitsEn?: Prisma.ServiceUpdatebenefitsEnInput | string[]
+  processStepsEn?: Prisma.ServiceUpdateprocessStepsEnInput | string[]
+  durationTextEn?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  seoTitleEn?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  seoDescriptionEn?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   id?: Prisma.StringFieldUpdateOperationsInput | string
   categoryId?: Prisma.StringFieldUpdateOperationsInput | string
   nameAr?: Prisma.StringFieldUpdateOperationsInput | string
@@ -1631,6 +1896,13 @@ export type ServiceUncheckedUpdateWithoutLocationsInput = {
 }
 
 export type ServiceCreateWithoutRequestsInput = {
+  summaryEn?: string | null
+  descriptionEn?: string | null
+  benefitsEn?: Prisma.ServiceCreatebenefitsEnInput | string[]
+  processStepsEn?: Prisma.ServiceCreateprocessStepsEnInput | string[]
+  durationTextEn?: string | null
+  seoTitleEn?: string | null
+  seoDescriptionEn?: string | null
   id?: string
   nameAr: string
   nameEn?: string | null
@@ -1664,6 +1936,13 @@ export type ServiceCreateWithoutRequestsInput = {
 }
 
 export type ServiceUncheckedCreateWithoutRequestsInput = {
+  summaryEn?: string | null
+  descriptionEn?: string | null
+  benefitsEn?: Prisma.ServiceCreatebenefitsEnInput | string[]
+  processStepsEn?: Prisma.ServiceCreateprocessStepsEnInput | string[]
+  durationTextEn?: string | null
+  seoTitleEn?: string | null
+  seoDescriptionEn?: string | null
   id?: string
   categoryId: string
   nameAr: string
@@ -1713,6 +1992,13 @@ export type ServiceUpdateToOneWithWhereWithoutRequestsInput = {
 }
 
 export type ServiceUpdateWithoutRequestsInput = {
+  summaryEn?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  descriptionEn?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  benefitsEn?: Prisma.ServiceUpdatebenefitsEnInput | string[]
+  processStepsEn?: Prisma.ServiceUpdateprocessStepsEnInput | string[]
+  durationTextEn?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  seoTitleEn?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  seoDescriptionEn?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   id?: Prisma.StringFieldUpdateOperationsInput | string
   nameAr?: Prisma.StringFieldUpdateOperationsInput | string
   nameEn?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -1746,6 +2032,13 @@ export type ServiceUpdateWithoutRequestsInput = {
 }
 
 export type ServiceUncheckedUpdateWithoutRequestsInput = {
+  summaryEn?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  descriptionEn?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  benefitsEn?: Prisma.ServiceUpdatebenefitsEnInput | string[]
+  processStepsEn?: Prisma.ServiceUpdateprocessStepsEnInput | string[]
+  durationTextEn?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  seoTitleEn?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  seoDescriptionEn?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   id?: Prisma.StringFieldUpdateOperationsInput | string
   categoryId?: Prisma.StringFieldUpdateOperationsInput | string
   nameAr?: Prisma.StringFieldUpdateOperationsInput | string
@@ -1779,6 +2072,13 @@ export type ServiceUncheckedUpdateWithoutRequestsInput = {
 }
 
 export type ServiceCreateWithoutFaqsInput = {
+  summaryEn?: string | null
+  descriptionEn?: string | null
+  benefitsEn?: Prisma.ServiceCreatebenefitsEnInput | string[]
+  processStepsEn?: Prisma.ServiceCreateprocessStepsEnInput | string[]
+  durationTextEn?: string | null
+  seoTitleEn?: string | null
+  seoDescriptionEn?: string | null
   id?: string
   nameAr: string
   nameEn?: string | null
@@ -1812,6 +2112,13 @@ export type ServiceCreateWithoutFaqsInput = {
 }
 
 export type ServiceUncheckedCreateWithoutFaqsInput = {
+  summaryEn?: string | null
+  descriptionEn?: string | null
+  benefitsEn?: Prisma.ServiceCreatebenefitsEnInput | string[]
+  processStepsEn?: Prisma.ServiceCreateprocessStepsEnInput | string[]
+  durationTextEn?: string | null
+  seoTitleEn?: string | null
+  seoDescriptionEn?: string | null
   id?: string
   categoryId: string
   nameAr: string
@@ -1861,6 +2168,13 @@ export type ServiceUpdateToOneWithWhereWithoutFaqsInput = {
 }
 
 export type ServiceUpdateWithoutFaqsInput = {
+  summaryEn?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  descriptionEn?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  benefitsEn?: Prisma.ServiceUpdatebenefitsEnInput | string[]
+  processStepsEn?: Prisma.ServiceUpdateprocessStepsEnInput | string[]
+  durationTextEn?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  seoTitleEn?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  seoDescriptionEn?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   id?: Prisma.StringFieldUpdateOperationsInput | string
   nameAr?: Prisma.StringFieldUpdateOperationsInput | string
   nameEn?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -1894,6 +2208,13 @@ export type ServiceUpdateWithoutFaqsInput = {
 }
 
 export type ServiceUncheckedUpdateWithoutFaqsInput = {
+  summaryEn?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  descriptionEn?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  benefitsEn?: Prisma.ServiceUpdatebenefitsEnInput | string[]
+  processStepsEn?: Prisma.ServiceUpdateprocessStepsEnInput | string[]
+  durationTextEn?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  seoTitleEn?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  seoDescriptionEn?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   id?: Prisma.StringFieldUpdateOperationsInput | string
   categoryId?: Prisma.StringFieldUpdateOperationsInput | string
   nameAr?: Prisma.StringFieldUpdateOperationsInput | string
@@ -1927,6 +2248,13 @@ export type ServiceUncheckedUpdateWithoutFaqsInput = {
 }
 
 export type ServiceCreateWithoutCoverImageInput = {
+  summaryEn?: string | null
+  descriptionEn?: string | null
+  benefitsEn?: Prisma.ServiceCreatebenefitsEnInput | string[]
+  processStepsEn?: Prisma.ServiceCreateprocessStepsEnInput | string[]
+  durationTextEn?: string | null
+  seoTitleEn?: string | null
+  seoDescriptionEn?: string | null
   id?: string
   nameAr: string
   nameEn?: string | null
@@ -1960,6 +2288,13 @@ export type ServiceCreateWithoutCoverImageInput = {
 }
 
 export type ServiceUncheckedCreateWithoutCoverImageInput = {
+  summaryEn?: string | null
+  descriptionEn?: string | null
+  benefitsEn?: Prisma.ServiceCreatebenefitsEnInput | string[]
+  processStepsEn?: Prisma.ServiceCreateprocessStepsEnInput | string[]
+  durationTextEn?: string | null
+  seoTitleEn?: string | null
+  seoDescriptionEn?: string | null
   id?: string
   categoryId: string
   nameAr: string
@@ -2019,6 +2354,13 @@ export type ServiceUpdateManyWithWhereWithoutCoverImageInput = {
 }
 
 export type ServiceCreateWithoutAnalyticsEventsInput = {
+  summaryEn?: string | null
+  descriptionEn?: string | null
+  benefitsEn?: Prisma.ServiceCreatebenefitsEnInput | string[]
+  processStepsEn?: Prisma.ServiceCreateprocessStepsEnInput | string[]
+  durationTextEn?: string | null
+  seoTitleEn?: string | null
+  seoDescriptionEn?: string | null
   id?: string
   nameAr: string
   nameEn?: string | null
@@ -2052,6 +2394,13 @@ export type ServiceCreateWithoutAnalyticsEventsInput = {
 }
 
 export type ServiceUncheckedCreateWithoutAnalyticsEventsInput = {
+  summaryEn?: string | null
+  descriptionEn?: string | null
+  benefitsEn?: Prisma.ServiceCreatebenefitsEnInput | string[]
+  processStepsEn?: Prisma.ServiceCreateprocessStepsEnInput | string[]
+  durationTextEn?: string | null
+  seoTitleEn?: string | null
+  seoDescriptionEn?: string | null
   id?: string
   categoryId: string
   nameAr: string
@@ -2101,6 +2450,13 @@ export type ServiceUpdateToOneWithWhereWithoutAnalyticsEventsInput = {
 }
 
 export type ServiceUpdateWithoutAnalyticsEventsInput = {
+  summaryEn?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  descriptionEn?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  benefitsEn?: Prisma.ServiceUpdatebenefitsEnInput | string[]
+  processStepsEn?: Prisma.ServiceUpdateprocessStepsEnInput | string[]
+  durationTextEn?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  seoTitleEn?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  seoDescriptionEn?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   id?: Prisma.StringFieldUpdateOperationsInput | string
   nameAr?: Prisma.StringFieldUpdateOperationsInput | string
   nameEn?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -2134,6 +2490,13 @@ export type ServiceUpdateWithoutAnalyticsEventsInput = {
 }
 
 export type ServiceUncheckedUpdateWithoutAnalyticsEventsInput = {
+  summaryEn?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  descriptionEn?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  benefitsEn?: Prisma.ServiceUpdatebenefitsEnInput | string[]
+  processStepsEn?: Prisma.ServiceUpdateprocessStepsEnInput | string[]
+  durationTextEn?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  seoTitleEn?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  seoDescriptionEn?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   id?: Prisma.StringFieldUpdateOperationsInput | string
   categoryId?: Prisma.StringFieldUpdateOperationsInput | string
   nameAr?: Prisma.StringFieldUpdateOperationsInput | string
@@ -2167,6 +2530,13 @@ export type ServiceUncheckedUpdateWithoutAnalyticsEventsInput = {
 }
 
 export type ServiceCreateWithoutRecentWorkInput = {
+  summaryEn?: string | null
+  descriptionEn?: string | null
+  benefitsEn?: Prisma.ServiceCreatebenefitsEnInput | string[]
+  processStepsEn?: Prisma.ServiceCreateprocessStepsEnInput | string[]
+  durationTextEn?: string | null
+  seoTitleEn?: string | null
+  seoDescriptionEn?: string | null
   id?: string
   nameAr: string
   nameEn?: string | null
@@ -2200,6 +2570,13 @@ export type ServiceCreateWithoutRecentWorkInput = {
 }
 
 export type ServiceUncheckedCreateWithoutRecentWorkInput = {
+  summaryEn?: string | null
+  descriptionEn?: string | null
+  benefitsEn?: Prisma.ServiceCreatebenefitsEnInput | string[]
+  processStepsEn?: Prisma.ServiceCreateprocessStepsEnInput | string[]
+  durationTextEn?: string | null
+  seoTitleEn?: string | null
+  seoDescriptionEn?: string | null
   id?: string
   categoryId: string
   nameAr: string
@@ -2249,6 +2626,13 @@ export type ServiceUpdateToOneWithWhereWithoutRecentWorkInput = {
 }
 
 export type ServiceUpdateWithoutRecentWorkInput = {
+  summaryEn?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  descriptionEn?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  benefitsEn?: Prisma.ServiceUpdatebenefitsEnInput | string[]
+  processStepsEn?: Prisma.ServiceUpdateprocessStepsEnInput | string[]
+  durationTextEn?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  seoTitleEn?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  seoDescriptionEn?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   id?: Prisma.StringFieldUpdateOperationsInput | string
   nameAr?: Prisma.StringFieldUpdateOperationsInput | string
   nameEn?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -2282,6 +2666,13 @@ export type ServiceUpdateWithoutRecentWorkInput = {
 }
 
 export type ServiceUncheckedUpdateWithoutRecentWorkInput = {
+  summaryEn?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  descriptionEn?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  benefitsEn?: Prisma.ServiceUpdatebenefitsEnInput | string[]
+  processStepsEn?: Prisma.ServiceUpdateprocessStepsEnInput | string[]
+  durationTextEn?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  seoTitleEn?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  seoDescriptionEn?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   id?: Prisma.StringFieldUpdateOperationsInput | string
   categoryId?: Prisma.StringFieldUpdateOperationsInput | string
   nameAr?: Prisma.StringFieldUpdateOperationsInput | string
@@ -2315,6 +2706,13 @@ export type ServiceUncheckedUpdateWithoutRecentWorkInput = {
 }
 
 export type ServiceCreateManyCategoryInput = {
+  summaryEn?: string | null
+  descriptionEn?: string | null
+  benefitsEn?: Prisma.ServiceCreatebenefitsEnInput | string[]
+  processStepsEn?: Prisma.ServiceCreateprocessStepsEnInput | string[]
+  durationTextEn?: string | null
+  seoTitleEn?: string | null
+  seoDescriptionEn?: string | null
   id?: string
   nameAr: string
   nameEn?: string | null
@@ -2341,6 +2739,13 @@ export type ServiceCreateManyCategoryInput = {
 }
 
 export type ServiceUpdateWithoutCategoryInput = {
+  summaryEn?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  descriptionEn?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  benefitsEn?: Prisma.ServiceUpdatebenefitsEnInput | string[]
+  processStepsEn?: Prisma.ServiceUpdateprocessStepsEnInput | string[]
+  durationTextEn?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  seoTitleEn?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  seoDescriptionEn?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   id?: Prisma.StringFieldUpdateOperationsInput | string
   nameAr?: Prisma.StringFieldUpdateOperationsInput | string
   nameEn?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -2374,6 +2779,13 @@ export type ServiceUpdateWithoutCategoryInput = {
 }
 
 export type ServiceUncheckedUpdateWithoutCategoryInput = {
+  summaryEn?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  descriptionEn?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  benefitsEn?: Prisma.ServiceUpdatebenefitsEnInput | string[]
+  processStepsEn?: Prisma.ServiceUpdateprocessStepsEnInput | string[]
+  durationTextEn?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  seoTitleEn?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  seoDescriptionEn?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   id?: Prisma.StringFieldUpdateOperationsInput | string
   nameAr?: Prisma.StringFieldUpdateOperationsInput | string
   nameEn?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -2407,6 +2819,13 @@ export type ServiceUncheckedUpdateWithoutCategoryInput = {
 }
 
 export type ServiceUncheckedUpdateManyWithoutCategoryInput = {
+  summaryEn?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  descriptionEn?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  benefitsEn?: Prisma.ServiceUpdatebenefitsEnInput | string[]
+  processStepsEn?: Prisma.ServiceUpdateprocessStepsEnInput | string[]
+  durationTextEn?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  seoTitleEn?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  seoDescriptionEn?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   id?: Prisma.StringFieldUpdateOperationsInput | string
   nameAr?: Prisma.StringFieldUpdateOperationsInput | string
   nameEn?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -2433,6 +2852,13 @@ export type ServiceUncheckedUpdateManyWithoutCategoryInput = {
 }
 
 export type ServiceCreateManyCoverImageInput = {
+  summaryEn?: string | null
+  descriptionEn?: string | null
+  benefitsEn?: Prisma.ServiceCreatebenefitsEnInput | string[]
+  processStepsEn?: Prisma.ServiceCreateprocessStepsEnInput | string[]
+  durationTextEn?: string | null
+  seoTitleEn?: string | null
+  seoDescriptionEn?: string | null
   id?: string
   categoryId: string
   nameAr: string
@@ -2459,6 +2885,13 @@ export type ServiceCreateManyCoverImageInput = {
 }
 
 export type ServiceUpdateWithoutCoverImageInput = {
+  summaryEn?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  descriptionEn?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  benefitsEn?: Prisma.ServiceUpdatebenefitsEnInput | string[]
+  processStepsEn?: Prisma.ServiceUpdateprocessStepsEnInput | string[]
+  durationTextEn?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  seoTitleEn?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  seoDescriptionEn?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   id?: Prisma.StringFieldUpdateOperationsInput | string
   nameAr?: Prisma.StringFieldUpdateOperationsInput | string
   nameEn?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -2492,6 +2925,13 @@ export type ServiceUpdateWithoutCoverImageInput = {
 }
 
 export type ServiceUncheckedUpdateWithoutCoverImageInput = {
+  summaryEn?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  descriptionEn?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  benefitsEn?: Prisma.ServiceUpdatebenefitsEnInput | string[]
+  processStepsEn?: Prisma.ServiceUpdateprocessStepsEnInput | string[]
+  durationTextEn?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  seoTitleEn?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  seoDescriptionEn?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   id?: Prisma.StringFieldUpdateOperationsInput | string
   categoryId?: Prisma.StringFieldUpdateOperationsInput | string
   nameAr?: Prisma.StringFieldUpdateOperationsInput | string
@@ -2525,6 +2965,13 @@ export type ServiceUncheckedUpdateWithoutCoverImageInput = {
 }
 
 export type ServiceUncheckedUpdateManyWithoutCoverImageInput = {
+  summaryEn?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  descriptionEn?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  benefitsEn?: Prisma.ServiceUpdatebenefitsEnInput | string[]
+  processStepsEn?: Prisma.ServiceUpdateprocessStepsEnInput | string[]
+  durationTextEn?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  seoTitleEn?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  seoDescriptionEn?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   id?: Prisma.StringFieldUpdateOperationsInput | string
   categoryId?: Prisma.StringFieldUpdateOperationsInput | string
   nameAr?: Prisma.StringFieldUpdateOperationsInput | string
@@ -2636,6 +3083,13 @@ export type ServiceCountOutputTypeCountAnalyticsEventsArgs<ExtArgs extends runti
 
 
 export type ServiceSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
+  summaryEn?: boolean
+  descriptionEn?: boolean
+  benefitsEn?: boolean
+  processStepsEn?: boolean
+  durationTextEn?: boolean
+  seoTitleEn?: boolean
+  seoDescriptionEn?: boolean
   id?: boolean
   categoryId?: boolean
   nameAr?: boolean
@@ -2673,6 +3127,13 @@ export type ServiceSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs 
 }, ExtArgs["result"]["service"]>
 
 export type ServiceSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
+  summaryEn?: boolean
+  descriptionEn?: boolean
+  benefitsEn?: boolean
+  processStepsEn?: boolean
+  durationTextEn?: boolean
+  seoTitleEn?: boolean
+  seoDescriptionEn?: boolean
   id?: boolean
   categoryId?: boolean
   nameAr?: boolean
@@ -2702,6 +3163,13 @@ export type ServiceSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Exten
 }, ExtArgs["result"]["service"]>
 
 export type ServiceSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
+  summaryEn?: boolean
+  descriptionEn?: boolean
+  benefitsEn?: boolean
+  processStepsEn?: boolean
+  durationTextEn?: boolean
+  seoTitleEn?: boolean
+  seoDescriptionEn?: boolean
   id?: boolean
   categoryId?: boolean
   nameAr?: boolean
@@ -2731,6 +3199,13 @@ export type ServiceSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Exten
 }, ExtArgs["result"]["service"]>
 
 export type ServiceSelectScalar = {
+  summaryEn?: boolean
+  descriptionEn?: boolean
+  benefitsEn?: boolean
+  processStepsEn?: boolean
+  durationTextEn?: boolean
+  seoTitleEn?: boolean
+  seoDescriptionEn?: boolean
   id?: boolean
   categoryId?: boolean
   nameAr?: boolean
@@ -2757,7 +3232,7 @@ export type ServiceSelectScalar = {
   updatedAt?: boolean
 }
 
-export type ServiceOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "categoryId" | "nameAr" | "nameEn" | "slug" | "summary" | "description" | "benefits" | "processSteps" | "priceType" | "startingPrice" | "maximumPrice" | "currency" | "durationText" | "coverImageId" | "isEmergency" | "isFeatured" | "isActive" | "sortOrder" | "seoTitle" | "seoDescription" | "deletedAt" | "createdAt" | "updatedAt", ExtArgs["result"]["service"]>
+export type ServiceOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"summaryEn" | "descriptionEn" | "benefitsEn" | "processStepsEn" | "durationTextEn" | "seoTitleEn" | "seoDescriptionEn" | "id" | "categoryId" | "nameAr" | "nameEn" | "slug" | "summary" | "description" | "benefits" | "processSteps" | "priceType" | "startingPrice" | "maximumPrice" | "currency" | "durationText" | "coverImageId" | "isEmergency" | "isFeatured" | "isActive" | "sortOrder" | "seoTitle" | "seoDescription" | "deletedAt" | "createdAt" | "updatedAt", ExtArgs["result"]["service"]>
 export type ServiceInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   category?: boolean | Prisma.CategoryDefaultArgs<ExtArgs>
   coverImage?: boolean | Prisma.Service$coverImageArgs<ExtArgs>
@@ -2793,6 +3268,13 @@ export type $ServicePayload<ExtArgs extends runtime.Types.Extensions.InternalArg
     analyticsEvents: Prisma.$AnalyticsEventPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
+    summaryEn: string | null
+    descriptionEn: string | null
+    benefitsEn: string[]
+    processStepsEn: string[]
+    durationTextEn: string | null
+    seoTitleEn: string | null
+    seoDescriptionEn: string | null
     id: string
     categoryId: string
     nameAr: string
@@ -2900,8 +3382,8 @@ export interface ServiceDelegate<ExtArgs extends runtime.Types.Extensions.Intern
    * // Get first 10 Services
    * const services = await prisma.service.findMany({ take: 10 })
    * 
-   * // Only select the `id`
-   * const serviceWithIdOnly = await prisma.service.findMany({ select: { id: true } })
+   * // Only select the `summaryEn`
+   * const serviceWithSummaryEnOnly = await prisma.service.findMany({ select: { summaryEn: true } })
    * 
    */
   findMany<T extends ServiceFindManyArgs>(args?: Prisma.SelectSubset<T, ServiceFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ServicePayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
@@ -2945,9 +3427,9 @@ export interface ServiceDelegate<ExtArgs extends runtime.Types.Extensions.Intern
    *   ]
    * })
    * 
-   * // Create many Services and only return the `id`
-   * const serviceWithIdOnly = await prisma.service.createManyAndReturn({
-   *   select: { id: true },
+   * // Create many Services and only return the `summaryEn`
+   * const serviceWithSummaryEnOnly = await prisma.service.createManyAndReturn({
+   *   select: { summaryEn: true },
    *   data: [
    *     // ... provide data here
    *   ]
@@ -3036,9 +3518,9 @@ export interface ServiceDelegate<ExtArgs extends runtime.Types.Extensions.Intern
    *   ]
    * })
    * 
-   * // Update zero or more Services and only return the `id`
-   * const serviceWithIdOnly = await prisma.service.updateManyAndReturn({
-   *   select: { id: true },
+   * // Update zero or more Services and only return the `summaryEn`
+   * const serviceWithSummaryEnOnly = await prisma.service.updateManyAndReturn({
+   *   select: { summaryEn: true },
    *   where: {
    *     // ... provide filter here
    *   },
@@ -3249,6 +3731,13 @@ export interface Prisma__ServiceClient<T, Null = never, ExtArgs extends runtime.
  * Fields of the Service model
  */
 export interface ServiceFieldRefs {
+  readonly summaryEn: Prisma.FieldRef<"Service", 'String'>
+  readonly descriptionEn: Prisma.FieldRef<"Service", 'String'>
+  readonly benefitsEn: Prisma.FieldRef<"Service", 'String[]'>
+  readonly processStepsEn: Prisma.FieldRef<"Service", 'String[]'>
+  readonly durationTextEn: Prisma.FieldRef<"Service", 'String'>
+  readonly seoTitleEn: Prisma.FieldRef<"Service", 'String'>
+  readonly seoDescriptionEn: Prisma.FieldRef<"Service", 'String'>
   readonly id: Prisma.FieldRef<"Service", 'String'>
   readonly categoryId: Prisma.FieldRef<"Service", 'String'>
   readonly nameAr: Prisma.FieldRef<"Service", 'String'>

@@ -76,6 +76,7 @@ enum MediaType {
 }
 
 enum StorageProvider {
+  CLOUDINARY
   LOCAL
   S3
   R2
@@ -134,7 +135,6 @@ model User {
   uploadedMedia        MediaAsset[]
   auditLogs            AuditLog[]
 
-  @@index([status, createdAt])
   @@index([deletedAt])
 }
 
@@ -197,6 +197,11 @@ model RefreshToken {
 }
 
 model Category {
+  shortDescriptionEn String?
+  descriptionEn      String?
+  seoTitleEn         String?
+  seoDescriptionEn   String?
+
   id               String      @id @default(uuid()) @db.Uuid
   nameAr           String
   nameEn           String?
@@ -222,6 +227,14 @@ model Category {
 }
 
 model Service {
+  summaryEn        String?
+  descriptionEn    String?
+  benefitsEn       String[] @default([])
+  processStepsEn   String[] @default([])
+  durationTextEn   String?
+  seoTitleEn       String?
+  seoDescriptionEn String?
+
   id              String            @id @default(uuid()) @db.Uuid
   categoryId      String            @db.Uuid
   nameAr          String
@@ -326,6 +339,9 @@ model Country {
 }
 
 model Region {
+  seoTitleEn       String?
+  seoDescriptionEn String?
+
   id             String   @id @default(uuid()) @db.Uuid
   countryId      String   @db.Uuid
   nameAr         String
@@ -345,6 +361,10 @@ model Region {
 }
 
 model City {
+  shortDescriptionEn String?
+  seoTitleEn         String?
+  seoDescriptionEn   String?
+
   id               String            @id @default(uuid()) @db.Uuid
   regionId         String            @db.Uuid
   nameAr           String
@@ -367,6 +387,9 @@ model City {
 }
 
 model District {
+  seoTitleEn       String?
+  seoDescriptionEn String?
+
   id               String            @id @default(uuid()) @db.Uuid
   cityId           String            @db.Uuid
   nameAr           String
@@ -387,6 +410,11 @@ model District {
 }
 
 model ServiceLocation {
+  localIntroductionEn String?
+  localPricingTextEn  String?
+  seoTitleEn          String?
+  seoDescriptionEn    String?
+
   id                String    @id @default(uuid()) @db.Uuid
   serviceId         String    @db.Uuid
   cityId            String    @db.Uuid
@@ -460,7 +488,6 @@ model ServiceRequest {
   internalNotes   InternalNote[]
   analyticsEvents AnalyticsEvent[]
 
-  @@index([status, createdAt])
   @@index([serviceId, createdAt])
   @@index([cityId, createdAt])
   @@index([customerId, createdAt])
@@ -611,27 +638,28 @@ model HomepageSection {
 }
 
 model MediaAsset {
-  id                 String              @id @default(uuid()) @db.Uuid
-  type               MediaType           @default(IMAGE)
-  provider           StorageProvider     @default(LOCAL)
-  storageKey         String              @unique
-  originalName       String
-  mimeType           String
-  sizeBytes          Int
-  width              Int?
-  height             Int?
-  altTextAr          String?
-  altTextEn          String?
-  publicUrl          String?
-  uploadedById       String?             @db.Uuid
-  createdAt          DateTime            @default(now())
-  uploadedBy         User?               @relation(fields: [uploadedById], references: [id], onDelete: SetNull)
-  categoryImages     Category[]          @relation("CategoryImage")
-  serviceCoverImages Service[]           @relation("ServiceCoverImage")
-  serviceGallery     ServiceImage[]
-  requestAttachments RequestAttachment[]
-  blogCoverImages    BlogPost[]          @relation("BlogCoverImage")
-  portfolioImages    PortfolioItem[]
+  id                    String              @id @default(uuid()) @db.Uuid
+  type                  MediaType           @default(IMAGE)
+  provider              StorageProvider     @default(LOCAL)
+  storageKey            String              @unique
+  originalName          String
+  mimeType              String
+  sizeBytes             Int
+  width                 Int?
+  height                Int?
+  altTextAr             String?
+  altTextEn             String?
+  publicUrl             String?
+  uploadedById          String?             @db.Uuid
+  createdAt             DateTime            @default(now())
+  uploadedBy            User?               @relation(fields: [uploadedById], references: [id], onDelete: SetNull)
+  categoryImages        Category[]          @relation("CategoryImage")
+  serviceCoverImages    Service[]           @relation("ServiceCoverImage")
+  serviceGallery        ServiceImage[]
+  requestAttachments    RequestAttachment[]
+  blogCoverImages       BlogPost[]          @relation("BlogCoverImage")
+  portfolioImages       PortfolioItem[]     @relation("PortfolioAfterImage")
+  portfolioBeforeImages PortfolioItem[]     @relation("PortfolioBeforeImage")
 
   @@index([type, createdAt])
   @@index([uploadedById])
@@ -672,7 +700,6 @@ model ContactSubmission {
   createdAt       DateTime                @default(now())
   updatedAt       DateTime                @updatedAt
 
-  @@index([status, createdAt])
   @@index([phoneNormalized])
 }
 
@@ -717,6 +744,8 @@ model AuditLog {
 }
 
 model CustomerReview {
+  email        String?
+  status       String   @default("PENDING")
   id           String   @id @default(uuid()) @db.Uuid
   customerName String
   cityName     String?
@@ -729,24 +758,28 @@ model CustomerReview {
   updatedAt    DateTime @updatedAt
 
   @@index([isActive, isFeatured, sortOrder])
+  @@index([status, createdAt])
 }
 
 model PortfolioItem {
-  id          String      @id @default(uuid()) @db.Uuid
-  serviceId   String      @db.Uuid
-  cityId      String?     @db.Uuid
-  imageId     String?     @db.Uuid
-  titleAr     String
-  description String?
-  completedAt DateTime?
-  isPublished Boolean     @default(false)
-  sortOrder   Int         @default(0)
-  createdAt   DateTime    @default(now())
-  updatedAt   DateTime    @updatedAt
-  service     Service     @relation(fields: [serviceId], references: [id], onDelete: Restrict)
-  city        City?       @relation(fields: [cityId], references: [id], onDelete: SetNull)
-  image       MediaAsset? @relation(fields: [imageId], references: [id], onDelete: SetNull)
+  id            String      @id @default(uuid()) @db.Uuid
+  serviceId     String      @db.Uuid
+  cityId        String?     @db.Uuid
+  imageId       String?     @db.Uuid
+  beforeImageId String?     @db.Uuid
+  titleAr       String
+  description   String?
+  completedAt   DateTime?
+  isPublished   Boolean     @default(false)
+  sortOrder     Int         @default(0)
+  createdAt     DateTime    @default(now())
+  updatedAt     DateTime    @updatedAt
+  service       Service     @relation(fields: [serviceId], references: [id], onDelete: Restrict)
+  city          City?       @relation(fields: [cityId], references: [id], onDelete: SetNull)
+  image         MediaAsset? @relation("PortfolioAfterImage", fields: [imageId], references: [id], onDelete: SetNull)
+  beforeImage   MediaAsset? @relation("PortfolioBeforeImage", fields: [beforeImageId], references: [id], onDelete: SetNull)
 
   @@index([serviceId, isPublished, sortOrder])
   @@index([cityId, completedAt])
+  @@index([beforeImageId])
 }

@@ -1,9 +1,12 @@
 "use client";
+import { useI18n } from "@repo/i18n/client";
+import { AdminLanguageBar } from "@/components/admin-language-bar";
 
 import {
   Activity,
   FolderTree,
   Images,
+  BriefcaseBusiness,
   LayoutDashboard,
   LogOut,
   MapPin,
@@ -18,19 +21,84 @@ import { ReactNode, useEffect, useState } from "react";
 import { AdminUser, apiFetch, readCookie } from "@/lib/api";
 
 const links = [
+  {
+    href: "/site-settings",
+    label: "إعدادات الموقع",
+    icon: Wrench,
+    permission: "content.manage",
+  },
+  {
+    href: "/reviews",
+    label: "آراء العملاء",
+    icon: Users,
+    permission: "content.manage",
+  },
   { href: "/dashboard", label: "نظرة عامة", icon: LayoutDashboard },
-  { href: "/categories", label: "التصنيفات", icon: FolderTree, permission: "category.read" },
-  { href: "/services", label: "الخدمات", icon: Wrench, permission: "service.read" },
-  { href: "/locations/regions", label: "المناطق", icon: MapPin, permission: "location.manage" },
-  { href: "/locations/cities", label: "المدن", icon: MapPin, permission: "location.manage" },
-  { href: "/locations/districts", label: "الأحياء", icon: MapPin, permission: "location.manage" },
-  { href: "/media", label: "الوسائط", icon: Images, permission: "media.manage" },
-  { href: "/users", label: "المستخدمون", icon: Users, permission: "users.manage" },
-  { href: "/roles", label: "الأدوار والصلاحيات", icon: UserCog, permission: "users.manage" },
-  { href: "/audit-logs", label: "سجل التدقيق", icon: Activity, permission: "audit.read" },
+  {
+    href: "/categories",
+    label: "التصنيفات",
+    icon: FolderTree,
+    permission: "category.read",
+  },
+  {
+    href: "/services",
+    label: "الخدمات",
+    icon: Wrench,
+    permission: "service.read",
+  },
+  {
+    href: "/locations/regions",
+    label: "المناطق",
+    icon: MapPin,
+    permission: "location.manage",
+  },
+  {
+    href: "/locations/cities",
+    label: "المدن",
+    icon: MapPin,
+    permission: "location.manage",
+  },
+  {
+    href: "/locations/districts",
+    label: "الأحياء",
+    icon: MapPin,
+    permission: "location.manage",
+  },
+  {
+    href: "/media",
+    label: "الوسائط",
+    icon: Images,
+    permission: "media.manage",
+  },
+  {
+    href: "/portfolio",
+    label: "الأعمال السابقة",
+    icon: BriefcaseBusiness,
+    permission: "content.manage",
+  },
+  {
+    href: "/users",
+    label: "المستخدمون",
+    icon: Users,
+    permission: "users.manage",
+  },
+  {
+    href: "/roles",
+    label: "الأدوار والصلاحيات",
+    icon: UserCog,
+    permission: "users.manage",
+  },
+  {
+    href: "/audit-logs",
+    label: "سجل التدقيق",
+    icon: Activity,
+    permission: "audit.read",
+  },
 ];
 
 export function AdminShell({ children }: { children: ReactNode }) {
+  const { t } = useI18n();
+
   const pathname = usePathname();
   const router = useRouter();
   const [user, setUser] = useState<AdminUser | null>(null);
@@ -61,7 +129,7 @@ export function AdminShell({ children }: { children: ReactNode }) {
       <main className="grid min-h-screen place-items-center bg-slate-50">
         <div className="text-center text-sm font-semibold text-slate-500">
           <div className="mx-auto mb-4 size-9 animate-spin rounded-full border-4 border-emerald-600 border-t-transparent" />
-          جارٍ التحقق من الجلسة...
+          {t("جارٍ التحقق من الجلسة...")}
         </div>
       </main>
     );
@@ -69,27 +137,51 @@ export function AdminShell({ children }: { children: ReactNode }) {
 
   return (
     <div className="min-h-screen bg-slate-50 lg:grid lg:grid-cols-[260px_1fr]">
-      <aside className="border-l border-slate-200 bg-slate-950 px-5 py-6 text-white">
+      <aside className="border-e border-slate-200 bg-slate-950 px-5 py-6 text-white">
         <div className="flex items-center gap-3 px-2">
-          <div className="brand-mark size-10"><ShieldCheck className="size-5" /></div>
-          <div><strong className="block">خدماتك</strong><span className="text-xs text-slate-400">لوحة الإدارة</span></div>
+          <div className="brand-mark size-10">
+            <ShieldCheck className="size-5" />
+          </div>
+          <div>
+            <strong className="block">{t("خدماتك")}</strong>
+            <span className="text-xs text-slate-400">{t("لوحة الإدارة")}</span>
+          </div>
         </div>
-        <nav className="mt-9 flex gap-2 overflow-x-auto lg:flex-col">
-          {links.filter((link) => !link.permission || user.permissions.includes(link.permission)).map((link) => {
-            const Icon = link.icon;
-            const active = pathname.startsWith(link.href);
-            return (
-              <Link key={link.href} href={link.href} className={`nav-link ${active ? "nav-link-active" : ""}`}>
-                <Icon className="size-4" />{link.label}
-              </Link>
-            );
-          })}
+        <div className="mt-5">
+          <AdminLanguageBar />
+        </div>
+        <nav className="mt-5 flex gap-2 overflow-x-auto lg:flex-col">
+          {links
+            .filter(
+              (link) =>
+                !link.permission || user.permissions.includes(link.permission),
+            )
+            .map((link) => {
+              const Icon = link.icon;
+              const active = pathname.startsWith(link.href);
+              return (
+                <Link
+                  key={link.href}
+                  href={link.href}
+                  className={`nav-link ${active ? "nav-link-active" : ""}`}
+                >
+                  <Icon className="size-4" />
+                  {t(link.label)}
+                </Link>
+              );
+            })}
         </nav>
         <div className="mt-8 border-t border-slate-800 pt-5 lg:mt-[calc(100vh-390px)]">
           <p className="truncate text-sm font-bold">{user.name}</p>
-          <p className="mt-1 truncate text-xs text-slate-400">{user.roles.join(" · ")}</p>
-          <button onClick={logout} className="mt-4 flex items-center gap-2 text-sm text-slate-300 hover:text-white">
-            <LogOut className="size-4" /> تسجيل الخروج
+          <p className="mt-1 truncate text-xs text-slate-400">
+            {user.roles.join(" · ")}
+          </p>
+          <button
+            onClick={logout}
+            className="mt-4 flex items-center gap-2 text-sm text-slate-300 hover:text-white"
+          >
+            <LogOut className="size-4" />
+            {t("تسجيل الخروج")}
           </button>
         </div>
       </aside>

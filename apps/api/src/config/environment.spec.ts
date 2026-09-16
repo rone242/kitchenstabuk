@@ -14,3 +14,22 @@ describe('validateEnvironment', () => {
     );
   });
 });
+
+it('requires Cloudinary credentials when selected in every environment', () => {
+  expect(() => validateEnvironment({ UPLOAD_PROVIDER: 'cloudinary' })).toThrow(
+    /CLOUDINARY_CLOUD_NAME, CLOUDINARY_API_KEY, CLOUDINARY_API_SECRET/,
+  );
+});
+it('accepts Cloudinary without S3 settings in production', () => {
+  const result = validateEnvironment({
+    NODE_ENV: 'production',
+    DATABASE_URL: 'postgresql://localhost/test',
+    JWT_ACCESS_SECRET: 'a'.repeat(32),
+    JWT_REFRESH_SECRET: 'b'.repeat(32),
+    UPLOAD_PROVIDER: 'cloudinary',
+    CLOUDINARY_CLOUD_NAME: 'test-cloud',
+    CLOUDINARY_API_KEY: 'key',
+    CLOUDINARY_API_SECRET: 'secret',
+  });
+  expect(result.UPLOAD_PROVIDER).toBe('cloudinary');
+});

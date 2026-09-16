@@ -10,7 +10,10 @@ export interface AdminUser {
 }
 
 export class ApiError extends Error {
-  constructor(message: string, readonly status: number) {
+  constructor(
+    message: string,
+    readonly status: number,
+  ) {
     super(message);
   }
 }
@@ -25,35 +28,54 @@ export async function apiFetch<T>(
     ? readCookie("kst_csrf")
     : undefined;
   const isFormData = init.body instanceof FormData;
-  const response = await fetch(`${API_URL}${path}`, {
-    ...init,
-    credentials: "include",
-    headers: {
-      ...(isFormData ? {} : { "Content-Type": "application/json" }),
-      ...(csrf ? { "X-CSRF-Token": csrf } : {}),
-      ...init.headers,
-    },
-  });
+  let response: Response;
+  try {
+    response = await fetch(`${API_URL}${path}`, {
+      ...init,
+      credentials: "include",
+      headers: {
+        ...(isFormData ? {} : { "Content-Type": "application/json" }),
+        ...(csrf ? { "X-CSRF-Token": csrf } : {}),
+        ...init.headers,
+      },
+    });
+  } catch (error) {
+    if (error instanceof ApiError) throw error;
+    throw new ApiError(
+      "تعذر الاتصال بالخادم. تأكد من تشغيل خدمة API ثم أعد المحاولة.",
+      0,
+    );
+  }
 
   if (response.status === 401 && retry && path !== "/auth/refresh") {
     const csrf = readCookie("kst_csrf");
     if (csrf) {
-      const refreshed = await fetch(`${API_URL}/auth/refresh`, {
-        method: "POST",
-        credentials: "include",
-        headers: { "X-CSRF-Token": csrf },
-      });
+      let refreshed: Response | undefined;
+      try {
+        refreshed = await fetch(`${API_URL}/auth/refresh`, {
+          method: "POST",
+          credentials: "include",
+          headers: { "X-CSRF-Token": csrf },
+        });
+      } catch {
+        throw new ApiError(
+          "تعذر الاتصال بالخادم. تأكد من تشغيل خدمة API ثم أعد المحاولة.",
+          0,
+        );
+      }
       if (refreshed.ok) return apiFetch<T>(path, init, false);
     }
   }
 
   if (!response.ok) {
-    const payload = (await response.json().catch(() => null)) as
-      | { error?: { message?: string | string[] } }
-      | null;
+    const payload = (await response.json().catch(() => null)) as {
+      error?: { message?: string | string[] };
+    } | null;
     const message = payload?.error?.message;
     throw new ApiError(
-      Array.isArray(message) ? message.join("، ") : message || "تعذر تنفيذ الطلب",
+      Array.isArray(message)
+        ? message.join(" · ")
+        : message || "تعذر تنفيذ الطلب",
       response.status,
     );
   }

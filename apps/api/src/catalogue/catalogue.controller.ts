@@ -29,10 +29,33 @@ import {
   CreateServiceFieldDto,
   UpdateServiceFieldDto,
 } from './dto/service-field.dto.js';
+import { CreatePortfolioDto, UpdatePortfolioDto } from './dto/portfolio.dto.js';
 
 @Controller('admin')
 export class CatalogueController {
   constructor(private readonly catalogue: CatalogueService) {}
+
+  @RequirePermissions('content.manage')
+  @Get('portfolio')
+  portfolio() {
+    return this.catalogue.portfolio();
+  }
+
+  @RequirePermissions('content.manage')
+  @Post('portfolio')
+  createPortfolio(@Body() input: CreatePortfolioDto, @Req() request: Request) {
+    return this.catalogue.createPortfolio(input, mutationContext(request));
+  }
+
+  @RequirePermissions('content.manage')
+  @Patch('portfolio/:id')
+  updatePortfolio(
+    @Param('id', ParseUUIDPipe) id: string,
+    @Body() input: UpdatePortfolioDto,
+    @Req() request: Request,
+  ) {
+    return this.catalogue.updatePortfolio(id, input, mutationContext(request));
+  }
 
   @RequirePermissions('category.read')
   @Get('categories')
@@ -121,7 +144,11 @@ export class CatalogueController {
     @Body() input: CreateServiceFieldDto,
     @Req() request: Request,
   ) {
-    return this.catalogue.createField(serviceId, input, mutationContext(request));
+    return this.catalogue.createField(
+      serviceId,
+      input,
+      mutationContext(request),
+    );
   }
 
   @RequirePermissions('service.update')
@@ -148,7 +175,11 @@ export class CatalogueController {
     @Param('fieldId', ParseUUIDPipe) fieldId: string,
     @Req() request: Request,
   ): Promise<void> {
-    await this.catalogue.deleteField(serviceId, fieldId, mutationContext(request));
+    await this.catalogue.deleteField(
+      serviceId,
+      fieldId,
+      mutationContext(request),
+    );
   }
 }
 

@@ -35,6 +35,8 @@ export type DistrictSumAggregateOutputType = {
 }
 
 export type DistrictMinAggregateOutputType = {
+  seoTitleEn: string | null
+  seoDescriptionEn: string | null
   id: string | null
   cityId: string | null
   nameAr: string | null
@@ -49,6 +51,8 @@ export type DistrictMinAggregateOutputType = {
 }
 
 export type DistrictMaxAggregateOutputType = {
+  seoTitleEn: string | null
+  seoDescriptionEn: string | null
   id: string | null
   cityId: string | null
   nameAr: string | null
@@ -63,6 +67,8 @@ export type DistrictMaxAggregateOutputType = {
 }
 
 export type DistrictCountAggregateOutputType = {
+  seoTitleEn: number
+  seoDescriptionEn: number
   id: number
   cityId: number
   nameAr: number
@@ -87,6 +93,8 @@ export type DistrictSumAggregateInputType = {
 }
 
 export type DistrictMinAggregateInputType = {
+  seoTitleEn?: true
+  seoDescriptionEn?: true
   id?: true
   cityId?: true
   nameAr?: true
@@ -101,6 +109,8 @@ export type DistrictMinAggregateInputType = {
 }
 
 export type DistrictMaxAggregateInputType = {
+  seoTitleEn?: true
+  seoDescriptionEn?: true
   id?: true
   cityId?: true
   nameAr?: true
@@ -115,6 +125,8 @@ export type DistrictMaxAggregateInputType = {
 }
 
 export type DistrictCountAggregateInputType = {
+  seoTitleEn?: true
+  seoDescriptionEn?: true
   id?: true
   cityId?: true
   nameAr?: true
@@ -216,6 +228,8 @@ export type DistrictGroupByArgs<ExtArgs extends runtime.Types.Extensions.Interna
 }
 
 export type DistrictGroupByOutputType = {
+  seoTitleEn: string | null
+  seoDescriptionEn: string | null
   id: string
   cityId: string
   nameAr: string
@@ -253,6 +267,8 @@ export type DistrictWhereInput = {
   AND?: Prisma.DistrictWhereInput | Prisma.DistrictWhereInput[]
   OR?: Prisma.DistrictWhereInput[]
   NOT?: Prisma.DistrictWhereInput | Prisma.DistrictWhereInput[]
+  seoTitleEn?: Prisma.StringNullableFilter<"District"> | string | null
+  seoDescriptionEn?: Prisma.StringNullableFilter<"District"> | string | null
   id?: Prisma.UuidFilter<"District"> | string
   cityId?: Prisma.UuidFilter<"District"> | string
   nameAr?: Prisma.StringFilter<"District"> | string
@@ -270,6 +286,8 @@ export type DistrictWhereInput = {
 }
 
 export type DistrictOrderByWithRelationInput = {
+  seoTitleEn?: Prisma.SortOrderInput | Prisma.SortOrder
+  seoDescriptionEn?: Prisma.SortOrderInput | Prisma.SortOrder
   id?: Prisma.SortOrder
   cityId?: Prisma.SortOrder
   nameAr?: Prisma.SortOrder
@@ -292,6 +310,8 @@ export type DistrictWhereUniqueInput = Prisma.AtLeast<{
   AND?: Prisma.DistrictWhereInput | Prisma.DistrictWhereInput[]
   OR?: Prisma.DistrictWhereInput[]
   NOT?: Prisma.DistrictWhereInput | Prisma.DistrictWhereInput[]
+  seoTitleEn?: Prisma.StringNullableFilter<"District"> | string | null
+  seoDescriptionEn?: Prisma.StringNullableFilter<"District"> | string | null
   cityId?: Prisma.UuidFilter<"District"> | string
   nameAr?: Prisma.StringFilter<"District"> | string
   nameEn?: Prisma.StringNullableFilter<"District"> | string | null
@@ -308,6 +328,8 @@ export type DistrictWhereUniqueInput = Prisma.AtLeast<{
 }, "id" | "cityId_slug">
 
 export type DistrictOrderByWithAggregationInput = {
+  seoTitleEn?: Prisma.SortOrderInput | Prisma.SortOrder
+  seoDescriptionEn?: Prisma.SortOrderInput | Prisma.SortOrder
   id?: Prisma.SortOrder
   cityId?: Prisma.SortOrder
   nameAr?: Prisma.SortOrder
@@ -330,6 +352,8 @@ export type DistrictScalarWhereWithAggregatesInput = {
   AND?: Prisma.DistrictScalarWhereWithAggregatesInput | Prisma.DistrictScalarWhereWithAggregatesInput[]
   OR?: Prisma.DistrictScalarWhereWithAggregatesInput[]
   NOT?: Prisma.DistrictScalarWhereWithAggregatesInput | Prisma.DistrictScalarWhereWithAggregatesInput[]
+  seoTitleEn?: Prisma.StringNullableWithAggregatesFilter<"District"> | string | null
+  seoDescriptionEn?: Prisma.StringNullableWithAggregatesFilter<"District"> | string | null
   id?: Prisma.UuidWithAggregatesFilter<"District"> | string
   cityId?: Prisma.UuidWithAggregatesFilter<"District"> | string
   nameAr?: Prisma.StringWithAggregatesFilter<"District"> | string
@@ -344,6 +368,8 @@ export type DistrictScalarWhereWithAggregatesInput = {
 }
 
 export type DistrictCreateInput = {
+  seoTitleEn?: string | null
+  seoDescriptionEn?: string | null
   id?: string
   nameAr: string
   nameEn?: string | null
@@ -360,6 +386,8 @@ export type DistrictCreateInput = {
 }
 
 export type DistrictUncheckedCreateInput = {
+  seoTitleEn?: string | null
+  seoDescriptionEn?: string | null
   id?: string
   cityId: string
   nameAr: string
@@ -376,6 +404,8 @@ export type DistrictUncheckedCreateInput = {
 }
 
 export type DistrictUpdateInput = {
+  seoTitleEn?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  seoDescriptionEn?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   id?: Prisma.StringFieldUpdateOperationsInput | string
   nameAr?: Prisma.StringFieldUpdateOperationsInput | string
   nameEn?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -392,6 +422,8 @@ export type DistrictUpdateInput = {
 }
 
 export type DistrictUncheckedUpdateInput = {
+  seoTitleEn?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  seoDescriptionEn?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   id?: Prisma.StringFieldUpdateOperationsInput | string
   cityId?: Prisma.StringFieldUpdateOperationsInput | string
   nameAr?: Prisma.StringFieldUpdateOperationsInput | string
@@ -408,6 +440,8 @@ export type DistrictUncheckedUpdateInput = {
 }
 
 export type DistrictCreateManyInput = {
+  seoTitleEn?: string | null
+  seoDescriptionEn?: string | null
   id?: string
   cityId: string
   nameAr: string
@@ -422,6 +456,8 @@ export type DistrictCreateManyInput = {
 }
 
 export type DistrictUpdateManyMutationInput = {
+  seoTitleEn?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  seoDescriptionEn?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   id?: Prisma.StringFieldUpdateOperationsInput | string
   nameAr?: Prisma.StringFieldUpdateOperationsInput | string
   nameEn?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -435,6 +471,8 @@ export type DistrictUpdateManyMutationInput = {
 }
 
 export type DistrictUncheckedUpdateManyInput = {
+  seoTitleEn?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  seoDescriptionEn?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   id?: Prisma.StringFieldUpdateOperationsInput | string
   cityId?: Prisma.StringFieldUpdateOperationsInput | string
   nameAr?: Prisma.StringFieldUpdateOperationsInput | string
@@ -464,6 +502,8 @@ export type DistrictCityIdSlugCompoundUniqueInput = {
 }
 
 export type DistrictCountOrderByAggregateInput = {
+  seoTitleEn?: Prisma.SortOrder
+  seoDescriptionEn?: Prisma.SortOrder
   id?: Prisma.SortOrder
   cityId?: Prisma.SortOrder
   nameAr?: Prisma.SortOrder
@@ -482,6 +522,8 @@ export type DistrictAvgOrderByAggregateInput = {
 }
 
 export type DistrictMaxOrderByAggregateInput = {
+  seoTitleEn?: Prisma.SortOrder
+  seoDescriptionEn?: Prisma.SortOrder
   id?: Prisma.SortOrder
   cityId?: Prisma.SortOrder
   nameAr?: Prisma.SortOrder
@@ -496,6 +538,8 @@ export type DistrictMaxOrderByAggregateInput = {
 }
 
 export type DistrictMinOrderByAggregateInput = {
+  seoTitleEn?: Prisma.SortOrder
+  seoDescriptionEn?: Prisma.SortOrder
   id?: Prisma.SortOrder
   cityId?: Prisma.SortOrder
   nameAr?: Prisma.SortOrder
@@ -593,6 +637,8 @@ export type DistrictUpdateOneWithoutServiceRequestsNestedInput = {
 }
 
 export type DistrictCreateWithoutCityInput = {
+  seoTitleEn?: string | null
+  seoDescriptionEn?: string | null
   id?: string
   nameAr: string
   nameEn?: string | null
@@ -608,6 +654,8 @@ export type DistrictCreateWithoutCityInput = {
 }
 
 export type DistrictUncheckedCreateWithoutCityInput = {
+  seoTitleEn?: string | null
+  seoDescriptionEn?: string | null
   id?: string
   nameAr: string
   nameEn?: string | null
@@ -652,6 +700,8 @@ export type DistrictScalarWhereInput = {
   AND?: Prisma.DistrictScalarWhereInput | Prisma.DistrictScalarWhereInput[]
   OR?: Prisma.DistrictScalarWhereInput[]
   NOT?: Prisma.DistrictScalarWhereInput | Prisma.DistrictScalarWhereInput[]
+  seoTitleEn?: Prisma.StringNullableFilter<"District"> | string | null
+  seoDescriptionEn?: Prisma.StringNullableFilter<"District"> | string | null
   id?: Prisma.UuidFilter<"District"> | string
   cityId?: Prisma.UuidFilter<"District"> | string
   nameAr?: Prisma.StringFilter<"District"> | string
@@ -666,6 +716,8 @@ export type DistrictScalarWhereInput = {
 }
 
 export type DistrictCreateWithoutServiceLocationsInput = {
+  seoTitleEn?: string | null
+  seoDescriptionEn?: string | null
   id?: string
   nameAr: string
   nameEn?: string | null
@@ -681,6 +733,8 @@ export type DistrictCreateWithoutServiceLocationsInput = {
 }
 
 export type DistrictUncheckedCreateWithoutServiceLocationsInput = {
+  seoTitleEn?: string | null
+  seoDescriptionEn?: string | null
   id?: string
   cityId: string
   nameAr: string
@@ -712,6 +766,8 @@ export type DistrictUpdateToOneWithWhereWithoutServiceLocationsInput = {
 }
 
 export type DistrictUpdateWithoutServiceLocationsInput = {
+  seoTitleEn?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  seoDescriptionEn?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   id?: Prisma.StringFieldUpdateOperationsInput | string
   nameAr?: Prisma.StringFieldUpdateOperationsInput | string
   nameEn?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -727,6 +783,8 @@ export type DistrictUpdateWithoutServiceLocationsInput = {
 }
 
 export type DistrictUncheckedUpdateWithoutServiceLocationsInput = {
+  seoTitleEn?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  seoDescriptionEn?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   id?: Prisma.StringFieldUpdateOperationsInput | string
   cityId?: Prisma.StringFieldUpdateOperationsInput | string
   nameAr?: Prisma.StringFieldUpdateOperationsInput | string
@@ -742,6 +800,8 @@ export type DistrictUncheckedUpdateWithoutServiceLocationsInput = {
 }
 
 export type DistrictCreateWithoutServiceRequestsInput = {
+  seoTitleEn?: string | null
+  seoDescriptionEn?: string | null
   id?: string
   nameAr: string
   nameEn?: string | null
@@ -757,6 +817,8 @@ export type DistrictCreateWithoutServiceRequestsInput = {
 }
 
 export type DistrictUncheckedCreateWithoutServiceRequestsInput = {
+  seoTitleEn?: string | null
+  seoDescriptionEn?: string | null
   id?: string
   cityId: string
   nameAr: string
@@ -788,6 +850,8 @@ export type DistrictUpdateToOneWithWhereWithoutServiceRequestsInput = {
 }
 
 export type DistrictUpdateWithoutServiceRequestsInput = {
+  seoTitleEn?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  seoDescriptionEn?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   id?: Prisma.StringFieldUpdateOperationsInput | string
   nameAr?: Prisma.StringFieldUpdateOperationsInput | string
   nameEn?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -803,6 +867,8 @@ export type DistrictUpdateWithoutServiceRequestsInput = {
 }
 
 export type DistrictUncheckedUpdateWithoutServiceRequestsInput = {
+  seoTitleEn?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  seoDescriptionEn?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   id?: Prisma.StringFieldUpdateOperationsInput | string
   cityId?: Prisma.StringFieldUpdateOperationsInput | string
   nameAr?: Prisma.StringFieldUpdateOperationsInput | string
@@ -818,6 +884,8 @@ export type DistrictUncheckedUpdateWithoutServiceRequestsInput = {
 }
 
 export type DistrictCreateManyCityInput = {
+  seoTitleEn?: string | null
+  seoDescriptionEn?: string | null
   id?: string
   nameAr: string
   nameEn?: string | null
@@ -831,6 +899,8 @@ export type DistrictCreateManyCityInput = {
 }
 
 export type DistrictUpdateWithoutCityInput = {
+  seoTitleEn?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  seoDescriptionEn?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   id?: Prisma.StringFieldUpdateOperationsInput | string
   nameAr?: Prisma.StringFieldUpdateOperationsInput | string
   nameEn?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -846,6 +916,8 @@ export type DistrictUpdateWithoutCityInput = {
 }
 
 export type DistrictUncheckedUpdateWithoutCityInput = {
+  seoTitleEn?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  seoDescriptionEn?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   id?: Prisma.StringFieldUpdateOperationsInput | string
   nameAr?: Prisma.StringFieldUpdateOperationsInput | string
   nameEn?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -861,6 +933,8 @@ export type DistrictUncheckedUpdateWithoutCityInput = {
 }
 
 export type DistrictUncheckedUpdateManyWithoutCityInput = {
+  seoTitleEn?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  seoDescriptionEn?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   id?: Prisma.StringFieldUpdateOperationsInput | string
   nameAr?: Prisma.StringFieldUpdateOperationsInput | string
   nameEn?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -914,6 +988,8 @@ export type DistrictCountOutputTypeCountServiceRequestsArgs<ExtArgs extends runt
 
 
 export type DistrictSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
+  seoTitleEn?: boolean
+  seoDescriptionEn?: boolean
   id?: boolean
   cityId?: boolean
   nameAr?: boolean
@@ -932,6 +1008,8 @@ export type DistrictSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs
 }, ExtArgs["result"]["district"]>
 
 export type DistrictSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
+  seoTitleEn?: boolean
+  seoDescriptionEn?: boolean
   id?: boolean
   cityId?: boolean
   nameAr?: boolean
@@ -947,6 +1025,8 @@ export type DistrictSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Exte
 }, ExtArgs["result"]["district"]>
 
 export type DistrictSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
+  seoTitleEn?: boolean
+  seoDescriptionEn?: boolean
   id?: boolean
   cityId?: boolean
   nameAr?: boolean
@@ -962,6 +1042,8 @@ export type DistrictSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Exte
 }, ExtArgs["result"]["district"]>
 
 export type DistrictSelectScalar = {
+  seoTitleEn?: boolean
+  seoDescriptionEn?: boolean
   id?: boolean
   cityId?: boolean
   nameAr?: boolean
@@ -975,7 +1057,7 @@ export type DistrictSelectScalar = {
   updatedAt?: boolean
 }
 
-export type DistrictOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "cityId" | "nameAr" | "nameEn" | "slug" | "isActive" | "sortOrder" | "seoTitle" | "seoDescription" | "createdAt" | "updatedAt", ExtArgs["result"]["district"]>
+export type DistrictOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"seoTitleEn" | "seoDescriptionEn" | "id" | "cityId" | "nameAr" | "nameEn" | "slug" | "isActive" | "sortOrder" | "seoTitle" | "seoDescription" | "createdAt" | "updatedAt", ExtArgs["result"]["district"]>
 export type DistrictInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   city?: boolean | Prisma.CityDefaultArgs<ExtArgs>
   serviceLocations?: boolean | Prisma.District$serviceLocationsArgs<ExtArgs>
@@ -997,6 +1079,8 @@ export type $DistrictPayload<ExtArgs extends runtime.Types.Extensions.InternalAr
     serviceRequests: Prisma.$ServiceRequestPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
+    seoTitleEn: string | null
+    seoDescriptionEn: string | null
     id: string
     cityId: string
     nameAr: string
@@ -1091,8 +1175,8 @@ export interface DistrictDelegate<ExtArgs extends runtime.Types.Extensions.Inter
    * // Get first 10 Districts
    * const districts = await prisma.district.findMany({ take: 10 })
    * 
-   * // Only select the `id`
-   * const districtWithIdOnly = await prisma.district.findMany({ select: { id: true } })
+   * // Only select the `seoTitleEn`
+   * const districtWithSeoTitleEnOnly = await prisma.district.findMany({ select: { seoTitleEn: true } })
    * 
    */
   findMany<T extends DistrictFindManyArgs>(args?: Prisma.SelectSubset<T, DistrictFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$DistrictPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
@@ -1136,9 +1220,9 @@ export interface DistrictDelegate<ExtArgs extends runtime.Types.Extensions.Inter
    *   ]
    * })
    * 
-   * // Create many Districts and only return the `id`
-   * const districtWithIdOnly = await prisma.district.createManyAndReturn({
-   *   select: { id: true },
+   * // Create many Districts and only return the `seoTitleEn`
+   * const districtWithSeoTitleEnOnly = await prisma.district.createManyAndReturn({
+   *   select: { seoTitleEn: true },
    *   data: [
    *     // ... provide data here
    *   ]
@@ -1227,9 +1311,9 @@ export interface DistrictDelegate<ExtArgs extends runtime.Types.Extensions.Inter
    *   ]
    * })
    * 
-   * // Update zero or more Districts and only return the `id`
-   * const districtWithIdOnly = await prisma.district.updateManyAndReturn({
-   *   select: { id: true },
+   * // Update zero or more Districts and only return the `seoTitleEn`
+   * const districtWithSeoTitleEnOnly = await prisma.district.updateManyAndReturn({
+   *   select: { seoTitleEn: true },
    *   where: {
    *     // ... provide filter here
    *   },
@@ -1434,6 +1518,8 @@ export interface Prisma__DistrictClient<T, Null = never, ExtArgs extends runtime
  * Fields of the District model
  */
 export interface DistrictFieldRefs {
+  readonly seoTitleEn: Prisma.FieldRef<"District", 'String'>
+  readonly seoDescriptionEn: Prisma.FieldRef<"District", 'String'>
   readonly id: Prisma.FieldRef<"District", 'String'>
   readonly cityId: Prisma.FieldRef<"District", 'String'>
   readonly nameAr: Prisma.FieldRef<"District", 'String'>

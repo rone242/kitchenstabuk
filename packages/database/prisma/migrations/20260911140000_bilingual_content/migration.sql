@@ -1,0 +1,23 @@
+-- Add English content without replacing existing Arabic values.
+ALTER TABLE "Category" ADD COLUMN "shortDescriptionEn" TEXT;
+ALTER TABLE "Category" ADD COLUMN "descriptionEn" TEXT;
+ALTER TABLE "Category" ADD COLUMN "seoTitleEn" TEXT;
+ALTER TABLE "Category" ADD COLUMN "seoDescriptionEn" TEXT;
+ALTER TABLE "Service" ADD COLUMN "summaryEn" TEXT;
+ALTER TABLE "Service" ADD COLUMN "descriptionEn" TEXT;
+ALTER TABLE "Service" ADD COLUMN "benefitsEn" TEXT[] NOT NULL DEFAULT ARRAY[]::TEXT[];
+ALTER TABLE "Service" ADD COLUMN "processStepsEn" TEXT[] NOT NULL DEFAULT ARRAY[]::TEXT[];
+ALTER TABLE "Service" ADD COLUMN "durationTextEn" TEXT;
+ALTER TABLE "Service" ADD COLUMN "seoTitleEn" TEXT;
+ALTER TABLE "Service" ADD COLUMN "seoDescriptionEn" TEXT;
+ALTER TABLE "Region" ADD COLUMN "seoTitleEn" TEXT;
+ALTER TABLE "Region" ADD COLUMN "seoDescriptionEn" TEXT;
+ALTER TABLE "City" ADD COLUMN "shortDescriptionEn" TEXT;
+ALTER TABLE "City" ADD COLUMN "seoTitleEn" TEXT;
+ALTER TABLE "City" ADD COLUMN "seoDescriptionEn" TEXT;
+ALTER TABLE "District" ADD COLUMN "seoTitleEn" TEXT;
+ALTER TABLE "District" ADD COLUMN "seoDescriptionEn" TEXT;
+ALTER TABLE "ServiceLocation" ADD COLUMN "localIntroductionEn" TEXT;
+ALTER TABLE "ServiceLocation" ADD COLUMN "localPricingTextEn" TEXT;
+ALTER TABLE "ServiceLocation" ADD COLUMN "seoTitleEn" TEXT;
+ALTER TABLE "ServiceLocation" ADD COLUMN "seoDescriptionEn" TEXT;

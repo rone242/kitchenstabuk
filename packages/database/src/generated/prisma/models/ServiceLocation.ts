@@ -25,6 +25,10 @@ export type AggregateServiceLocation = {
 }
 
 export type ServiceLocationMinAggregateOutputType = {
+  localIntroductionEn: string | null
+  localPricingTextEn: string | null
+  seoTitleEn: string | null
+  seoDescriptionEn: string | null
   id: string | null
   serviceId: string | null
   cityId: string | null
@@ -40,6 +44,10 @@ export type ServiceLocationMinAggregateOutputType = {
 }
 
 export type ServiceLocationMaxAggregateOutputType = {
+  localIntroductionEn: string | null
+  localPricingTextEn: string | null
+  seoTitleEn: string | null
+  seoDescriptionEn: string | null
   id: string | null
   serviceId: string | null
   cityId: string | null
@@ -55,6 +63,10 @@ export type ServiceLocationMaxAggregateOutputType = {
 }
 
 export type ServiceLocationCountAggregateOutputType = {
+  localIntroductionEn: number
+  localPricingTextEn: number
+  seoTitleEn: number
+  seoDescriptionEn: number
   id: number
   serviceId: number
   cityId: number
@@ -72,6 +84,10 @@ export type ServiceLocationCountAggregateOutputType = {
 
 
 export type ServiceLocationMinAggregateInputType = {
+  localIntroductionEn?: true
+  localPricingTextEn?: true
+  seoTitleEn?: true
+  seoDescriptionEn?: true
   id?: true
   serviceId?: true
   cityId?: true
@@ -87,6 +103,10 @@ export type ServiceLocationMinAggregateInputType = {
 }
 
 export type ServiceLocationMaxAggregateInputType = {
+  localIntroductionEn?: true
+  localPricingTextEn?: true
+  seoTitleEn?: true
+  seoDescriptionEn?: true
   id?: true
   serviceId?: true
   cityId?: true
@@ -102,6 +122,10 @@ export type ServiceLocationMaxAggregateInputType = {
 }
 
 export type ServiceLocationCountAggregateInputType = {
+  localIntroductionEn?: true
+  localPricingTextEn?: true
+  seoTitleEn?: true
+  seoDescriptionEn?: true
   id?: true
   serviceId?: true
   cityId?: true
@@ -190,6 +214,10 @@ export type ServiceLocationGroupByArgs<ExtArgs extends runtime.Types.Extensions.
 }
 
 export type ServiceLocationGroupByOutputType = {
+  localIntroductionEn: string | null
+  localPricingTextEn: string | null
+  seoTitleEn: string | null
+  seoDescriptionEn: string | null
   id: string
   serviceId: string
   cityId: string
@@ -226,6 +254,10 @@ export type ServiceLocationWhereInput = {
   AND?: Prisma.ServiceLocationWhereInput | Prisma.ServiceLocationWhereInput[]
   OR?: Prisma.ServiceLocationWhereInput[]
   NOT?: Prisma.ServiceLocationWhereInput | Prisma.ServiceLocationWhereInput[]
+  localIntroductionEn?: Prisma.StringNullableFilter<"ServiceLocation"> | string | null
+  localPricingTextEn?: Prisma.StringNullableFilter<"ServiceLocation"> | string | null
+  seoTitleEn?: Prisma.StringNullableFilter<"ServiceLocation"> | string | null
+  seoDescriptionEn?: Prisma.StringNullableFilter<"ServiceLocation"> | string | null
   id?: Prisma.UuidFilter<"ServiceLocation"> | string
   serviceId?: Prisma.UuidFilter<"ServiceLocation"> | string
   cityId?: Prisma.UuidFilter<"ServiceLocation"> | string
@@ -244,6 +276,10 @@ export type ServiceLocationWhereInput = {
 }
 
 export type ServiceLocationOrderByWithRelationInput = {
+  localIntroductionEn?: Prisma.SortOrderInput | Prisma.SortOrder
+  localPricingTextEn?: Prisma.SortOrderInput | Prisma.SortOrder
+  seoTitleEn?: Prisma.SortOrderInput | Prisma.SortOrder
+  seoDescriptionEn?: Prisma.SortOrderInput | Prisma.SortOrder
   id?: Prisma.SortOrder
   serviceId?: Prisma.SortOrder
   cityId?: Prisma.SortOrder
@@ -267,6 +303,10 @@ export type ServiceLocationWhereUniqueInput = Prisma.AtLeast<{
   AND?: Prisma.ServiceLocationWhereInput | Prisma.ServiceLocationWhereInput[]
   OR?: Prisma.ServiceLocationWhereInput[]
   NOT?: Prisma.ServiceLocationWhereInput | Prisma.ServiceLocationWhereInput[]
+  localIntroductionEn?: Prisma.StringNullableFilter<"ServiceLocation"> | string | null
+  localPricingTextEn?: Prisma.StringNullableFilter<"ServiceLocation"> | string | null
+  seoTitleEn?: Prisma.StringNullableFilter<"ServiceLocation"> | string | null
+  seoDescriptionEn?: Prisma.StringNullableFilter<"ServiceLocation"> | string | null
   serviceId?: Prisma.UuidFilter<"ServiceLocation"> | string
   cityId?: Prisma.UuidFilter<"ServiceLocation"> | string
   districtId?: Prisma.UuidNullableFilter<"ServiceLocation"> | string | null
@@ -284,6 +324,10 @@ export type ServiceLocationWhereUniqueInput = Prisma.AtLeast<{
 }, "id" | "serviceId_cityId_scopeKey">
 
 export type ServiceLocationOrderByWithAggregationInput = {
+  localIntroductionEn?: Prisma.SortOrderInput | Prisma.SortOrder
+  localPricingTextEn?: Prisma.SortOrderInput | Prisma.SortOrder
+  seoTitleEn?: Prisma.SortOrderInput | Prisma.SortOrder
+  seoDescriptionEn?: Prisma.SortOrderInput | Prisma.SortOrder
   id?: Prisma.SortOrder
   serviceId?: Prisma.SortOrder
   cityId?: Prisma.SortOrder
@@ -305,6 +349,10 @@ export type ServiceLocationScalarWhereWithAggregatesInput = {
   AND?: Prisma.ServiceLocationScalarWhereWithAggregatesInput | Prisma.ServiceLocationScalarWhereWithAggregatesInput[]
   OR?: Prisma.ServiceLocationScalarWhereWithAggregatesInput[]
   NOT?: Prisma.ServiceLocationScalarWhereWithAggregatesInput | Prisma.ServiceLocationScalarWhereWithAggregatesInput[]
+  localIntroductionEn?: Prisma.StringNullableWithAggregatesFilter<"ServiceLocation"> | string | null
+  localPricingTextEn?: Prisma.StringNullableWithAggregatesFilter<"ServiceLocation"> | string | null
+  seoTitleEn?: Prisma.StringNullableWithAggregatesFilter<"ServiceLocation"> | string | null
+  seoDescriptionEn?: Prisma.StringNullableWithAggregatesFilter<"ServiceLocation"> | string | null
   id?: Prisma.UuidWithAggregatesFilter<"ServiceLocation"> | string
   serviceId?: Prisma.UuidWithAggregatesFilter<"ServiceLocation"> | string
   cityId?: Prisma.UuidWithAggregatesFilter<"ServiceLocation"> | string
@@ -320,6 +368,10 @@ export type ServiceLocationScalarWhereWithAggregatesInput = {
 }
 
 export type ServiceLocationCreateInput = {
+  localIntroductionEn?: string | null
+  localPricingTextEn?: string | null
+  seoTitleEn?: string | null
+  seoDescriptionEn?: string | null
   id?: string
   scopeKey: string
   isActive?: boolean
@@ -335,6 +387,10 @@ export type ServiceLocationCreateInput = {
 }
 
 export type ServiceLocationUncheckedCreateInput = {
+  localIntroductionEn?: string | null
+  localPricingTextEn?: string | null
+  seoTitleEn?: string | null
+  seoDescriptionEn?: string | null
   id?: string
   serviceId: string
   cityId: string
@@ -350,6 +406,10 @@ export type ServiceLocationUncheckedCreateInput = {
 }
 
 export type ServiceLocationUpdateInput = {
+  localIntroductionEn?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  localPricingTextEn?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  seoTitleEn?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  seoDescriptionEn?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   id?: Prisma.StringFieldUpdateOperationsInput | string
   scopeKey?: Prisma.StringFieldUpdateOperationsInput | string
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
@@ -365,6 +425,10 @@ export type ServiceLocationUpdateInput = {
 }
 
 export type ServiceLocationUncheckedUpdateInput = {
+  localIntroductionEn?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  localPricingTextEn?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  seoTitleEn?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  seoDescriptionEn?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   id?: Prisma.StringFieldUpdateOperationsInput | string
   serviceId?: Prisma.StringFieldUpdateOperationsInput | string
   cityId?: Prisma.StringFieldUpdateOperationsInput | string
@@ -380,6 +444,10 @@ export type ServiceLocationUncheckedUpdateInput = {
 }
 
 export type ServiceLocationCreateManyInput = {
+  localIntroductionEn?: string | null
+  localPricingTextEn?: string | null
+  seoTitleEn?: string | null
+  seoDescriptionEn?: string | null
   id?: string
   serviceId: string
   cityId: string
@@ -395,6 +463,10 @@ export type ServiceLocationCreateManyInput = {
 }
 
 export type ServiceLocationUpdateManyMutationInput = {
+  localIntroductionEn?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  localPricingTextEn?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  seoTitleEn?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  seoDescriptionEn?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   id?: Prisma.StringFieldUpdateOperationsInput | string
   scopeKey?: Prisma.StringFieldUpdateOperationsInput | string
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
@@ -407,6 +479,10 @@ export type ServiceLocationUpdateManyMutationInput = {
 }
 
 export type ServiceLocationUncheckedUpdateManyInput = {
+  localIntroductionEn?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  localPricingTextEn?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  seoTitleEn?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  seoDescriptionEn?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   id?: Prisma.StringFieldUpdateOperationsInput | string
   serviceId?: Prisma.StringFieldUpdateOperationsInput | string
   cityId?: Prisma.StringFieldUpdateOperationsInput | string
@@ -438,6 +514,10 @@ export type ServiceLocationServiceIdCityIdScopeKeyCompoundUniqueInput = {
 }
 
 export type ServiceLocationCountOrderByAggregateInput = {
+  localIntroductionEn?: Prisma.SortOrder
+  localPricingTextEn?: Prisma.SortOrder
+  seoTitleEn?: Prisma.SortOrder
+  seoDescriptionEn?: Prisma.SortOrder
   id?: Prisma.SortOrder
   serviceId?: Prisma.SortOrder
   cityId?: Prisma.SortOrder
@@ -453,6 +533,10 @@ export type ServiceLocationCountOrderByAggregateInput = {
 }
 
 export type ServiceLocationMaxOrderByAggregateInput = {
+  localIntroductionEn?: Prisma.SortOrder
+  localPricingTextEn?: Prisma.SortOrder
+  seoTitleEn?: Prisma.SortOrder
+  seoDescriptionEn?: Prisma.SortOrder
   id?: Prisma.SortOrder
   serviceId?: Prisma.SortOrder
   cityId?: Prisma.SortOrder
@@ -468,6 +552,10 @@ export type ServiceLocationMaxOrderByAggregateInput = {
 }
 
 export type ServiceLocationMinOrderByAggregateInput = {
+  localIntroductionEn?: Prisma.SortOrder
+  localPricingTextEn?: Prisma.SortOrder
+  seoTitleEn?: Prisma.SortOrder
+  seoDescriptionEn?: Prisma.SortOrder
   id?: Prisma.SortOrder
   serviceId?: Prisma.SortOrder
   cityId?: Prisma.SortOrder
@@ -609,6 +697,10 @@ export type ServiceLocationUncheckedUpdateManyWithoutDistrictNestedInput = {
 }
 
 export type ServiceLocationCreateWithoutServiceInput = {
+  localIntroductionEn?: string | null
+  localPricingTextEn?: string | null
+  seoTitleEn?: string | null
+  seoDescriptionEn?: string | null
   id?: string
   scopeKey: string
   isActive?: boolean
@@ -623,6 +715,10 @@ export type ServiceLocationCreateWithoutServiceInput = {
 }
 
 export type ServiceLocationUncheckedCreateWithoutServiceInput = {
+  localIntroductionEn?: string | null
+  localPricingTextEn?: string | null
+  seoTitleEn?: string | null
+  seoDescriptionEn?: string | null
   id?: string
   cityId: string
   districtId?: string | null
@@ -666,6 +762,10 @@ export type ServiceLocationScalarWhereInput = {
   AND?: Prisma.ServiceLocationScalarWhereInput | Prisma.ServiceLocationScalarWhereInput[]
   OR?: Prisma.ServiceLocationScalarWhereInput[]
   NOT?: Prisma.ServiceLocationScalarWhereInput | Prisma.ServiceLocationScalarWhereInput[]
+  localIntroductionEn?: Prisma.StringNullableFilter<"ServiceLocation"> | string | null
+  localPricingTextEn?: Prisma.StringNullableFilter<"ServiceLocation"> | string | null
+  seoTitleEn?: Prisma.StringNullableFilter<"ServiceLocation"> | string | null
+  seoDescriptionEn?: Prisma.StringNullableFilter<"ServiceLocation"> | string | null
   id?: Prisma.UuidFilter<"ServiceLocation"> | string
   serviceId?: Prisma.UuidFilter<"ServiceLocation"> | string
   cityId?: Prisma.UuidFilter<"ServiceLocation"> | string
@@ -681,6 +781,10 @@ export type ServiceLocationScalarWhereInput = {
 }
 
 export type ServiceLocationCreateWithoutCityInput = {
+  localIntroductionEn?: string | null
+  localPricingTextEn?: string | null
+  seoTitleEn?: string | null
+  seoDescriptionEn?: string | null
   id?: string
   scopeKey: string
   isActive?: boolean
@@ -695,6 +799,10 @@ export type ServiceLocationCreateWithoutCityInput = {
 }
 
 export type ServiceLocationUncheckedCreateWithoutCityInput = {
+  localIntroductionEn?: string | null
+  localPricingTextEn?: string | null
+  seoTitleEn?: string | null
+  seoDescriptionEn?: string | null
   id?: string
   serviceId: string
   districtId?: string | null
@@ -735,6 +843,10 @@ export type ServiceLocationUpdateManyWithWhereWithoutCityInput = {
 }
 
 export type ServiceLocationCreateWithoutDistrictInput = {
+  localIntroductionEn?: string | null
+  localPricingTextEn?: string | null
+  seoTitleEn?: string | null
+  seoDescriptionEn?: string | null
   id?: string
   scopeKey: string
   isActive?: boolean
@@ -749,6 +861,10 @@ export type ServiceLocationCreateWithoutDistrictInput = {
 }
 
 export type ServiceLocationUncheckedCreateWithoutDistrictInput = {
+  localIntroductionEn?: string | null
+  localPricingTextEn?: string | null
+  seoTitleEn?: string | null
+  seoDescriptionEn?: string | null
   id?: string
   serviceId: string
   cityId: string
@@ -789,6 +905,10 @@ export type ServiceLocationUpdateManyWithWhereWithoutDistrictInput = {
 }
 
 export type ServiceLocationCreateManyServiceInput = {
+  localIntroductionEn?: string | null
+  localPricingTextEn?: string | null
+  seoTitleEn?: string | null
+  seoDescriptionEn?: string | null
   id?: string
   cityId: string
   districtId?: string | null
@@ -803,6 +923,10 @@ export type ServiceLocationCreateManyServiceInput = {
 }
 
 export type ServiceLocationUpdateWithoutServiceInput = {
+  localIntroductionEn?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  localPricingTextEn?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  seoTitleEn?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  seoDescriptionEn?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   id?: Prisma.StringFieldUpdateOperationsInput | string
   scopeKey?: Prisma.StringFieldUpdateOperationsInput | string
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
@@ -817,6 +941,10 @@ export type ServiceLocationUpdateWithoutServiceInput = {
 }
 
 export type ServiceLocationUncheckedUpdateWithoutServiceInput = {
+  localIntroductionEn?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  localPricingTextEn?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  seoTitleEn?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  seoDescriptionEn?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   id?: Prisma.StringFieldUpdateOperationsInput | string
   cityId?: Prisma.StringFieldUpdateOperationsInput | string
   districtId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -831,6 +959,10 @@ export type ServiceLocationUncheckedUpdateWithoutServiceInput = {
 }
 
 export type ServiceLocationUncheckedUpdateManyWithoutServiceInput = {
+  localIntroductionEn?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  localPricingTextEn?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  seoTitleEn?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  seoDescriptionEn?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   id?: Prisma.StringFieldUpdateOperationsInput | string
   cityId?: Prisma.StringFieldUpdateOperationsInput | string
   districtId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -845,6 +977,10 @@ export type ServiceLocationUncheckedUpdateManyWithoutServiceInput = {
 }
 
 export type ServiceLocationCreateManyCityInput = {
+  localIntroductionEn?: string | null
+  localPricingTextEn?: string | null
+  seoTitleEn?: string | null
+  seoDescriptionEn?: string | null
   id?: string
   serviceId: string
   districtId?: string | null
@@ -859,6 +995,10 @@ export type ServiceLocationCreateManyCityInput = {
 }
 
 export type ServiceLocationUpdateWithoutCityInput = {
+  localIntroductionEn?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  localPricingTextEn?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  seoTitleEn?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  seoDescriptionEn?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   id?: Prisma.StringFieldUpdateOperationsInput | string
   scopeKey?: Prisma.StringFieldUpdateOperationsInput | string
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
@@ -873,6 +1013,10 @@ export type ServiceLocationUpdateWithoutCityInput = {
 }
 
 export type ServiceLocationUncheckedUpdateWithoutCityInput = {
+  localIntroductionEn?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  localPricingTextEn?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  seoTitleEn?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  seoDescriptionEn?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   id?: Prisma.StringFieldUpdateOperationsInput | string
   serviceId?: Prisma.StringFieldUpdateOperationsInput | string
   districtId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -887,6 +1031,10 @@ export type ServiceLocationUncheckedUpdateWithoutCityInput = {
 }
 
 export type ServiceLocationUncheckedUpdateManyWithoutCityInput = {
+  localIntroductionEn?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  localPricingTextEn?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  seoTitleEn?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  seoDescriptionEn?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   id?: Prisma.StringFieldUpdateOperationsInput | string
   serviceId?: Prisma.StringFieldUpdateOperationsInput | string
   districtId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -901,6 +1049,10 @@ export type ServiceLocationUncheckedUpdateManyWithoutCityInput = {
 }
 
 export type ServiceLocationCreateManyDistrictInput = {
+  localIntroductionEn?: string | null
+  localPricingTextEn?: string | null
+  seoTitleEn?: string | null
+  seoDescriptionEn?: string | null
   id?: string
   serviceId: string
   cityId: string
@@ -915,6 +1067,10 @@ export type ServiceLocationCreateManyDistrictInput = {
 }
 
 export type ServiceLocationUpdateWithoutDistrictInput = {
+  localIntroductionEn?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  localPricingTextEn?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  seoTitleEn?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  seoDescriptionEn?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   id?: Prisma.StringFieldUpdateOperationsInput | string
   scopeKey?: Prisma.StringFieldUpdateOperationsInput | string
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
@@ -929,6 +1085,10 @@ export type ServiceLocationUpdateWithoutDistrictInput = {
 }
 
 export type ServiceLocationUncheckedUpdateWithoutDistrictInput = {
+  localIntroductionEn?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  localPricingTextEn?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  seoTitleEn?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  seoDescriptionEn?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   id?: Prisma.StringFieldUpdateOperationsInput | string
   serviceId?: Prisma.StringFieldUpdateOperationsInput | string
   cityId?: Prisma.StringFieldUpdateOperationsInput | string
@@ -943,6 +1103,10 @@ export type ServiceLocationUncheckedUpdateWithoutDistrictInput = {
 }
 
 export type ServiceLocationUncheckedUpdateManyWithoutDistrictInput = {
+  localIntroductionEn?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  localPricingTextEn?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  seoTitleEn?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  seoDescriptionEn?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   id?: Prisma.StringFieldUpdateOperationsInput | string
   serviceId?: Prisma.StringFieldUpdateOperationsInput | string
   cityId?: Prisma.StringFieldUpdateOperationsInput | string
@@ -959,6 +1123,10 @@ export type ServiceLocationUncheckedUpdateManyWithoutDistrictInput = {
 
 
 export type ServiceLocationSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
+  localIntroductionEn?: boolean
+  localPricingTextEn?: boolean
+  seoTitleEn?: boolean
+  seoDescriptionEn?: boolean
   id?: boolean
   serviceId?: boolean
   cityId?: boolean
@@ -977,6 +1145,10 @@ export type ServiceLocationSelect<ExtArgs extends runtime.Types.Extensions.Inter
 }, ExtArgs["result"]["serviceLocation"]>
 
 export type ServiceLocationSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
+  localIntroductionEn?: boolean
+  localPricingTextEn?: boolean
+  seoTitleEn?: boolean
+  seoDescriptionEn?: boolean
   id?: boolean
   serviceId?: boolean
   cityId?: boolean
@@ -995,6 +1167,10 @@ export type ServiceLocationSelectCreateManyAndReturn<ExtArgs extends runtime.Typ
 }, ExtArgs["result"]["serviceLocation"]>
 
 export type ServiceLocationSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
+  localIntroductionEn?: boolean
+  localPricingTextEn?: boolean
+  seoTitleEn?: boolean
+  seoDescriptionEn?: boolean
   id?: boolean
   serviceId?: boolean
   cityId?: boolean
@@ -1013,6 +1189,10 @@ export type ServiceLocationSelectUpdateManyAndReturn<ExtArgs extends runtime.Typ
 }, ExtArgs["result"]["serviceLocation"]>
 
 export type ServiceLocationSelectScalar = {
+  localIntroductionEn?: boolean
+  localPricingTextEn?: boolean
+  seoTitleEn?: boolean
+  seoDescriptionEn?: boolean
   id?: boolean
   serviceId?: boolean
   cityId?: boolean
@@ -1027,7 +1207,7 @@ export type ServiceLocationSelectScalar = {
   updatedAt?: boolean
 }
 
-export type ServiceLocationOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "serviceId" | "cityId" | "districtId" | "scopeKey" | "isActive" | "localIntroduction" | "localPricingText" | "seoTitle" | "seoDescription" | "createdAt" | "updatedAt", ExtArgs["result"]["serviceLocation"]>
+export type ServiceLocationOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"localIntroductionEn" | "localPricingTextEn" | "seoTitleEn" | "seoDescriptionEn" | "id" | "serviceId" | "cityId" | "districtId" | "scopeKey" | "isActive" | "localIntroduction" | "localPricingText" | "seoTitle" | "seoDescription" | "createdAt" | "updatedAt", ExtArgs["result"]["serviceLocation"]>
 export type ServiceLocationInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   service?: boolean | Prisma.ServiceDefaultArgs<ExtArgs>
   city?: boolean | Prisma.CityDefaultArgs<ExtArgs>
@@ -1052,6 +1232,10 @@ export type $ServiceLocationPayload<ExtArgs extends runtime.Types.Extensions.Int
     district: Prisma.$DistrictPayload<ExtArgs> | null
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
+    localIntroductionEn: string | null
+    localPricingTextEn: string | null
+    seoTitleEn: string | null
+    seoDescriptionEn: string | null
     id: string
     serviceId: string
     cityId: string
@@ -1147,8 +1331,8 @@ export interface ServiceLocationDelegate<ExtArgs extends runtime.Types.Extension
    * // Get first 10 ServiceLocations
    * const serviceLocations = await prisma.serviceLocation.findMany({ take: 10 })
    * 
-   * // Only select the `id`
-   * const serviceLocationWithIdOnly = await prisma.serviceLocation.findMany({ select: { id: true } })
+   * // Only select the `localIntroductionEn`
+   * const serviceLocationWithLocalIntroductionEnOnly = await prisma.serviceLocation.findMany({ select: { localIntroductionEn: true } })
    * 
    */
   findMany<T extends ServiceLocationFindManyArgs>(args?: Prisma.SelectSubset<T, ServiceLocationFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ServiceLocationPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
@@ -1192,9 +1376,9 @@ export interface ServiceLocationDelegate<ExtArgs extends runtime.Types.Extension
    *   ]
    * })
    * 
-   * // Create many ServiceLocations and only return the `id`
-   * const serviceLocationWithIdOnly = await prisma.serviceLocation.createManyAndReturn({
-   *   select: { id: true },
+   * // Create many ServiceLocations and only return the `localIntroductionEn`
+   * const serviceLocationWithLocalIntroductionEnOnly = await prisma.serviceLocation.createManyAndReturn({
+   *   select: { localIntroductionEn: true },
    *   data: [
    *     // ... provide data here
    *   ]
@@ -1283,9 +1467,9 @@ export interface ServiceLocationDelegate<ExtArgs extends runtime.Types.Extension
    *   ]
    * })
    * 
-   * // Update zero or more ServiceLocations and only return the `id`
-   * const serviceLocationWithIdOnly = await prisma.serviceLocation.updateManyAndReturn({
-   *   select: { id: true },
+   * // Update zero or more ServiceLocations and only return the `localIntroductionEn`
+   * const serviceLocationWithLocalIntroductionEnOnly = await prisma.serviceLocation.updateManyAndReturn({
+   *   select: { localIntroductionEn: true },
    *   where: {
    *     // ... provide filter here
    *   },
@@ -1490,6 +1674,10 @@ export interface Prisma__ServiceLocationClient<T, Null = never, ExtArgs extends 
  * Fields of the ServiceLocation model
  */
 export interface ServiceLocationFieldRefs {
+  readonly localIntroductionEn: Prisma.FieldRef<"ServiceLocation", 'String'>
+  readonly localPricingTextEn: Prisma.FieldRef<"ServiceLocation", 'String'>
+  readonly seoTitleEn: Prisma.FieldRef<"ServiceLocation", 'String'>
+  readonly seoDescriptionEn: Prisma.FieldRef<"ServiceLocation", 'String'>
   readonly id: Prisma.FieldRef<"ServiceLocation", 'String'>
   readonly serviceId: Prisma.FieldRef<"ServiceLocation", 'String'>
   readonly cityId: Prisma.FieldRef<"ServiceLocation", 'String'>

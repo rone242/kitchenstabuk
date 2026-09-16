@@ -1,4 +1,5 @@
 "use client";
+import { useI18n } from "@repo/i18n/client";
 
 import { LockKeyhole, LoaderCircle } from "lucide-react";
 import { useRouter, useSearchParams } from "next/navigation";
@@ -6,6 +7,8 @@ import { FormEvent, useState } from "react";
 import { apiFetch } from "@/lib/api";
 
 export function LoginForm() {
+  const { t } = useI18n();
+
   const router = useRouter();
   const searchParams = useSearchParams();
   const [error, setError] = useState("");
@@ -25,10 +28,14 @@ export function LoginForm() {
         }),
       });
       const next = searchParams.get("next");
-      router.replace(next?.startsWith("/") && !next.startsWith("//") ? next : "/dashboard");
+      router.replace(
+        next?.startsWith("/") && !next.startsWith("//") ? next : "/dashboard",
+      );
       router.refresh();
     } catch {
-      setError("بيانات الدخول غير صحيحة. تحقق من البريد أو الجوال وكلمة المرور.");
+      setError(
+        "بيانات الدخول غير صحيحة. تحقق من البريد أو الجوال وكلمة المرور.",
+      );
     } finally {
       setPending(false);
     }
@@ -37,19 +44,58 @@ export function LoginForm() {
   return (
     <form onSubmit={submit} className="mt-8 space-y-5">
       <div>
-        <label htmlFor="identifier" className="mb-2 block text-sm font-semibold text-slate-700">
-          البريد الإلكتروني أو رقم الجوال
+        <label
+          htmlFor="identifier"
+          className="mb-2 block text-sm font-semibold text-slate-700"
+        >
+          {t("البريد الإلكتروني أو رقم الجوال")}
         </label>
-        <input id="identifier" name="identifier" autoComplete="username" required className="auth-input" placeholder="admin@example.sa أو +9665..." />
+        <input
+          id="identifier"
+          name="identifier"
+          autoComplete="username"
+          required
+          className="auth-input"
+          placeholder={t("admin@example.sa أو +9665...")}
+        />
       </div>
       <div>
-        <label htmlFor="password" className="mb-2 block text-sm font-semibold text-slate-700">كلمة المرور</label>
-        <input id="password" name="password" type="password" autoComplete="current-password" minLength={8} required className="auth-input" placeholder="••••••••••••" />
+        <label
+          htmlFor="password"
+          className="mb-2 block text-sm font-semibold text-slate-700"
+        >
+          {t("كلمة المرور")}
+        </label>
+        <input
+          id="password"
+          name="password"
+          type="password"
+          autoComplete="current-password"
+          minLength={8}
+          required
+          className="auth-input"
+          placeholder="••••••••••••"
+        />
       </div>
-      {error ? <p role="alert" className="rounded-xl bg-red-50 px-4 py-3 text-sm text-red-700">{error}</p> : null}
-      <button type="submit" disabled={pending} className="primary-button w-full">
-        {pending ? <LoaderCircle className="size-5 animate-spin" /> : <LockKeyhole className="size-5" />}
-        {pending ? "جارٍ التحقق..." : "دخول آمن"}
+      {error ? (
+        <p
+          role="alert"
+          className="rounded-xl bg-red-50 px-4 py-3 text-sm text-red-700"
+        >
+          {t(error)}
+        </p>
+      ) : null}
+      <button
+        type="submit"
+        disabled={pending}
+        className="primary-button w-full"
+      >
+        {pending ? (
+          <LoaderCircle className="size-5 animate-spin" />
+        ) : (
+          <LockKeyhole className="size-5" />
+        )}
+        {pending ? t("جارٍ التحقق...") : t("دخول آمن")}
       </button>
     </form>
   );

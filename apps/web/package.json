@@ -21,7 +21,8 @@
     "react-hook-form": "^7.87.0",
     "tailwind-merge": "^3.6.0",
     "zod": "^4.5.4",
-    "zustand": "^5.0.15"
+    "zustand": "^5.0.15",
+    "@repo/i18n": "workspace:*"
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4",

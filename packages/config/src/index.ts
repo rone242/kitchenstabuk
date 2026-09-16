@@ -1,5 +1,6 @@
 export const platformConfig = {
   locale: "ar-SA",
+  supportedLocales: ["ar", "en"],
   fallbackLocale: "en",
   direction: "rtl",
   currency: "SAR",

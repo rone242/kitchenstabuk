@@ -2,11 +2,13 @@ import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
 
 const protectedRoutes = [
+  "/site-settings",
   "/dashboard",
   "/categories",
   "/services",
   "/locations",
   "/media",
+  "/portfolio",
   "/users",
   "/roles",
   "/audit-logs",
@@ -31,11 +33,13 @@ export function proxy(request: NextRequest) {
 export const config = {
   matcher: [
     "/login",
+    "/site-settings/:path*",
     "/dashboard/:path*",
     "/categories/:path*",
     "/services/:path*",
     "/locations/:path*",
     "/media/:path*",
+    "/portfolio/:path*",
     "/users/:path*",
     "/roles/:path*",
     "/audit-logs/:path*",

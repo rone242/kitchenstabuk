@@ -26,15 +26,21 @@ export function configureApplication(
   });
   app.use(helmet());
   app.use(cookieParser());
-  if (config.get<string>('UPLOAD_PROVIDER', 'local') === 'local') {
-    app.use(
-      '/uploads',
-      serveStatic(
-        resolve(process.cwd(), config.get<string>('UPLOAD_LOCAL_DIR', 'uploads')),
-        { immutable: true, maxAge: '1y', fallthrough: false },
-      ),
-    );
-  }
+  // Keep existing local assets reachable after switching new uploads to a CDN.
+  app.use(
+    '/uploads',
+    serveStatic(
+      resolve(process.cwd(), config.get<string>('UPLOAD_LOCAL_DIR', 'uploads')),
+      {
+        immutable: true,
+        maxAge: '1y',
+        fallthrough: false,
+        setHeaders: (response) => {
+          response.setHeader('Cross-Origin-Resource-Policy', 'cross-origin');
+        },
+      },
+    ),
+  );
   app.use(correlationIdMiddleware);
   app.useGlobalPipes(
     new ValidationPipe({

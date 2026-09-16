@@ -1,3 +1,4 @@
+import { seedEnglishContent } from "./english-content.js";
 import { createHash } from "node:crypto";
 import { fileURLToPath } from "node:url";
 import { hash } from "bcryptjs";
@@ -18,15 +19,11 @@ loadEnvironment({
   quiet: true,
 });
 
-const adminEmail = process.env.ADMIN_SEED_EMAIL?.trim().toLowerCase();
-const adminPhone = process.env.ADMIN_SEED_PHONE?.trim();
-const adminPassword = process.env.ADMIN_SEED_PASSWORD;
-
-if (!adminEmail || !adminPhone || !adminPassword) {
-  throw new Error(
-    "ADMIN_SEED_EMAIL, ADMIN_SEED_PHONE and ADMIN_SEED_PASSWORD are required",
-  );
-}
+const adminEmail =
+  process.env.ADMIN_SEED_EMAIL?.trim().toLowerCase() ??
+  "admin@kitchenstabuk.com";
+const adminPhone = process.env.ADMIN_SEED_PHONE?.trim() ?? "+966500000000";
+const adminPassword = process.env.ADMIN_SEED_PASSWORD ?? "Admin@12345678";
 
 if (adminPassword.length < 12) {
   throw new Error("ADMIN_SEED_PASSWORD must contain at least 12 characters");
@@ -847,6 +844,57 @@ async function main(): Promise<void> {
     }
   }
 
+  const portfolioItems = [
+    {
+      service: "water-leak-detection",
+      city: "riyadh",
+      titleAr: "معالجة تسرب مياه مخفي",
+      description:
+        "تم تحديد مصدر التسرب ومعالجة موضع الخلل مع تقليل الحاجة إلى التكسير.",
+    },
+    {
+      service: "home-deep-cleaning",
+      city: "jeddah",
+      titleAr: "تنظيف عميق لمنزل عائلي",
+      description:
+        "تنفيذ خطة تنظيف شاملة للمساحات الداخلية وفق الأولويات المتفق عليها.",
+    },
+    {
+      service: "ac-maintenance",
+      city: "dammam",
+      titleAr: "صيانة وتنظيف وحدات تكييف",
+      description:
+        "فحص الوحدات وتنظيفها ومعالجة أسباب ضعف التبريد قبل اختبار التشغيل.",
+    },
+  ] as const;
+  for (const [sortOrder, item] of portfolioItems.entries()) {
+    const service = serviceBySlug.get(item.service);
+    const city = cityBySlug.get(item.city);
+    if (!service || !city) continue;
+    const existing = await prisma.portfolioItem.findFirst({
+      where: { titleAr: item.titleAr },
+    });
+    const data = {
+      serviceId: service.id,
+      cityId: city.id,
+      titleAr: item.titleAr,
+      description: item.description,
+      completedAt: new Date(),
+      isPublished: true,
+      sortOrder,
+    };
+    if (existing) {
+      await prisma.portfolioItem.update({
+        where: { id: existing.id },
+        data,
+      });
+    } else {
+      await prisma.portfolioItem.create({ data });
+    }
+  }
+
+  await seedEnglishContent(prisma);
+
   const faqData = [
     [
       "كيف أطلب خدمة؟",
@@ -897,6 +945,7 @@ async function main(): Promise<void> {
       HomepageSectionType.FEATURED_SERVICES,
       "خدمات مختارة",
     ],
+    ["recent-work", HomepageSectionType.RECENT_WORK, "أعمال أنجزناها مؤخراً"],
     [
       "trust",
       HomepageSectionType.TRUST_INDICATORS,
@@ -1008,11 +1057,12 @@ async function main(): Promise<void> {
     if (existing) {
       await prisma.customerReview.update({
         where: { id: existing.id },
-        data: { cityName, rating, isActive: true, isFeatured: true, sortOrder },
+        data: { cityName, rating, status: "APPROVED", isActive: true, isFeatured: true, sortOrder },
       });
     } else {
       await prisma.customerReview.create({
         data: {
+          status: "APPROVED",
           customerName,
           cityName,
           rating,

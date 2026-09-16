@@ -303,6 +303,7 @@ export type MediaAssetWhereInput = {
   requestAttachments?: Prisma.RequestAttachmentListRelationFilter
   blogCoverImages?: Prisma.BlogPostListRelationFilter
   portfolioImages?: Prisma.PortfolioItemListRelationFilter
+  portfolioBeforeImages?: Prisma.PortfolioItemListRelationFilter
 }
 
 export type MediaAssetOrderByWithRelationInput = {
@@ -327,6 +328,7 @@ export type MediaAssetOrderByWithRelationInput = {
   requestAttachments?: Prisma.RequestAttachmentOrderByRelationAggregateInput
   blogCoverImages?: Prisma.BlogPostOrderByRelationAggregateInput
   portfolioImages?: Prisma.PortfolioItemOrderByRelationAggregateInput
+  portfolioBeforeImages?: Prisma.PortfolioItemOrderByRelationAggregateInput
 }
 
 export type MediaAssetWhereUniqueInput = Prisma.AtLeast<{
@@ -354,6 +356,7 @@ export type MediaAssetWhereUniqueInput = Prisma.AtLeast<{
   requestAttachments?: Prisma.RequestAttachmentListRelationFilter
   blogCoverImages?: Prisma.BlogPostListRelationFilter
   portfolioImages?: Prisma.PortfolioItemListRelationFilter
+  portfolioBeforeImages?: Prisma.PortfolioItemListRelationFilter
 }, "id" | "storageKey">
 
 export type MediaAssetOrderByWithAggregationInput = {
@@ -419,6 +422,7 @@ export type MediaAssetCreateInput = {
   requestAttachments?: Prisma.RequestAttachmentCreateNestedManyWithoutMediaInput
   blogCoverImages?: Prisma.BlogPostCreateNestedManyWithoutCoverImageInput
   portfolioImages?: Prisma.PortfolioItemCreateNestedManyWithoutImageInput
+  portfolioBeforeImages?: Prisma.PortfolioItemCreateNestedManyWithoutBeforeImageInput
 }
 
 export type MediaAssetUncheckedCreateInput = {
@@ -442,6 +446,7 @@ export type MediaAssetUncheckedCreateInput = {
   requestAttachments?: Prisma.RequestAttachmentUncheckedCreateNestedManyWithoutMediaInput
   blogCoverImages?: Prisma.BlogPostUncheckedCreateNestedManyWithoutCoverImageInput
   portfolioImages?: Prisma.PortfolioItemUncheckedCreateNestedManyWithoutImageInput
+  portfolioBeforeImages?: Prisma.PortfolioItemUncheckedCreateNestedManyWithoutBeforeImageInput
 }
 
 export type MediaAssetUpdateInput = {
@@ -465,6 +470,7 @@ export type MediaAssetUpdateInput = {
   requestAttachments?: Prisma.RequestAttachmentUpdateManyWithoutMediaNestedInput
   blogCoverImages?: Prisma.BlogPostUpdateManyWithoutCoverImageNestedInput
   portfolioImages?: Prisma.PortfolioItemUpdateManyWithoutImageNestedInput
+  portfolioBeforeImages?: Prisma.PortfolioItemUpdateManyWithoutBeforeImageNestedInput
 }
 
 export type MediaAssetUncheckedUpdateInput = {
@@ -488,6 +494,7 @@ export type MediaAssetUncheckedUpdateInput = {
   requestAttachments?: Prisma.RequestAttachmentUncheckedUpdateManyWithoutMediaNestedInput
   blogCoverImages?: Prisma.BlogPostUncheckedUpdateManyWithoutCoverImageNestedInput
   portfolioImages?: Prisma.PortfolioItemUncheckedUpdateManyWithoutImageNestedInput
+  portfolioBeforeImages?: Prisma.PortfolioItemUncheckedUpdateManyWithoutBeforeImageNestedInput
 }
 
 export type MediaAssetCreateManyInput = {
@@ -763,6 +770,12 @@ export type MediaAssetCreateNestedOneWithoutPortfolioImagesInput = {
   connect?: Prisma.MediaAssetWhereUniqueInput
 }
 
+export type MediaAssetCreateNestedOneWithoutPortfolioBeforeImagesInput = {
+  create?: Prisma.XOR<Prisma.MediaAssetCreateWithoutPortfolioBeforeImagesInput, Prisma.MediaAssetUncheckedCreateWithoutPortfolioBeforeImagesInput>
+  connectOrCreate?: Prisma.MediaAssetCreateOrConnectWithoutPortfolioBeforeImagesInput
+  connect?: Prisma.MediaAssetWhereUniqueInput
+}
+
 export type MediaAssetUpdateOneWithoutPortfolioImagesNestedInput = {
   create?: Prisma.XOR<Prisma.MediaAssetCreateWithoutPortfolioImagesInput, Prisma.MediaAssetUncheckedCreateWithoutPortfolioImagesInput>
   connectOrCreate?: Prisma.MediaAssetCreateOrConnectWithoutPortfolioImagesInput
@@ -771,6 +784,16 @@ export type MediaAssetUpdateOneWithoutPortfolioImagesNestedInput = {
   delete?: Prisma.MediaAssetWhereInput | boolean
   connect?: Prisma.MediaAssetWhereUniqueInput
   update?: Prisma.XOR<Prisma.XOR<Prisma.MediaAssetUpdateToOneWithWhereWithoutPortfolioImagesInput, Prisma.MediaAssetUpdateWithoutPortfolioImagesInput>, Prisma.MediaAssetUncheckedUpdateWithoutPortfolioImagesInput>
+}
+
+export type MediaAssetUpdateOneWithoutPortfolioBeforeImagesNestedInput = {
+  create?: Prisma.XOR<Prisma.MediaAssetCreateWithoutPortfolioBeforeImagesInput, Prisma.MediaAssetUncheckedCreateWithoutPortfolioBeforeImagesInput>
+  connectOrCreate?: Prisma.MediaAssetCreateOrConnectWithoutPortfolioBeforeImagesInput
+  upsert?: Prisma.MediaAssetUpsertWithoutPortfolioBeforeImagesInput
+  disconnect?: Prisma.MediaAssetWhereInput | boolean
+  delete?: Prisma.MediaAssetWhereInput | boolean
+  connect?: Prisma.MediaAssetWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.MediaAssetUpdateToOneWithWhereWithoutPortfolioBeforeImagesInput, Prisma.MediaAssetUpdateWithoutPortfolioBeforeImagesInput>, Prisma.MediaAssetUncheckedUpdateWithoutPortfolioBeforeImagesInput>
 }
 
 export type MediaAssetCreateWithoutUploadedByInput = {
@@ -793,6 +816,7 @@ export type MediaAssetCreateWithoutUploadedByInput = {
   requestAttachments?: Prisma.RequestAttachmentCreateNestedManyWithoutMediaInput
   blogCoverImages?: Prisma.BlogPostCreateNestedManyWithoutCoverImageInput
   portfolioImages?: Prisma.PortfolioItemCreateNestedManyWithoutImageInput
+  portfolioBeforeImages?: Prisma.PortfolioItemCreateNestedManyWithoutBeforeImageInput
 }
 
 export type MediaAssetUncheckedCreateWithoutUploadedByInput = {
@@ -815,6 +839,7 @@ export type MediaAssetUncheckedCreateWithoutUploadedByInput = {
   requestAttachments?: Prisma.RequestAttachmentUncheckedCreateNestedManyWithoutMediaInput
   blogCoverImages?: Prisma.BlogPostUncheckedCreateNestedManyWithoutCoverImageInput
   portfolioImages?: Prisma.PortfolioItemUncheckedCreateNestedManyWithoutImageInput
+  portfolioBeforeImages?: Prisma.PortfolioItemUncheckedCreateNestedManyWithoutBeforeImageInput
 }
 
 export type MediaAssetCreateOrConnectWithoutUploadedByInput = {
@@ -883,6 +908,7 @@ export type MediaAssetCreateWithoutCategoryImagesInput = {
   requestAttachments?: Prisma.RequestAttachmentCreateNestedManyWithoutMediaInput
   blogCoverImages?: Prisma.BlogPostCreateNestedManyWithoutCoverImageInput
   portfolioImages?: Prisma.PortfolioItemCreateNestedManyWithoutImageInput
+  portfolioBeforeImages?: Prisma.PortfolioItemCreateNestedManyWithoutBeforeImageInput
 }
 
 export type MediaAssetUncheckedCreateWithoutCategoryImagesInput = {
@@ -905,6 +931,7 @@ export type MediaAssetUncheckedCreateWithoutCategoryImagesInput = {
   requestAttachments?: Prisma.RequestAttachmentUncheckedCreateNestedManyWithoutMediaInput
   blogCoverImages?: Prisma.BlogPostUncheckedCreateNestedManyWithoutCoverImageInput
   portfolioImages?: Prisma.PortfolioItemUncheckedCreateNestedManyWithoutImageInput
+  portfolioBeforeImages?: Prisma.PortfolioItemUncheckedCreateNestedManyWithoutBeforeImageInput
 }
 
 export type MediaAssetCreateOrConnectWithoutCategoryImagesInput = {
@@ -943,6 +970,7 @@ export type MediaAssetUpdateWithoutCategoryImagesInput = {
   requestAttachments?: Prisma.RequestAttachmentUpdateManyWithoutMediaNestedInput
   blogCoverImages?: Prisma.BlogPostUpdateManyWithoutCoverImageNestedInput
   portfolioImages?: Prisma.PortfolioItemUpdateManyWithoutImageNestedInput
+  portfolioBeforeImages?: Prisma.PortfolioItemUpdateManyWithoutBeforeImageNestedInput
 }
 
 export type MediaAssetUncheckedUpdateWithoutCategoryImagesInput = {
@@ -965,6 +993,7 @@ export type MediaAssetUncheckedUpdateWithoutCategoryImagesInput = {
   requestAttachments?: Prisma.RequestAttachmentUncheckedUpdateManyWithoutMediaNestedInput
   blogCoverImages?: Prisma.BlogPostUncheckedUpdateManyWithoutCoverImageNestedInput
   portfolioImages?: Prisma.PortfolioItemUncheckedUpdateManyWithoutImageNestedInput
+  portfolioBeforeImages?: Prisma.PortfolioItemUncheckedUpdateManyWithoutBeforeImageNestedInput
 }
 
 export type MediaAssetCreateWithoutServiceCoverImagesInput = {
@@ -987,6 +1016,7 @@ export type MediaAssetCreateWithoutServiceCoverImagesInput = {
   requestAttachments?: Prisma.RequestAttachmentCreateNestedManyWithoutMediaInput
   blogCoverImages?: Prisma.BlogPostCreateNestedManyWithoutCoverImageInput
   portfolioImages?: Prisma.PortfolioItemCreateNestedManyWithoutImageInput
+  portfolioBeforeImages?: Prisma.PortfolioItemCreateNestedManyWithoutBeforeImageInput
 }
 
 export type MediaAssetUncheckedCreateWithoutServiceCoverImagesInput = {
@@ -1009,6 +1039,7 @@ export type MediaAssetUncheckedCreateWithoutServiceCoverImagesInput = {
   requestAttachments?: Prisma.RequestAttachmentUncheckedCreateNestedManyWithoutMediaInput
   blogCoverImages?: Prisma.BlogPostUncheckedCreateNestedManyWithoutCoverImageInput
   portfolioImages?: Prisma.PortfolioItemUncheckedCreateNestedManyWithoutImageInput
+  portfolioBeforeImages?: Prisma.PortfolioItemUncheckedCreateNestedManyWithoutBeforeImageInput
 }
 
 export type MediaAssetCreateOrConnectWithoutServiceCoverImagesInput = {
@@ -1047,6 +1078,7 @@ export type MediaAssetUpdateWithoutServiceCoverImagesInput = {
   requestAttachments?: Prisma.RequestAttachmentUpdateManyWithoutMediaNestedInput
   blogCoverImages?: Prisma.BlogPostUpdateManyWithoutCoverImageNestedInput
   portfolioImages?: Prisma.PortfolioItemUpdateManyWithoutImageNestedInput
+  portfolioBeforeImages?: Prisma.PortfolioItemUpdateManyWithoutBeforeImageNestedInput
 }
 
 export type MediaAssetUncheckedUpdateWithoutServiceCoverImagesInput = {
@@ -1069,6 +1101,7 @@ export type MediaAssetUncheckedUpdateWithoutServiceCoverImagesInput = {
   requestAttachments?: Prisma.RequestAttachmentUncheckedUpdateManyWithoutMediaNestedInput
   blogCoverImages?: Prisma.BlogPostUncheckedUpdateManyWithoutCoverImageNestedInput
   portfolioImages?: Prisma.PortfolioItemUncheckedUpdateManyWithoutImageNestedInput
+  portfolioBeforeImages?: Prisma.PortfolioItemUncheckedUpdateManyWithoutBeforeImageNestedInput
 }
 
 export type MediaAssetCreateWithoutServiceGalleryInput = {
@@ -1091,6 +1124,7 @@ export type MediaAssetCreateWithoutServiceGalleryInput = {
   requestAttachments?: Prisma.RequestAttachmentCreateNestedManyWithoutMediaInput
   blogCoverImages?: Prisma.BlogPostCreateNestedManyWithoutCoverImageInput
   portfolioImages?: Prisma.PortfolioItemCreateNestedManyWithoutImageInput
+  portfolioBeforeImages?: Prisma.PortfolioItemCreateNestedManyWithoutBeforeImageInput
 }
 
 export type MediaAssetUncheckedCreateWithoutServiceGalleryInput = {
@@ -1113,6 +1147,7 @@ export type MediaAssetUncheckedCreateWithoutServiceGalleryInput = {
   requestAttachments?: Prisma.RequestAttachmentUncheckedCreateNestedManyWithoutMediaInput
   blogCoverImages?: Prisma.BlogPostUncheckedCreateNestedManyWithoutCoverImageInput
   portfolioImages?: Prisma.PortfolioItemUncheckedCreateNestedManyWithoutImageInput
+  portfolioBeforeImages?: Prisma.PortfolioItemUncheckedCreateNestedManyWithoutBeforeImageInput
 }
 
 export type MediaAssetCreateOrConnectWithoutServiceGalleryInput = {
@@ -1151,6 +1186,7 @@ export type MediaAssetUpdateWithoutServiceGalleryInput = {
   requestAttachments?: Prisma.RequestAttachmentUpdateManyWithoutMediaNestedInput
   blogCoverImages?: Prisma.BlogPostUpdateManyWithoutCoverImageNestedInput
   portfolioImages?: Prisma.PortfolioItemUpdateManyWithoutImageNestedInput
+  portfolioBeforeImages?: Prisma.PortfolioItemUpdateManyWithoutBeforeImageNestedInput
 }
 
 export type MediaAssetUncheckedUpdateWithoutServiceGalleryInput = {
@@ -1173,6 +1209,7 @@ export type MediaAssetUncheckedUpdateWithoutServiceGalleryInput = {
   requestAttachments?: Prisma.RequestAttachmentUncheckedUpdateManyWithoutMediaNestedInput
   blogCoverImages?: Prisma.BlogPostUncheckedUpdateManyWithoutCoverImageNestedInput
   portfolioImages?: Prisma.PortfolioItemUncheckedUpdateManyWithoutImageNestedInput
+  portfolioBeforeImages?: Prisma.PortfolioItemUncheckedUpdateManyWithoutBeforeImageNestedInput
 }
 
 export type MediaAssetCreateWithoutRequestAttachmentsInput = {
@@ -1195,6 +1232,7 @@ export type MediaAssetCreateWithoutRequestAttachmentsInput = {
   serviceGallery?: Prisma.ServiceImageCreateNestedManyWithoutMediaInput
   blogCoverImages?: Prisma.BlogPostCreateNestedManyWithoutCoverImageInput
   portfolioImages?: Prisma.PortfolioItemCreateNestedManyWithoutImageInput
+  portfolioBeforeImages?: Prisma.PortfolioItemCreateNestedManyWithoutBeforeImageInput
 }
 
 export type MediaAssetUncheckedCreateWithoutRequestAttachmentsInput = {
@@ -1217,6 +1255,7 @@ export type MediaAssetUncheckedCreateWithoutRequestAttachmentsInput = {
   serviceGallery?: Prisma.ServiceImageUncheckedCreateNestedManyWithoutMediaInput
   blogCoverImages?: Prisma.BlogPostUncheckedCreateNestedManyWithoutCoverImageInput
   portfolioImages?: Prisma.PortfolioItemUncheckedCreateNestedManyWithoutImageInput
+  portfolioBeforeImages?: Prisma.PortfolioItemUncheckedCreateNestedManyWithoutBeforeImageInput
 }
 
 export type MediaAssetCreateOrConnectWithoutRequestAttachmentsInput = {
@@ -1255,6 +1294,7 @@ export type MediaAssetUpdateWithoutRequestAttachmentsInput = {
   serviceGallery?: Prisma.ServiceImageUpdateManyWithoutMediaNestedInput
   blogCoverImages?: Prisma.BlogPostUpdateManyWithoutCoverImageNestedInput
   portfolioImages?: Prisma.PortfolioItemUpdateManyWithoutImageNestedInput
+  portfolioBeforeImages?: Prisma.PortfolioItemUpdateManyWithoutBeforeImageNestedInput
 }
 
 export type MediaAssetUncheckedUpdateWithoutRequestAttachmentsInput = {
@@ -1277,6 +1317,7 @@ export type MediaAssetUncheckedUpdateWithoutRequestAttachmentsInput = {
   serviceGallery?: Prisma.ServiceImageUncheckedUpdateManyWithoutMediaNestedInput
   blogCoverImages?: Prisma.BlogPostUncheckedUpdateManyWithoutCoverImageNestedInput
   portfolioImages?: Prisma.PortfolioItemUncheckedUpdateManyWithoutImageNestedInput
+  portfolioBeforeImages?: Prisma.PortfolioItemUncheckedUpdateManyWithoutBeforeImageNestedInput
 }
 
 export type MediaAssetCreateWithoutBlogCoverImagesInput = {
@@ -1299,6 +1340,7 @@ export type MediaAssetCreateWithoutBlogCoverImagesInput = {
   serviceGallery?: Prisma.ServiceImageCreateNestedManyWithoutMediaInput
   requestAttachments?: Prisma.RequestAttachmentCreateNestedManyWithoutMediaInput
   portfolioImages?: Prisma.PortfolioItemCreateNestedManyWithoutImageInput
+  portfolioBeforeImages?: Prisma.PortfolioItemCreateNestedManyWithoutBeforeImageInput
 }
 
 export type MediaAssetUncheckedCreateWithoutBlogCoverImagesInput = {
@@ -1321,6 +1363,7 @@ export type MediaAssetUncheckedCreateWithoutBlogCoverImagesInput = {
   serviceGallery?: Prisma.ServiceImageUncheckedCreateNestedManyWithoutMediaInput
   requestAttachments?: Prisma.RequestAttachmentUncheckedCreateNestedManyWithoutMediaInput
   portfolioImages?: Prisma.PortfolioItemUncheckedCreateNestedManyWithoutImageInput
+  portfolioBeforeImages?: Prisma.PortfolioItemUncheckedCreateNestedManyWithoutBeforeImageInput
 }
 
 export type MediaAssetCreateOrConnectWithoutBlogCoverImagesInput = {
@@ -1359,6 +1402,7 @@ export type MediaAssetUpdateWithoutBlogCoverImagesInput = {
   serviceGallery?: Prisma.ServiceImageUpdateManyWithoutMediaNestedInput
   requestAttachments?: Prisma.RequestAttachmentUpdateManyWithoutMediaNestedInput
   portfolioImages?: Prisma.PortfolioItemUpdateManyWithoutImageNestedInput
+  portfolioBeforeImages?: Prisma.PortfolioItemUpdateManyWithoutBeforeImageNestedInput
 }
 
 export type MediaAssetUncheckedUpdateWithoutBlogCoverImagesInput = {
@@ -1381,6 +1425,7 @@ export type MediaAssetUncheckedUpdateWithoutBlogCoverImagesInput = {
   serviceGallery?: Prisma.ServiceImageUncheckedUpdateManyWithoutMediaNestedInput
   requestAttachments?: Prisma.RequestAttachmentUncheckedUpdateManyWithoutMediaNestedInput
   portfolioImages?: Prisma.PortfolioItemUncheckedUpdateManyWithoutImageNestedInput
+  portfolioBeforeImages?: Prisma.PortfolioItemUncheckedUpdateManyWithoutBeforeImageNestedInput
 }
 
 export type MediaAssetCreateWithoutPortfolioImagesInput = {
@@ -1403,6 +1448,7 @@ export type MediaAssetCreateWithoutPortfolioImagesInput = {
   serviceGallery?: Prisma.ServiceImageCreateNestedManyWithoutMediaInput
   requestAttachments?: Prisma.RequestAttachmentCreateNestedManyWithoutMediaInput
   blogCoverImages?: Prisma.BlogPostCreateNestedManyWithoutCoverImageInput
+  portfolioBeforeImages?: Prisma.PortfolioItemCreateNestedManyWithoutBeforeImageInput
 }
 
 export type MediaAssetUncheckedCreateWithoutPortfolioImagesInput = {
@@ -1425,11 +1471,63 @@ export type MediaAssetUncheckedCreateWithoutPortfolioImagesInput = {
   serviceGallery?: Prisma.ServiceImageUncheckedCreateNestedManyWithoutMediaInput
   requestAttachments?: Prisma.RequestAttachmentUncheckedCreateNestedManyWithoutMediaInput
   blogCoverImages?: Prisma.BlogPostUncheckedCreateNestedManyWithoutCoverImageInput
+  portfolioBeforeImages?: Prisma.PortfolioItemUncheckedCreateNestedManyWithoutBeforeImageInput
 }
 
 export type MediaAssetCreateOrConnectWithoutPortfolioImagesInput = {
   where: Prisma.MediaAssetWhereUniqueInput
   create: Prisma.XOR<Prisma.MediaAssetCreateWithoutPortfolioImagesInput, Prisma.MediaAssetUncheckedCreateWithoutPortfolioImagesInput>
+}
+
+export type MediaAssetCreateWithoutPortfolioBeforeImagesInput = {
+  id?: string
+  type?: $Enums.MediaType
+  provider?: $Enums.StorageProvider
+  storageKey: string
+  originalName: string
+  mimeType: string
+  sizeBytes: number
+  width?: number | null
+  height?: number | null
+  altTextAr?: string | null
+  altTextEn?: string | null
+  publicUrl?: string | null
+  createdAt?: Date | string
+  uploadedBy?: Prisma.UserCreateNestedOneWithoutUploadedMediaInput
+  categoryImages?: Prisma.CategoryCreateNestedManyWithoutImageInput
+  serviceCoverImages?: Prisma.ServiceCreateNestedManyWithoutCoverImageInput
+  serviceGallery?: Prisma.ServiceImageCreateNestedManyWithoutMediaInput
+  requestAttachments?: Prisma.RequestAttachmentCreateNestedManyWithoutMediaInput
+  blogCoverImages?: Prisma.BlogPostCreateNestedManyWithoutCoverImageInput
+  portfolioImages?: Prisma.PortfolioItemCreateNestedManyWithoutImageInput
+}
+
+export type MediaAssetUncheckedCreateWithoutPortfolioBeforeImagesInput = {
+  id?: string
+  type?: $Enums.MediaType
+  provider?: $Enums.StorageProvider
+  storageKey: string
+  originalName: string
+  mimeType: string
+  sizeBytes: number
+  width?: number | null
+  height?: number | null
+  altTextAr?: string | null
+  altTextEn?: string | null
+  publicUrl?: string | null
+  uploadedById?: string | null
+  createdAt?: Date | string
+  categoryImages?: Prisma.CategoryUncheckedCreateNestedManyWithoutImageInput
+  serviceCoverImages?: Prisma.ServiceUncheckedCreateNestedManyWithoutCoverImageInput
+  serviceGallery?: Prisma.ServiceImageUncheckedCreateNestedManyWithoutMediaInput
+  requestAttachments?: Prisma.RequestAttachmentUncheckedCreateNestedManyWithoutMediaInput
+  blogCoverImages?: Prisma.BlogPostUncheckedCreateNestedManyWithoutCoverImageInput
+  portfolioImages?: Prisma.PortfolioItemUncheckedCreateNestedManyWithoutImageInput
+}
+
+export type MediaAssetCreateOrConnectWithoutPortfolioBeforeImagesInput = {
+  where: Prisma.MediaAssetWhereUniqueInput
+  create: Prisma.XOR<Prisma.MediaAssetCreateWithoutPortfolioBeforeImagesInput, Prisma.MediaAssetUncheckedCreateWithoutPortfolioBeforeImagesInput>
 }
 
 export type MediaAssetUpsertWithoutPortfolioImagesInput = {
@@ -1463,6 +1561,7 @@ export type MediaAssetUpdateWithoutPortfolioImagesInput = {
   serviceGallery?: Prisma.ServiceImageUpdateManyWithoutMediaNestedInput
   requestAttachments?: Prisma.RequestAttachmentUpdateManyWithoutMediaNestedInput
   blogCoverImages?: Prisma.BlogPostUpdateManyWithoutCoverImageNestedInput
+  portfolioBeforeImages?: Prisma.PortfolioItemUpdateManyWithoutBeforeImageNestedInput
 }
 
 export type MediaAssetUncheckedUpdateWithoutPortfolioImagesInput = {
@@ -1485,6 +1584,64 @@ export type MediaAssetUncheckedUpdateWithoutPortfolioImagesInput = {
   serviceGallery?: Prisma.ServiceImageUncheckedUpdateManyWithoutMediaNestedInput
   requestAttachments?: Prisma.RequestAttachmentUncheckedUpdateManyWithoutMediaNestedInput
   blogCoverImages?: Prisma.BlogPostUncheckedUpdateManyWithoutCoverImageNestedInput
+  portfolioBeforeImages?: Prisma.PortfolioItemUncheckedUpdateManyWithoutBeforeImageNestedInput
+}
+
+export type MediaAssetUpsertWithoutPortfolioBeforeImagesInput = {
+  update: Prisma.XOR<Prisma.MediaAssetUpdateWithoutPortfolioBeforeImagesInput, Prisma.MediaAssetUncheckedUpdateWithoutPortfolioBeforeImagesInput>
+  create: Prisma.XOR<Prisma.MediaAssetCreateWithoutPortfolioBeforeImagesInput, Prisma.MediaAssetUncheckedCreateWithoutPortfolioBeforeImagesInput>
+  where?: Prisma.MediaAssetWhereInput
+}
+
+export type MediaAssetUpdateToOneWithWhereWithoutPortfolioBeforeImagesInput = {
+  where?: Prisma.MediaAssetWhereInput
+  data: Prisma.XOR<Prisma.MediaAssetUpdateWithoutPortfolioBeforeImagesInput, Prisma.MediaAssetUncheckedUpdateWithoutPortfolioBeforeImagesInput>
+}
+
+export type MediaAssetUpdateWithoutPortfolioBeforeImagesInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  type?: Prisma.EnumMediaTypeFieldUpdateOperationsInput | $Enums.MediaType
+  provider?: Prisma.EnumStorageProviderFieldUpdateOperationsInput | $Enums.StorageProvider
+  storageKey?: Prisma.StringFieldUpdateOperationsInput | string
+  originalName?: Prisma.StringFieldUpdateOperationsInput | string
+  mimeType?: Prisma.StringFieldUpdateOperationsInput | string
+  sizeBytes?: Prisma.IntFieldUpdateOperationsInput | number
+  width?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  height?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  altTextAr?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  altTextEn?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  publicUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  uploadedBy?: Prisma.UserUpdateOneWithoutUploadedMediaNestedInput
+  categoryImages?: Prisma.CategoryUpdateManyWithoutImageNestedInput
+  serviceCoverImages?: Prisma.ServiceUpdateManyWithoutCoverImageNestedInput
+  serviceGallery?: Prisma.ServiceImageUpdateManyWithoutMediaNestedInput
+  requestAttachments?: Prisma.RequestAttachmentUpdateManyWithoutMediaNestedInput
+  blogCoverImages?: Prisma.BlogPostUpdateManyWithoutCoverImageNestedInput
+  portfolioImages?: Prisma.PortfolioItemUpdateManyWithoutImageNestedInput
+}
+
+export type MediaAssetUncheckedUpdateWithoutPortfolioBeforeImagesInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  type?: Prisma.EnumMediaTypeFieldUpdateOperationsInput | $Enums.MediaType
+  provider?: Prisma.EnumStorageProviderFieldUpdateOperationsInput | $Enums.StorageProvider
+  storageKey?: Prisma.StringFieldUpdateOperationsInput | string
+  originalName?: Prisma.StringFieldUpdateOperationsInput | string
+  mimeType?: Prisma.StringFieldUpdateOperationsInput | string
+  sizeBytes?: Prisma.IntFieldUpdateOperationsInput | number
+  width?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  height?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  altTextAr?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  altTextEn?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  publicUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  uploadedById?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  categoryImages?: Prisma.CategoryUncheckedUpdateManyWithoutImageNestedInput
+  serviceCoverImages?: Prisma.ServiceUncheckedUpdateManyWithoutCoverImageNestedInput
+  serviceGallery?: Prisma.ServiceImageUncheckedUpdateManyWithoutMediaNestedInput
+  requestAttachments?: Prisma.RequestAttachmentUncheckedUpdateManyWithoutMediaNestedInput
+  blogCoverImages?: Prisma.BlogPostUncheckedUpdateManyWithoutCoverImageNestedInput
+  portfolioImages?: Prisma.PortfolioItemUncheckedUpdateManyWithoutImageNestedInput
 }
 
 export type MediaAssetCreateManyUploadedByInput = {
@@ -1523,6 +1680,7 @@ export type MediaAssetUpdateWithoutUploadedByInput = {
   requestAttachments?: Prisma.RequestAttachmentUpdateManyWithoutMediaNestedInput
   blogCoverImages?: Prisma.BlogPostUpdateManyWithoutCoverImageNestedInput
   portfolioImages?: Prisma.PortfolioItemUpdateManyWithoutImageNestedInput
+  portfolioBeforeImages?: Prisma.PortfolioItemUpdateManyWithoutBeforeImageNestedInput
 }
 
 export type MediaAssetUncheckedUpdateWithoutUploadedByInput = {
@@ -1545,6 +1703,7 @@ export type MediaAssetUncheckedUpdateWithoutUploadedByInput = {
   requestAttachments?: Prisma.RequestAttachmentUncheckedUpdateManyWithoutMediaNestedInput
   blogCoverImages?: Prisma.BlogPostUncheckedUpdateManyWithoutCoverImageNestedInput
   portfolioImages?: Prisma.PortfolioItemUncheckedUpdateManyWithoutImageNestedInput
+  portfolioBeforeImages?: Prisma.PortfolioItemUncheckedUpdateManyWithoutBeforeImageNestedInput
 }
 
 export type MediaAssetUncheckedUpdateManyWithoutUploadedByInput = {
@@ -1575,6 +1734,7 @@ export type MediaAssetCountOutputType = {
   requestAttachments: number
   blogCoverImages: number
   portfolioImages: number
+  portfolioBeforeImages: number
 }
 
 export type MediaAssetCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -1584,6 +1744,7 @@ export type MediaAssetCountOutputTypeSelect<ExtArgs extends runtime.Types.Extens
   requestAttachments?: boolean | MediaAssetCountOutputTypeCountRequestAttachmentsArgs
   blogCoverImages?: boolean | MediaAssetCountOutputTypeCountBlogCoverImagesArgs
   portfolioImages?: boolean | MediaAssetCountOutputTypeCountPortfolioImagesArgs
+  portfolioBeforeImages?: boolean | MediaAssetCountOutputTypeCountPortfolioBeforeImagesArgs
 }
 
 /**
@@ -1638,6 +1799,13 @@ export type MediaAssetCountOutputTypeCountPortfolioImagesArgs<ExtArgs extends ru
   where?: Prisma.PortfolioItemWhereInput
 }
 
+/**
+ * MediaAssetCountOutputType without action
+ */
+export type MediaAssetCountOutputTypeCountPortfolioBeforeImagesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.PortfolioItemWhereInput
+}
+
 
 export type MediaAssetSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
@@ -1661,6 +1829,7 @@ export type MediaAssetSelect<ExtArgs extends runtime.Types.Extensions.InternalAr
   requestAttachments?: boolean | Prisma.MediaAsset$requestAttachmentsArgs<ExtArgs>
   blogCoverImages?: boolean | Prisma.MediaAsset$blogCoverImagesArgs<ExtArgs>
   portfolioImages?: boolean | Prisma.MediaAsset$portfolioImagesArgs<ExtArgs>
+  portfolioBeforeImages?: boolean | Prisma.MediaAsset$portfolioBeforeImagesArgs<ExtArgs>
   _count?: boolean | Prisma.MediaAssetCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["mediaAsset"]>
 
@@ -1726,6 +1895,7 @@ export type MediaAssetInclude<ExtArgs extends runtime.Types.Extensions.InternalA
   requestAttachments?: boolean | Prisma.MediaAsset$requestAttachmentsArgs<ExtArgs>
   blogCoverImages?: boolean | Prisma.MediaAsset$blogCoverImagesArgs<ExtArgs>
   portfolioImages?: boolean | Prisma.MediaAsset$portfolioImagesArgs<ExtArgs>
+  portfolioBeforeImages?: boolean | Prisma.MediaAsset$portfolioBeforeImagesArgs<ExtArgs>
   _count?: boolean | Prisma.MediaAssetCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type MediaAssetIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -1745,6 +1915,7 @@ export type $MediaAssetPayload<ExtArgs extends runtime.Types.Extensions.Internal
     requestAttachments: Prisma.$RequestAttachmentPayload<ExtArgs>[]
     blogCoverImages: Prisma.$BlogPostPayload<ExtArgs>[]
     portfolioImages: Prisma.$PortfolioItemPayload<ExtArgs>[]
+    portfolioBeforeImages: Prisma.$PortfolioItemPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -2162,6 +2333,7 @@ export interface Prisma__MediaAssetClient<T, Null = never, ExtArgs extends runti
   requestAttachments<T extends Prisma.MediaAsset$requestAttachmentsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.MediaAsset$requestAttachmentsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$RequestAttachmentPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   blogCoverImages<T extends Prisma.MediaAsset$blogCoverImagesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.MediaAsset$blogCoverImagesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$BlogPostPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   portfolioImages<T extends Prisma.MediaAsset$portfolioImagesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.MediaAsset$portfolioImagesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$PortfolioItemPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  portfolioBeforeImages<T extends Prisma.MediaAsset$portfolioBeforeImagesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.MediaAsset$portfolioBeforeImagesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$PortfolioItemPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -2748,6 +2920,30 @@ export type MediaAsset$blogCoverImagesArgs<ExtArgs extends runtime.Types.Extensi
  * MediaAsset.portfolioImages
  */
 export type MediaAsset$portfolioImagesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the PortfolioItem
+   */
+  select?: Prisma.PortfolioItemSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the PortfolioItem
+   */
+  omit?: Prisma.PortfolioItemOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.PortfolioItemInclude<ExtArgs> | null
+  where?: Prisma.PortfolioItemWhereInput
+  orderBy?: Prisma.PortfolioItemOrderByWithRelationInput | Prisma.PortfolioItemOrderByWithRelationInput[]
+  cursor?: Prisma.PortfolioItemWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.PortfolioItemScalarFieldEnum | Prisma.PortfolioItemScalarFieldEnum[]
+}
+
+/**
+ * MediaAsset.portfolioBeforeImages
+ */
+export type MediaAsset$portfolioBeforeImagesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   /**
    * Select specific fields to fetch from the PortfolioItem
    */

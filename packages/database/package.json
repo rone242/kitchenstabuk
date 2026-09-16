@@ -19,7 +19,8 @@
     "db:migrate": "prisma migrate dev",
     "db:migrate:deploy": "prisma migrate deploy",
     "db:seed": "prisma db seed",
-    "db:verify": "tsx prisma/verify.ts"
+    "db:verify": "tsx prisma/verify.ts",
+    "db:seed:translations": "tsx prisma/seed-translations.ts"
   },
   "keywords": [],
   "author": "",

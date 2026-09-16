@@ -35,6 +35,8 @@ export type RegionSumAggregateOutputType = {
 }
 
 export type RegionMinAggregateOutputType = {
+  seoTitleEn: string | null
+  seoDescriptionEn: string | null
   id: string | null
   countryId: string | null
   nameAr: string | null
@@ -49,6 +51,8 @@ export type RegionMinAggregateOutputType = {
 }
 
 export type RegionMaxAggregateOutputType = {
+  seoTitleEn: string | null
+  seoDescriptionEn: string | null
   id: string | null
   countryId: string | null
   nameAr: string | null
@@ -63,6 +67,8 @@ export type RegionMaxAggregateOutputType = {
 }
 
 export type RegionCountAggregateOutputType = {
+  seoTitleEn: number
+  seoDescriptionEn: number
   id: number
   countryId: number
   nameAr: number
@@ -87,6 +93,8 @@ export type RegionSumAggregateInputType = {
 }
 
 export type RegionMinAggregateInputType = {
+  seoTitleEn?: true
+  seoDescriptionEn?: true
   id?: true
   countryId?: true
   nameAr?: true
@@ -101,6 +109,8 @@ export type RegionMinAggregateInputType = {
 }
 
 export type RegionMaxAggregateInputType = {
+  seoTitleEn?: true
+  seoDescriptionEn?: true
   id?: true
   countryId?: true
   nameAr?: true
@@ -115,6 +125,8 @@ export type RegionMaxAggregateInputType = {
 }
 
 export type RegionCountAggregateInputType = {
+  seoTitleEn?: true
+  seoDescriptionEn?: true
   id?: true
   countryId?: true
   nameAr?: true
@@ -216,6 +228,8 @@ export type RegionGroupByArgs<ExtArgs extends runtime.Types.Extensions.InternalA
 }
 
 export type RegionGroupByOutputType = {
+  seoTitleEn: string | null
+  seoDescriptionEn: string | null
   id: string
   countryId: string
   nameAr: string
@@ -253,6 +267,8 @@ export type RegionWhereInput = {
   AND?: Prisma.RegionWhereInput | Prisma.RegionWhereInput[]
   OR?: Prisma.RegionWhereInput[]
   NOT?: Prisma.RegionWhereInput | Prisma.RegionWhereInput[]
+  seoTitleEn?: Prisma.StringNullableFilter<"Region"> | string | null
+  seoDescriptionEn?: Prisma.StringNullableFilter<"Region"> | string | null
   id?: Prisma.UuidFilter<"Region"> | string
   countryId?: Prisma.UuidFilter<"Region"> | string
   nameAr?: Prisma.StringFilter<"Region"> | string
@@ -269,6 +285,8 @@ export type RegionWhereInput = {
 }
 
 export type RegionOrderByWithRelationInput = {
+  seoTitleEn?: Prisma.SortOrderInput | Prisma.SortOrder
+  seoDescriptionEn?: Prisma.SortOrderInput | Prisma.SortOrder
   id?: Prisma.SortOrder
   countryId?: Prisma.SortOrder
   nameAr?: Prisma.SortOrder
@@ -290,6 +308,8 @@ export type RegionWhereUniqueInput = Prisma.AtLeast<{
   AND?: Prisma.RegionWhereInput | Prisma.RegionWhereInput[]
   OR?: Prisma.RegionWhereInput[]
   NOT?: Prisma.RegionWhereInput | Prisma.RegionWhereInput[]
+  seoTitleEn?: Prisma.StringNullableFilter<"Region"> | string | null
+  seoDescriptionEn?: Prisma.StringNullableFilter<"Region"> | string | null
   countryId?: Prisma.UuidFilter<"Region"> | string
   nameAr?: Prisma.StringFilter<"Region"> | string
   nameEn?: Prisma.StringNullableFilter<"Region"> | string | null
@@ -305,6 +325,8 @@ export type RegionWhereUniqueInput = Prisma.AtLeast<{
 }, "id" | "countryId_slug">
 
 export type RegionOrderByWithAggregationInput = {
+  seoTitleEn?: Prisma.SortOrderInput | Prisma.SortOrder
+  seoDescriptionEn?: Prisma.SortOrderInput | Prisma.SortOrder
   id?: Prisma.SortOrder
   countryId?: Prisma.SortOrder
   nameAr?: Prisma.SortOrder
@@ -327,6 +349,8 @@ export type RegionScalarWhereWithAggregatesInput = {
   AND?: Prisma.RegionScalarWhereWithAggregatesInput | Prisma.RegionScalarWhereWithAggregatesInput[]
   OR?: Prisma.RegionScalarWhereWithAggregatesInput[]
   NOT?: Prisma.RegionScalarWhereWithAggregatesInput | Prisma.RegionScalarWhereWithAggregatesInput[]
+  seoTitleEn?: Prisma.StringNullableWithAggregatesFilter<"Region"> | string | null
+  seoDescriptionEn?: Prisma.StringNullableWithAggregatesFilter<"Region"> | string | null
   id?: Prisma.UuidWithAggregatesFilter<"Region"> | string
   countryId?: Prisma.UuidWithAggregatesFilter<"Region"> | string
   nameAr?: Prisma.StringWithAggregatesFilter<"Region"> | string
@@ -341,6 +365,8 @@ export type RegionScalarWhereWithAggregatesInput = {
 }
 
 export type RegionCreateInput = {
+  seoTitleEn?: string | null
+  seoDescriptionEn?: string | null
   id?: string
   nameAr: string
   nameEn?: string | null
@@ -356,6 +382,8 @@ export type RegionCreateInput = {
 }
 
 export type RegionUncheckedCreateInput = {
+  seoTitleEn?: string | null
+  seoDescriptionEn?: string | null
   id?: string
   countryId: string
   nameAr: string
@@ -371,6 +399,8 @@ export type RegionUncheckedCreateInput = {
 }
 
 export type RegionUpdateInput = {
+  seoTitleEn?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  seoDescriptionEn?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   id?: Prisma.StringFieldUpdateOperationsInput | string
   nameAr?: Prisma.StringFieldUpdateOperationsInput | string
   nameEn?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -386,6 +416,8 @@ export type RegionUpdateInput = {
 }
 
 export type RegionUncheckedUpdateInput = {
+  seoTitleEn?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  seoDescriptionEn?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   id?: Prisma.StringFieldUpdateOperationsInput | string
   countryId?: Prisma.StringFieldUpdateOperationsInput | string
   nameAr?: Prisma.StringFieldUpdateOperationsInput | string
@@ -401,6 +433,8 @@ export type RegionUncheckedUpdateInput = {
 }
 
 export type RegionCreateManyInput = {
+  seoTitleEn?: string | null
+  seoDescriptionEn?: string | null
   id?: string
   countryId: string
   nameAr: string
@@ -415,6 +449,8 @@ export type RegionCreateManyInput = {
 }
 
 export type RegionUpdateManyMutationInput = {
+  seoTitleEn?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  seoDescriptionEn?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   id?: Prisma.StringFieldUpdateOperationsInput | string
   nameAr?: Prisma.StringFieldUpdateOperationsInput | string
   nameEn?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -428,6 +464,8 @@ export type RegionUpdateManyMutationInput = {
 }
 
 export type RegionUncheckedUpdateManyInput = {
+  seoTitleEn?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  seoDescriptionEn?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   id?: Prisma.StringFieldUpdateOperationsInput | string
   countryId?: Prisma.StringFieldUpdateOperationsInput | string
   nameAr?: Prisma.StringFieldUpdateOperationsInput | string
@@ -457,6 +495,8 @@ export type RegionCountryIdSlugCompoundUniqueInput = {
 }
 
 export type RegionCountOrderByAggregateInput = {
+  seoTitleEn?: Prisma.SortOrder
+  seoDescriptionEn?: Prisma.SortOrder
   id?: Prisma.SortOrder
   countryId?: Prisma.SortOrder
   nameAr?: Prisma.SortOrder
@@ -475,6 +515,8 @@ export type RegionAvgOrderByAggregateInput = {
 }
 
 export type RegionMaxOrderByAggregateInput = {
+  seoTitleEn?: Prisma.SortOrder
+  seoDescriptionEn?: Prisma.SortOrder
   id?: Prisma.SortOrder
   countryId?: Prisma.SortOrder
   nameAr?: Prisma.SortOrder
@@ -489,6 +531,8 @@ export type RegionMaxOrderByAggregateInput = {
 }
 
 export type RegionMinOrderByAggregateInput = {
+  seoTitleEn?: Prisma.SortOrder
+  seoDescriptionEn?: Prisma.SortOrder
   id?: Prisma.SortOrder
   countryId?: Prisma.SortOrder
   nameAr?: Prisma.SortOrder
@@ -568,6 +612,8 @@ export type RegionUpdateOneRequiredWithoutCitiesNestedInput = {
 }
 
 export type RegionCreateWithoutCountryInput = {
+  seoTitleEn?: string | null
+  seoDescriptionEn?: string | null
   id?: string
   nameAr: string
   nameEn?: string | null
@@ -582,6 +628,8 @@ export type RegionCreateWithoutCountryInput = {
 }
 
 export type RegionUncheckedCreateWithoutCountryInput = {
+  seoTitleEn?: string | null
+  seoDescriptionEn?: string | null
   id?: string
   nameAr: string
   nameEn?: string | null
@@ -625,6 +673,8 @@ export type RegionScalarWhereInput = {
   AND?: Prisma.RegionScalarWhereInput | Prisma.RegionScalarWhereInput[]
   OR?: Prisma.RegionScalarWhereInput[]
   NOT?: Prisma.RegionScalarWhereInput | Prisma.RegionScalarWhereInput[]
+  seoTitleEn?: Prisma.StringNullableFilter<"Region"> | string | null
+  seoDescriptionEn?: Prisma.StringNullableFilter<"Region"> | string | null
   id?: Prisma.UuidFilter<"Region"> | string
   countryId?: Prisma.UuidFilter<"Region"> | string
   nameAr?: Prisma.StringFilter<"Region"> | string
@@ -639,6 +689,8 @@ export type RegionScalarWhereInput = {
 }
 
 export type RegionCreateWithoutCitiesInput = {
+  seoTitleEn?: string | null
+  seoDescriptionEn?: string | null
   id?: string
   nameAr: string
   nameEn?: string | null
@@ -653,6 +705,8 @@ export type RegionCreateWithoutCitiesInput = {
 }
 
 export type RegionUncheckedCreateWithoutCitiesInput = {
+  seoTitleEn?: string | null
+  seoDescriptionEn?: string | null
   id?: string
   countryId: string
   nameAr: string
@@ -683,6 +737,8 @@ export type RegionUpdateToOneWithWhereWithoutCitiesInput = {
 }
 
 export type RegionUpdateWithoutCitiesInput = {
+  seoTitleEn?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  seoDescriptionEn?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   id?: Prisma.StringFieldUpdateOperationsInput | string
   nameAr?: Prisma.StringFieldUpdateOperationsInput | string
   nameEn?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -697,6 +753,8 @@ export type RegionUpdateWithoutCitiesInput = {
 }
 
 export type RegionUncheckedUpdateWithoutCitiesInput = {
+  seoTitleEn?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  seoDescriptionEn?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   id?: Prisma.StringFieldUpdateOperationsInput | string
   countryId?: Prisma.StringFieldUpdateOperationsInput | string
   nameAr?: Prisma.StringFieldUpdateOperationsInput | string
@@ -711,6 +769,8 @@ export type RegionUncheckedUpdateWithoutCitiesInput = {
 }
 
 export type RegionCreateManyCountryInput = {
+  seoTitleEn?: string | null
+  seoDescriptionEn?: string | null
   id?: string
   nameAr: string
   nameEn?: string | null
@@ -724,6 +784,8 @@ export type RegionCreateManyCountryInput = {
 }
 
 export type RegionUpdateWithoutCountryInput = {
+  seoTitleEn?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  seoDescriptionEn?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   id?: Prisma.StringFieldUpdateOperationsInput | string
   nameAr?: Prisma.StringFieldUpdateOperationsInput | string
   nameEn?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -738,6 +800,8 @@ export type RegionUpdateWithoutCountryInput = {
 }
 
 export type RegionUncheckedUpdateWithoutCountryInput = {
+  seoTitleEn?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  seoDescriptionEn?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   id?: Prisma.StringFieldUpdateOperationsInput | string
   nameAr?: Prisma.StringFieldUpdateOperationsInput | string
   nameEn?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -752,6 +816,8 @@ export type RegionUncheckedUpdateWithoutCountryInput = {
 }
 
 export type RegionUncheckedUpdateManyWithoutCountryInput = {
+  seoTitleEn?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  seoDescriptionEn?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   id?: Prisma.StringFieldUpdateOperationsInput | string
   nameAr?: Prisma.StringFieldUpdateOperationsInput | string
   nameEn?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -796,6 +862,8 @@ export type RegionCountOutputTypeCountCitiesArgs<ExtArgs extends runtime.Types.E
 
 
 export type RegionSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
+  seoTitleEn?: boolean
+  seoDescriptionEn?: boolean
   id?: boolean
   countryId?: boolean
   nameAr?: boolean
@@ -813,6 +881,8 @@ export type RegionSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs =
 }, ExtArgs["result"]["region"]>
 
 export type RegionSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
+  seoTitleEn?: boolean
+  seoDescriptionEn?: boolean
   id?: boolean
   countryId?: boolean
   nameAr?: boolean
@@ -828,6 +898,8 @@ export type RegionSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extens
 }, ExtArgs["result"]["region"]>
 
 export type RegionSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
+  seoTitleEn?: boolean
+  seoDescriptionEn?: boolean
   id?: boolean
   countryId?: boolean
   nameAr?: boolean
@@ -843,6 +915,8 @@ export type RegionSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extens
 }, ExtArgs["result"]["region"]>
 
 export type RegionSelectScalar = {
+  seoTitleEn?: boolean
+  seoDescriptionEn?: boolean
   id?: boolean
   countryId?: boolean
   nameAr?: boolean
@@ -856,7 +930,7 @@ export type RegionSelectScalar = {
   updatedAt?: boolean
 }
 
-export type RegionOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "countryId" | "nameAr" | "nameEn" | "slug" | "isActive" | "sortOrder" | "seoTitle" | "seoDescription" | "createdAt" | "updatedAt", ExtArgs["result"]["region"]>
+export type RegionOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"seoTitleEn" | "seoDescriptionEn" | "id" | "countryId" | "nameAr" | "nameEn" | "slug" | "isActive" | "sortOrder" | "seoTitle" | "seoDescription" | "createdAt" | "updatedAt", ExtArgs["result"]["region"]>
 export type RegionInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   country?: boolean | Prisma.CountryDefaultArgs<ExtArgs>
   cities?: boolean | Prisma.Region$citiesArgs<ExtArgs>
@@ -876,6 +950,8 @@ export type $RegionPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs
     cities: Prisma.$CityPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
+    seoTitleEn: string | null
+    seoDescriptionEn: string | null
     id: string
     countryId: string
     nameAr: string
@@ -970,8 +1046,8 @@ export interface RegionDelegate<ExtArgs extends runtime.Types.Extensions.Interna
    * // Get first 10 Regions
    * const regions = await prisma.region.findMany({ take: 10 })
    * 
-   * // Only select the `id`
-   * const regionWithIdOnly = await prisma.region.findMany({ select: { id: true } })
+   * // Only select the `seoTitleEn`
+   * const regionWithSeoTitleEnOnly = await prisma.region.findMany({ select: { seoTitleEn: true } })
    * 
    */
   findMany<T extends RegionFindManyArgs>(args?: Prisma.SelectSubset<T, RegionFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$RegionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
@@ -1015,9 +1091,9 @@ export interface RegionDelegate<ExtArgs extends runtime.Types.Extensions.Interna
    *   ]
    * })
    * 
-   * // Create many Regions and only return the `id`
-   * const regionWithIdOnly = await prisma.region.createManyAndReturn({
-   *   select: { id: true },
+   * // Create many Regions and only return the `seoTitleEn`
+   * const regionWithSeoTitleEnOnly = await prisma.region.createManyAndReturn({
+   *   select: { seoTitleEn: true },
    *   data: [
    *     // ... provide data here
    *   ]
@@ -1106,9 +1182,9 @@ export interface RegionDelegate<ExtArgs extends runtime.Types.Extensions.Interna
    *   ]
    * })
    * 
-   * // Update zero or more Regions and only return the `id`
-   * const regionWithIdOnly = await prisma.region.updateManyAndReturn({
-   *   select: { id: true },
+   * // Update zero or more Regions and only return the `seoTitleEn`
+   * const regionWithSeoTitleEnOnly = await prisma.region.updateManyAndReturn({
+   *   select: { seoTitleEn: true },
    *   where: {
    *     // ... provide filter here
    *   },
@@ -1312,6 +1388,8 @@ export interface Prisma__RegionClient<T, Null = never, ExtArgs extends runtime.T
  * Fields of the Region model
  */
 export interface RegionFieldRefs {
+  readonly seoTitleEn: Prisma.FieldRef<"Region", 'String'>
+  readonly seoDescriptionEn: Prisma.FieldRef<"Region", 'String'>
   readonly id: Prisma.FieldRef<"Region", 'String'>
   readonly countryId: Prisma.FieldRef<"Region", 'String'>
   readonly nameAr: Prisma.FieldRef<"Region", 'String'>

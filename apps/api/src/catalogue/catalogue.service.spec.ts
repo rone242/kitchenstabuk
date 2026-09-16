@@ -31,6 +31,23 @@ describe('Catalogue mutation validation', () => {
     },
   );
 
+  it('allows translating a standalone checkbox without selection options', async () => {
+    const { client, service } = fixture();
+    client.serviceField.findFirst.mockResolvedValue({
+      type: 'CHECKBOX',
+      options: [],
+    });
+    client.$transaction.mockResolvedValue({ labelEn: 'Packing required' });
+    await expect(
+      service.updateField(
+        'service',
+        'field',
+        { labelEn: 'Packing required', options: [] },
+        context,
+      ),
+    ).resolves.toMatchObject({ labelEn: 'Packing required' });
+  });
+
   it('rejects changing a text field into a selection without options', async () => {
     const { client, service } = fixture();
     client.serviceField.findFirst.mockResolvedValue({

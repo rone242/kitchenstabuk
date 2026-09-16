@@ -39,6 +39,7 @@ export type PortfolioItemMinAggregateOutputType = {
   serviceId: string | null
   cityId: string | null
   imageId: string | null
+  beforeImageId: string | null
   titleAr: string | null
   description: string | null
   completedAt: Date | null
@@ -53,6 +54,7 @@ export type PortfolioItemMaxAggregateOutputType = {
   serviceId: string | null
   cityId: string | null
   imageId: string | null
+  beforeImageId: string | null
   titleAr: string | null
   description: string | null
   completedAt: Date | null
@@ -67,6 +69,7 @@ export type PortfolioItemCountAggregateOutputType = {
   serviceId: number
   cityId: number
   imageId: number
+  beforeImageId: number
   titleAr: number
   description: number
   completedAt: number
@@ -91,6 +94,7 @@ export type PortfolioItemMinAggregateInputType = {
   serviceId?: true
   cityId?: true
   imageId?: true
+  beforeImageId?: true
   titleAr?: true
   description?: true
   completedAt?: true
@@ -105,6 +109,7 @@ export type PortfolioItemMaxAggregateInputType = {
   serviceId?: true
   cityId?: true
   imageId?: true
+  beforeImageId?: true
   titleAr?: true
   description?: true
   completedAt?: true
@@ -119,6 +124,7 @@ export type PortfolioItemCountAggregateInputType = {
   serviceId?: true
   cityId?: true
   imageId?: true
+  beforeImageId?: true
   titleAr?: true
   description?: true
   completedAt?: true
@@ -220,6 +226,7 @@ export type PortfolioItemGroupByOutputType = {
   serviceId: string
   cityId: string | null
   imageId: string | null
+  beforeImageId: string | null
   titleAr: string
   description: string | null
   completedAt: Date | null
@@ -257,6 +264,7 @@ export type PortfolioItemWhereInput = {
   serviceId?: Prisma.UuidFilter<"PortfolioItem"> | string
   cityId?: Prisma.UuidNullableFilter<"PortfolioItem"> | string | null
   imageId?: Prisma.UuidNullableFilter<"PortfolioItem"> | string | null
+  beforeImageId?: Prisma.UuidNullableFilter<"PortfolioItem"> | string | null
   titleAr?: Prisma.StringFilter<"PortfolioItem"> | string
   description?: Prisma.StringNullableFilter<"PortfolioItem"> | string | null
   completedAt?: Prisma.DateTimeNullableFilter<"PortfolioItem"> | Date | string | null
@@ -267,6 +275,7 @@ export type PortfolioItemWhereInput = {
   service?: Prisma.XOR<Prisma.ServiceScalarRelationFilter, Prisma.ServiceWhereInput>
   city?: Prisma.XOR<Prisma.CityNullableScalarRelationFilter, Prisma.CityWhereInput> | null
   image?: Prisma.XOR<Prisma.MediaAssetNullableScalarRelationFilter, Prisma.MediaAssetWhereInput> | null
+  beforeImage?: Prisma.XOR<Prisma.MediaAssetNullableScalarRelationFilter, Prisma.MediaAssetWhereInput> | null
 }
 
 export type PortfolioItemOrderByWithRelationInput = {
@@ -274,6 +283,7 @@ export type PortfolioItemOrderByWithRelationInput = {
   serviceId?: Prisma.SortOrder
   cityId?: Prisma.SortOrderInput | Prisma.SortOrder
   imageId?: Prisma.SortOrderInput | Prisma.SortOrder
+  beforeImageId?: Prisma.SortOrderInput | Prisma.SortOrder
   titleAr?: Prisma.SortOrder
   description?: Prisma.SortOrderInput | Prisma.SortOrder
   completedAt?: Prisma.SortOrderInput | Prisma.SortOrder
@@ -284,6 +294,7 @@ export type PortfolioItemOrderByWithRelationInput = {
   service?: Prisma.ServiceOrderByWithRelationInput
   city?: Prisma.CityOrderByWithRelationInput
   image?: Prisma.MediaAssetOrderByWithRelationInput
+  beforeImage?: Prisma.MediaAssetOrderByWithRelationInput
 }
 
 export type PortfolioItemWhereUniqueInput = Prisma.AtLeast<{
@@ -294,6 +305,7 @@ export type PortfolioItemWhereUniqueInput = Prisma.AtLeast<{
   serviceId?: Prisma.UuidFilter<"PortfolioItem"> | string
   cityId?: Prisma.UuidNullableFilter<"PortfolioItem"> | string | null
   imageId?: Prisma.UuidNullableFilter<"PortfolioItem"> | string | null
+  beforeImageId?: Prisma.UuidNullableFilter<"PortfolioItem"> | string | null
   titleAr?: Prisma.StringFilter<"PortfolioItem"> | string
   description?: Prisma.StringNullableFilter<"PortfolioItem"> | string | null
   completedAt?: Prisma.DateTimeNullableFilter<"PortfolioItem"> | Date | string | null
@@ -304,6 +316,7 @@ export type PortfolioItemWhereUniqueInput = Prisma.AtLeast<{
   service?: Prisma.XOR<Prisma.ServiceScalarRelationFilter, Prisma.ServiceWhereInput>
   city?: Prisma.XOR<Prisma.CityNullableScalarRelationFilter, Prisma.CityWhereInput> | null
   image?: Prisma.XOR<Prisma.MediaAssetNullableScalarRelationFilter, Prisma.MediaAssetWhereInput> | null
+  beforeImage?: Prisma.XOR<Prisma.MediaAssetNullableScalarRelationFilter, Prisma.MediaAssetWhereInput> | null
 }, "id">
 
 export type PortfolioItemOrderByWithAggregationInput = {
@@ -311,6 +324,7 @@ export type PortfolioItemOrderByWithAggregationInput = {
   serviceId?: Prisma.SortOrder
   cityId?: Prisma.SortOrderInput | Prisma.SortOrder
   imageId?: Prisma.SortOrderInput | Prisma.SortOrder
+  beforeImageId?: Prisma.SortOrderInput | Prisma.SortOrder
   titleAr?: Prisma.SortOrder
   description?: Prisma.SortOrderInput | Prisma.SortOrder
   completedAt?: Prisma.SortOrderInput | Prisma.SortOrder
@@ -333,6 +347,7 @@ export type PortfolioItemScalarWhereWithAggregatesInput = {
   serviceId?: Prisma.UuidWithAggregatesFilter<"PortfolioItem"> | string
   cityId?: Prisma.UuidNullableWithAggregatesFilter<"PortfolioItem"> | string | null
   imageId?: Prisma.UuidNullableWithAggregatesFilter<"PortfolioItem"> | string | null
+  beforeImageId?: Prisma.UuidNullableWithAggregatesFilter<"PortfolioItem"> | string | null
   titleAr?: Prisma.StringWithAggregatesFilter<"PortfolioItem"> | string
   description?: Prisma.StringNullableWithAggregatesFilter<"PortfolioItem"> | string | null
   completedAt?: Prisma.DateTimeNullableWithAggregatesFilter<"PortfolioItem"> | Date | string | null
@@ -354,6 +369,7 @@ export type PortfolioItemCreateInput = {
   service: Prisma.ServiceCreateNestedOneWithoutRecentWorkInput
   city?: Prisma.CityCreateNestedOneWithoutRecentWorkInput
   image?: Prisma.MediaAssetCreateNestedOneWithoutPortfolioImagesInput
+  beforeImage?: Prisma.MediaAssetCreateNestedOneWithoutPortfolioBeforeImagesInput
 }
 
 export type PortfolioItemUncheckedCreateInput = {
@@ -361,6 +377,7 @@ export type PortfolioItemUncheckedCreateInput = {
   serviceId: string
   cityId?: string | null
   imageId?: string | null
+  beforeImageId?: string | null
   titleAr: string
   description?: string | null
   completedAt?: Date | string | null
@@ -382,6 +399,7 @@ export type PortfolioItemUpdateInput = {
   service?: Prisma.ServiceUpdateOneRequiredWithoutRecentWorkNestedInput
   city?: Prisma.CityUpdateOneWithoutRecentWorkNestedInput
   image?: Prisma.MediaAssetUpdateOneWithoutPortfolioImagesNestedInput
+  beforeImage?: Prisma.MediaAssetUpdateOneWithoutPortfolioBeforeImagesNestedInput
 }
 
 export type PortfolioItemUncheckedUpdateInput = {
@@ -389,6 +407,7 @@ export type PortfolioItemUncheckedUpdateInput = {
   serviceId?: Prisma.StringFieldUpdateOperationsInput | string
   cityId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   imageId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  beforeImageId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   titleAr?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   completedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -403,6 +422,7 @@ export type PortfolioItemCreateManyInput = {
   serviceId: string
   cityId?: string | null
   imageId?: string | null
+  beforeImageId?: string | null
   titleAr: string
   description?: string | null
   completedAt?: Date | string | null
@@ -428,6 +448,7 @@ export type PortfolioItemUncheckedUpdateManyInput = {
   serviceId?: Prisma.StringFieldUpdateOperationsInput | string
   cityId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   imageId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  beforeImageId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   titleAr?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   completedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -452,6 +473,7 @@ export type PortfolioItemCountOrderByAggregateInput = {
   serviceId?: Prisma.SortOrder
   cityId?: Prisma.SortOrder
   imageId?: Prisma.SortOrder
+  beforeImageId?: Prisma.SortOrder
   titleAr?: Prisma.SortOrder
   description?: Prisma.SortOrder
   completedAt?: Prisma.SortOrder
@@ -470,6 +492,7 @@ export type PortfolioItemMaxOrderByAggregateInput = {
   serviceId?: Prisma.SortOrder
   cityId?: Prisma.SortOrder
   imageId?: Prisma.SortOrder
+  beforeImageId?: Prisma.SortOrder
   titleAr?: Prisma.SortOrder
   description?: Prisma.SortOrder
   completedAt?: Prisma.SortOrder
@@ -484,6 +507,7 @@ export type PortfolioItemMinOrderByAggregateInput = {
   serviceId?: Prisma.SortOrder
   cityId?: Prisma.SortOrder
   imageId?: Prisma.SortOrder
+  beforeImageId?: Prisma.SortOrder
   titleAr?: Prisma.SortOrder
   description?: Prisma.SortOrder
   completedAt?: Prisma.SortOrder
@@ -588,10 +612,24 @@ export type PortfolioItemCreateNestedManyWithoutImageInput = {
   connect?: Prisma.PortfolioItemWhereUniqueInput | Prisma.PortfolioItemWhereUniqueInput[]
 }
 
+export type PortfolioItemCreateNestedManyWithoutBeforeImageInput = {
+  create?: Prisma.XOR<Prisma.PortfolioItemCreateWithoutBeforeImageInput, Prisma.PortfolioItemUncheckedCreateWithoutBeforeImageInput> | Prisma.PortfolioItemCreateWithoutBeforeImageInput[] | Prisma.PortfolioItemUncheckedCreateWithoutBeforeImageInput[]
+  connectOrCreate?: Prisma.PortfolioItemCreateOrConnectWithoutBeforeImageInput | Prisma.PortfolioItemCreateOrConnectWithoutBeforeImageInput[]
+  createMany?: Prisma.PortfolioItemCreateManyBeforeImageInputEnvelope
+  connect?: Prisma.PortfolioItemWhereUniqueInput | Prisma.PortfolioItemWhereUniqueInput[]
+}
+
 export type PortfolioItemUncheckedCreateNestedManyWithoutImageInput = {
   create?: Prisma.XOR<Prisma.PortfolioItemCreateWithoutImageInput, Prisma.PortfolioItemUncheckedCreateWithoutImageInput> | Prisma.PortfolioItemCreateWithoutImageInput[] | Prisma.PortfolioItemUncheckedCreateWithoutImageInput[]
   connectOrCreate?: Prisma.PortfolioItemCreateOrConnectWithoutImageInput | Prisma.PortfolioItemCreateOrConnectWithoutImageInput[]
   createMany?: Prisma.PortfolioItemCreateManyImageInputEnvelope
+  connect?: Prisma.PortfolioItemWhereUniqueInput | Prisma.PortfolioItemWhereUniqueInput[]
+}
+
+export type PortfolioItemUncheckedCreateNestedManyWithoutBeforeImageInput = {
+  create?: Prisma.XOR<Prisma.PortfolioItemCreateWithoutBeforeImageInput, Prisma.PortfolioItemUncheckedCreateWithoutBeforeImageInput> | Prisma.PortfolioItemCreateWithoutBeforeImageInput[] | Prisma.PortfolioItemUncheckedCreateWithoutBeforeImageInput[]
+  connectOrCreate?: Prisma.PortfolioItemCreateOrConnectWithoutBeforeImageInput | Prisma.PortfolioItemCreateOrConnectWithoutBeforeImageInput[]
+  createMany?: Prisma.PortfolioItemCreateManyBeforeImageInputEnvelope
   connect?: Prisma.PortfolioItemWhereUniqueInput | Prisma.PortfolioItemWhereUniqueInput[]
 }
 
@@ -609,6 +647,20 @@ export type PortfolioItemUpdateManyWithoutImageNestedInput = {
   deleteMany?: Prisma.PortfolioItemScalarWhereInput | Prisma.PortfolioItemScalarWhereInput[]
 }
 
+export type PortfolioItemUpdateManyWithoutBeforeImageNestedInput = {
+  create?: Prisma.XOR<Prisma.PortfolioItemCreateWithoutBeforeImageInput, Prisma.PortfolioItemUncheckedCreateWithoutBeforeImageInput> | Prisma.PortfolioItemCreateWithoutBeforeImageInput[] | Prisma.PortfolioItemUncheckedCreateWithoutBeforeImageInput[]
+  connectOrCreate?: Prisma.PortfolioItemCreateOrConnectWithoutBeforeImageInput | Prisma.PortfolioItemCreateOrConnectWithoutBeforeImageInput[]
+  upsert?: Prisma.PortfolioItemUpsertWithWhereUniqueWithoutBeforeImageInput | Prisma.PortfolioItemUpsertWithWhereUniqueWithoutBeforeImageInput[]
+  createMany?: Prisma.PortfolioItemCreateManyBeforeImageInputEnvelope
+  set?: Prisma.PortfolioItemWhereUniqueInput | Prisma.PortfolioItemWhereUniqueInput[]
+  disconnect?: Prisma.PortfolioItemWhereUniqueInput | Prisma.PortfolioItemWhereUniqueInput[]
+  delete?: Prisma.PortfolioItemWhereUniqueInput | Prisma.PortfolioItemWhereUniqueInput[]
+  connect?: Prisma.PortfolioItemWhereUniqueInput | Prisma.PortfolioItemWhereUniqueInput[]
+  update?: Prisma.PortfolioItemUpdateWithWhereUniqueWithoutBeforeImageInput | Prisma.PortfolioItemUpdateWithWhereUniqueWithoutBeforeImageInput[]
+  updateMany?: Prisma.PortfolioItemUpdateManyWithWhereWithoutBeforeImageInput | Prisma.PortfolioItemUpdateManyWithWhereWithoutBeforeImageInput[]
+  deleteMany?: Prisma.PortfolioItemScalarWhereInput | Prisma.PortfolioItemScalarWhereInput[]
+}
+
 export type PortfolioItemUncheckedUpdateManyWithoutImageNestedInput = {
   create?: Prisma.XOR<Prisma.PortfolioItemCreateWithoutImageInput, Prisma.PortfolioItemUncheckedCreateWithoutImageInput> | Prisma.PortfolioItemCreateWithoutImageInput[] | Prisma.PortfolioItemUncheckedCreateWithoutImageInput[]
   connectOrCreate?: Prisma.PortfolioItemCreateOrConnectWithoutImageInput | Prisma.PortfolioItemCreateOrConnectWithoutImageInput[]
@@ -623,6 +675,20 @@ export type PortfolioItemUncheckedUpdateManyWithoutImageNestedInput = {
   deleteMany?: Prisma.PortfolioItemScalarWhereInput | Prisma.PortfolioItemScalarWhereInput[]
 }
 
+export type PortfolioItemUncheckedUpdateManyWithoutBeforeImageNestedInput = {
+  create?: Prisma.XOR<Prisma.PortfolioItemCreateWithoutBeforeImageInput, Prisma.PortfolioItemUncheckedCreateWithoutBeforeImageInput> | Prisma.PortfolioItemCreateWithoutBeforeImageInput[] | Prisma.PortfolioItemUncheckedCreateWithoutBeforeImageInput[]
+  connectOrCreate?: Prisma.PortfolioItemCreateOrConnectWithoutBeforeImageInput | Prisma.PortfolioItemCreateOrConnectWithoutBeforeImageInput[]
+  upsert?: Prisma.PortfolioItemUpsertWithWhereUniqueWithoutBeforeImageInput | Prisma.PortfolioItemUpsertWithWhereUniqueWithoutBeforeImageInput[]
+  createMany?: Prisma.PortfolioItemCreateManyBeforeImageInputEnvelope
+  set?: Prisma.PortfolioItemWhereUniqueInput | Prisma.PortfolioItemWhereUniqueInput[]
+  disconnect?: Prisma.PortfolioItemWhereUniqueInput | Prisma.PortfolioItemWhereUniqueInput[]
+  delete?: Prisma.PortfolioItemWhereUniqueInput | Prisma.PortfolioItemWhereUniqueInput[]
+  connect?: Prisma.PortfolioItemWhereUniqueInput | Prisma.PortfolioItemWhereUniqueInput[]
+  update?: Prisma.PortfolioItemUpdateWithWhereUniqueWithoutBeforeImageInput | Prisma.PortfolioItemUpdateWithWhereUniqueWithoutBeforeImageInput[]
+  updateMany?: Prisma.PortfolioItemUpdateManyWithWhereWithoutBeforeImageInput | Prisma.PortfolioItemUpdateManyWithWhereWithoutBeforeImageInput[]
+  deleteMany?: Prisma.PortfolioItemScalarWhereInput | Prisma.PortfolioItemScalarWhereInput[]
+}
+
 export type PortfolioItemCreateWithoutServiceInput = {
   id?: string
   titleAr: string
@@ -634,12 +700,14 @@ export type PortfolioItemCreateWithoutServiceInput = {
   updatedAt?: Date | string
   city?: Prisma.CityCreateNestedOneWithoutRecentWorkInput
   image?: Prisma.MediaAssetCreateNestedOneWithoutPortfolioImagesInput
+  beforeImage?: Prisma.MediaAssetCreateNestedOneWithoutPortfolioBeforeImagesInput
 }
 
 export type PortfolioItemUncheckedCreateWithoutServiceInput = {
   id?: string
   cityId?: string | null
   imageId?: string | null
+  beforeImageId?: string | null
   titleAr: string
   description?: string | null
   completedAt?: Date | string | null
@@ -683,6 +751,7 @@ export type PortfolioItemScalarWhereInput = {
   serviceId?: Prisma.UuidFilter<"PortfolioItem"> | string
   cityId?: Prisma.UuidNullableFilter<"PortfolioItem"> | string | null
   imageId?: Prisma.UuidNullableFilter<"PortfolioItem"> | string | null
+  beforeImageId?: Prisma.UuidNullableFilter<"PortfolioItem"> | string | null
   titleAr?: Prisma.StringFilter<"PortfolioItem"> | string
   description?: Prisma.StringNullableFilter<"PortfolioItem"> | string | null
   completedAt?: Prisma.DateTimeNullableFilter<"PortfolioItem"> | Date | string | null
@@ -703,12 +772,14 @@ export type PortfolioItemCreateWithoutCityInput = {
   updatedAt?: Date | string
   service: Prisma.ServiceCreateNestedOneWithoutRecentWorkInput
   image?: Prisma.MediaAssetCreateNestedOneWithoutPortfolioImagesInput
+  beforeImage?: Prisma.MediaAssetCreateNestedOneWithoutPortfolioBeforeImagesInput
 }
 
 export type PortfolioItemUncheckedCreateWithoutCityInput = {
   id?: string
   serviceId: string
   imageId?: string | null
+  beforeImageId?: string | null
   titleAr: string
   description?: string | null
   completedAt?: Date | string | null
@@ -755,12 +826,14 @@ export type PortfolioItemCreateWithoutImageInput = {
   updatedAt?: Date | string
   service: Prisma.ServiceCreateNestedOneWithoutRecentWorkInput
   city?: Prisma.CityCreateNestedOneWithoutRecentWorkInput
+  beforeImage?: Prisma.MediaAssetCreateNestedOneWithoutPortfolioBeforeImagesInput
 }
 
 export type PortfolioItemUncheckedCreateWithoutImageInput = {
   id?: string
   serviceId: string
   cityId?: string | null
+  beforeImageId?: string | null
   titleAr: string
   description?: string | null
   completedAt?: Date | string | null
@@ -780,6 +853,44 @@ export type PortfolioItemCreateManyImageInputEnvelope = {
   skipDuplicates?: boolean
 }
 
+export type PortfolioItemCreateWithoutBeforeImageInput = {
+  id?: string
+  titleAr: string
+  description?: string | null
+  completedAt?: Date | string | null
+  isPublished?: boolean
+  sortOrder?: number
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  service: Prisma.ServiceCreateNestedOneWithoutRecentWorkInput
+  city?: Prisma.CityCreateNestedOneWithoutRecentWorkInput
+  image?: Prisma.MediaAssetCreateNestedOneWithoutPortfolioImagesInput
+}
+
+export type PortfolioItemUncheckedCreateWithoutBeforeImageInput = {
+  id?: string
+  serviceId: string
+  cityId?: string | null
+  imageId?: string | null
+  titleAr: string
+  description?: string | null
+  completedAt?: Date | string | null
+  isPublished?: boolean
+  sortOrder?: number
+  createdAt?: Date | string
+  updatedAt?: Date | string
+}
+
+export type PortfolioItemCreateOrConnectWithoutBeforeImageInput = {
+  where: Prisma.PortfolioItemWhereUniqueInput
+  create: Prisma.XOR<Prisma.PortfolioItemCreateWithoutBeforeImageInput, Prisma.PortfolioItemUncheckedCreateWithoutBeforeImageInput>
+}
+
+export type PortfolioItemCreateManyBeforeImageInputEnvelope = {
+  data: Prisma.PortfolioItemCreateManyBeforeImageInput | Prisma.PortfolioItemCreateManyBeforeImageInput[]
+  skipDuplicates?: boolean
+}
+
 export type PortfolioItemUpsertWithWhereUniqueWithoutImageInput = {
   where: Prisma.PortfolioItemWhereUniqueInput
   update: Prisma.XOR<Prisma.PortfolioItemUpdateWithoutImageInput, Prisma.PortfolioItemUncheckedUpdateWithoutImageInput>
@@ -796,10 +907,27 @@ export type PortfolioItemUpdateManyWithWhereWithoutImageInput = {
   data: Prisma.XOR<Prisma.PortfolioItemUpdateManyMutationInput, Prisma.PortfolioItemUncheckedUpdateManyWithoutImageInput>
 }
 
+export type PortfolioItemUpsertWithWhereUniqueWithoutBeforeImageInput = {
+  where: Prisma.PortfolioItemWhereUniqueInput
+  update: Prisma.XOR<Prisma.PortfolioItemUpdateWithoutBeforeImageInput, Prisma.PortfolioItemUncheckedUpdateWithoutBeforeImageInput>
+  create: Prisma.XOR<Prisma.PortfolioItemCreateWithoutBeforeImageInput, Prisma.PortfolioItemUncheckedCreateWithoutBeforeImageInput>
+}
+
+export type PortfolioItemUpdateWithWhereUniqueWithoutBeforeImageInput = {
+  where: Prisma.PortfolioItemWhereUniqueInput
+  data: Prisma.XOR<Prisma.PortfolioItemUpdateWithoutBeforeImageInput, Prisma.PortfolioItemUncheckedUpdateWithoutBeforeImageInput>
+}
+
+export type PortfolioItemUpdateManyWithWhereWithoutBeforeImageInput = {
+  where: Prisma.PortfolioItemScalarWhereInput
+  data: Prisma.XOR<Prisma.PortfolioItemUpdateManyMutationInput, Prisma.PortfolioItemUncheckedUpdateManyWithoutBeforeImageInput>
+}
+
 export type PortfolioItemCreateManyServiceInput = {
   id?: string
   cityId?: string | null
   imageId?: string | null
+  beforeImageId?: string | null
   titleAr: string
   description?: string | null
   completedAt?: Date | string | null
@@ -820,12 +948,14 @@ export type PortfolioItemUpdateWithoutServiceInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   city?: Prisma.CityUpdateOneWithoutRecentWorkNestedInput
   image?: Prisma.MediaAssetUpdateOneWithoutPortfolioImagesNestedInput
+  beforeImage?: Prisma.MediaAssetUpdateOneWithoutPortfolioBeforeImagesNestedInput
 }
 
 export type PortfolioItemUncheckedUpdateWithoutServiceInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   cityId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   imageId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  beforeImageId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   titleAr?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   completedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -839,6 +969,7 @@ export type PortfolioItemUncheckedUpdateManyWithoutServiceInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   cityId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   imageId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  beforeImageId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   titleAr?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   completedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -852,6 +983,7 @@ export type PortfolioItemCreateManyCityInput = {
   id?: string
   serviceId: string
   imageId?: string | null
+  beforeImageId?: string | null
   titleAr: string
   description?: string | null
   completedAt?: Date | string | null
@@ -872,12 +1004,14 @@ export type PortfolioItemUpdateWithoutCityInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   service?: Prisma.ServiceUpdateOneRequiredWithoutRecentWorkNestedInput
   image?: Prisma.MediaAssetUpdateOneWithoutPortfolioImagesNestedInput
+  beforeImage?: Prisma.MediaAssetUpdateOneWithoutPortfolioBeforeImagesNestedInput
 }
 
 export type PortfolioItemUncheckedUpdateWithoutCityInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   serviceId?: Prisma.StringFieldUpdateOperationsInput | string
   imageId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  beforeImageId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   titleAr?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   completedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -891,6 +1025,7 @@ export type PortfolioItemUncheckedUpdateManyWithoutCityInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   serviceId?: Prisma.StringFieldUpdateOperationsInput | string
   imageId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  beforeImageId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   titleAr?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   completedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -904,6 +1039,21 @@ export type PortfolioItemCreateManyImageInput = {
   id?: string
   serviceId: string
   cityId?: string | null
+  beforeImageId?: string | null
+  titleAr: string
+  description?: string | null
+  completedAt?: Date | string | null
+  isPublished?: boolean
+  sortOrder?: number
+  createdAt?: Date | string
+  updatedAt?: Date | string
+}
+
+export type PortfolioItemCreateManyBeforeImageInput = {
+  id?: string
+  serviceId: string
+  cityId?: string | null
+  imageId?: string | null
   titleAr: string
   description?: string | null
   completedAt?: Date | string | null
@@ -924,12 +1074,14 @@ export type PortfolioItemUpdateWithoutImageInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   service?: Prisma.ServiceUpdateOneRequiredWithoutRecentWorkNestedInput
   city?: Prisma.CityUpdateOneWithoutRecentWorkNestedInput
+  beforeImage?: Prisma.MediaAssetUpdateOneWithoutPortfolioBeforeImagesNestedInput
 }
 
 export type PortfolioItemUncheckedUpdateWithoutImageInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   serviceId?: Prisma.StringFieldUpdateOperationsInput | string
   cityId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  beforeImageId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   titleAr?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   completedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -943,6 +1095,49 @@ export type PortfolioItemUncheckedUpdateManyWithoutImageInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   serviceId?: Prisma.StringFieldUpdateOperationsInput | string
   cityId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  beforeImageId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  titleAr?: Prisma.StringFieldUpdateOperationsInput | string
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  completedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  isPublished?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  sortOrder?: Prisma.IntFieldUpdateOperationsInput | number
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+}
+
+export type PortfolioItemUpdateWithoutBeforeImageInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  titleAr?: Prisma.StringFieldUpdateOperationsInput | string
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  completedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  isPublished?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  sortOrder?: Prisma.IntFieldUpdateOperationsInput | number
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  service?: Prisma.ServiceUpdateOneRequiredWithoutRecentWorkNestedInput
+  city?: Prisma.CityUpdateOneWithoutRecentWorkNestedInput
+  image?: Prisma.MediaAssetUpdateOneWithoutPortfolioImagesNestedInput
+}
+
+export type PortfolioItemUncheckedUpdateWithoutBeforeImageInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  serviceId?: Prisma.StringFieldUpdateOperationsInput | string
+  cityId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  imageId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  titleAr?: Prisma.StringFieldUpdateOperationsInput | string
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  completedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  isPublished?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  sortOrder?: Prisma.IntFieldUpdateOperationsInput | number
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+}
+
+export type PortfolioItemUncheckedUpdateManyWithoutBeforeImageInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  serviceId?: Prisma.StringFieldUpdateOperationsInput | string
+  cityId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  imageId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   titleAr?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   completedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -959,6 +1154,7 @@ export type PortfolioItemSelect<ExtArgs extends runtime.Types.Extensions.Interna
   serviceId?: boolean
   cityId?: boolean
   imageId?: boolean
+  beforeImageId?: boolean
   titleAr?: boolean
   description?: boolean
   completedAt?: boolean
@@ -969,6 +1165,7 @@ export type PortfolioItemSelect<ExtArgs extends runtime.Types.Extensions.Interna
   service?: boolean | Prisma.ServiceDefaultArgs<ExtArgs>
   city?: boolean | Prisma.PortfolioItem$cityArgs<ExtArgs>
   image?: boolean | Prisma.PortfolioItem$imageArgs<ExtArgs>
+  beforeImage?: boolean | Prisma.PortfolioItem$beforeImageArgs<ExtArgs>
 }, ExtArgs["result"]["portfolioItem"]>
 
 export type PortfolioItemSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -976,6 +1173,7 @@ export type PortfolioItemSelectCreateManyAndReturn<ExtArgs extends runtime.Types
   serviceId?: boolean
   cityId?: boolean
   imageId?: boolean
+  beforeImageId?: boolean
   titleAr?: boolean
   description?: boolean
   completedAt?: boolean
@@ -986,6 +1184,7 @@ export type PortfolioItemSelectCreateManyAndReturn<ExtArgs extends runtime.Types
   service?: boolean | Prisma.ServiceDefaultArgs<ExtArgs>
   city?: boolean | Prisma.PortfolioItem$cityArgs<ExtArgs>
   image?: boolean | Prisma.PortfolioItem$imageArgs<ExtArgs>
+  beforeImage?: boolean | Prisma.PortfolioItem$beforeImageArgs<ExtArgs>
 }, ExtArgs["result"]["portfolioItem"]>
 
 export type PortfolioItemSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -993,6 +1192,7 @@ export type PortfolioItemSelectUpdateManyAndReturn<ExtArgs extends runtime.Types
   serviceId?: boolean
   cityId?: boolean
   imageId?: boolean
+  beforeImageId?: boolean
   titleAr?: boolean
   description?: boolean
   completedAt?: boolean
@@ -1003,6 +1203,7 @@ export type PortfolioItemSelectUpdateManyAndReturn<ExtArgs extends runtime.Types
   service?: boolean | Prisma.ServiceDefaultArgs<ExtArgs>
   city?: boolean | Prisma.PortfolioItem$cityArgs<ExtArgs>
   image?: boolean | Prisma.PortfolioItem$imageArgs<ExtArgs>
+  beforeImage?: boolean | Prisma.PortfolioItem$beforeImageArgs<ExtArgs>
 }, ExtArgs["result"]["portfolioItem"]>
 
 export type PortfolioItemSelectScalar = {
@@ -1010,6 +1211,7 @@ export type PortfolioItemSelectScalar = {
   serviceId?: boolean
   cityId?: boolean
   imageId?: boolean
+  beforeImageId?: boolean
   titleAr?: boolean
   description?: boolean
   completedAt?: boolean
@@ -1019,21 +1221,24 @@ export type PortfolioItemSelectScalar = {
   updatedAt?: boolean
 }
 
-export type PortfolioItemOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "serviceId" | "cityId" | "imageId" | "titleAr" | "description" | "completedAt" | "isPublished" | "sortOrder" | "createdAt" | "updatedAt", ExtArgs["result"]["portfolioItem"]>
+export type PortfolioItemOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "serviceId" | "cityId" | "imageId" | "beforeImageId" | "titleAr" | "description" | "completedAt" | "isPublished" | "sortOrder" | "createdAt" | "updatedAt", ExtArgs["result"]["portfolioItem"]>
 export type PortfolioItemInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   service?: boolean | Prisma.ServiceDefaultArgs<ExtArgs>
   city?: boolean | Prisma.PortfolioItem$cityArgs<ExtArgs>
   image?: boolean | Prisma.PortfolioItem$imageArgs<ExtArgs>
+  beforeImage?: boolean | Prisma.PortfolioItem$beforeImageArgs<ExtArgs>
 }
 export type PortfolioItemIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   service?: boolean | Prisma.ServiceDefaultArgs<ExtArgs>
   city?: boolean | Prisma.PortfolioItem$cityArgs<ExtArgs>
   image?: boolean | Prisma.PortfolioItem$imageArgs<ExtArgs>
+  beforeImage?: boolean | Prisma.PortfolioItem$beforeImageArgs<ExtArgs>
 }
 export type PortfolioItemIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   service?: boolean | Prisma.ServiceDefaultArgs<ExtArgs>
   city?: boolean | Prisma.PortfolioItem$cityArgs<ExtArgs>
   image?: boolean | Prisma.PortfolioItem$imageArgs<ExtArgs>
+  beforeImage?: boolean | Prisma.PortfolioItem$beforeImageArgs<ExtArgs>
 }
 
 export type $PortfolioItemPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -1042,12 +1247,14 @@ export type $PortfolioItemPayload<ExtArgs extends runtime.Types.Extensions.Inter
     service: Prisma.$ServicePayload<ExtArgs>
     city: Prisma.$CityPayload<ExtArgs> | null
     image: Prisma.$MediaAssetPayload<ExtArgs> | null
+    beforeImage: Prisma.$MediaAssetPayload<ExtArgs> | null
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
     serviceId: string
     cityId: string | null
     imageId: string | null
+    beforeImageId: string | null
     titleAr: string
     description: string | null
     completedAt: Date | null
@@ -1452,6 +1659,7 @@ export interface Prisma__PortfolioItemClient<T, Null = never, ExtArgs extends ru
   service<T extends Prisma.ServiceDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.ServiceDefaultArgs<ExtArgs>>): Prisma.Prisma__ServiceClient<runtime.Types.Result.GetResult<Prisma.$ServicePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   city<T extends Prisma.PortfolioItem$cityArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.PortfolioItem$cityArgs<ExtArgs>>): Prisma.Prisma__CityClient<runtime.Types.Result.GetResult<Prisma.$CityPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   image<T extends Prisma.PortfolioItem$imageArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.PortfolioItem$imageArgs<ExtArgs>>): Prisma.Prisma__MediaAssetClient<runtime.Types.Result.GetResult<Prisma.$MediaAssetPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+  beforeImage<T extends Prisma.PortfolioItem$beforeImageArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.PortfolioItem$beforeImageArgs<ExtArgs>>): Prisma.Prisma__MediaAssetClient<runtime.Types.Result.GetResult<Prisma.$MediaAssetPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1485,6 +1693,7 @@ export interface PortfolioItemFieldRefs {
   readonly serviceId: Prisma.FieldRef<"PortfolioItem", 'String'>
   readonly cityId: Prisma.FieldRef<"PortfolioItem", 'String'>
   readonly imageId: Prisma.FieldRef<"PortfolioItem", 'String'>
+  readonly beforeImageId: Prisma.FieldRef<"PortfolioItem", 'String'>
   readonly titleAr: Prisma.FieldRef<"PortfolioItem", 'String'>
   readonly description: Prisma.FieldRef<"PortfolioItem", 'String'>
   readonly completedAt: Prisma.FieldRef<"PortfolioItem", 'DateTime'>
@@ -1915,6 +2124,25 @@ export type PortfolioItem$cityArgs<ExtArgs extends runtime.Types.Extensions.Inte
  * PortfolioItem.image
  */
 export type PortfolioItem$imageArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the MediaAsset
+   */
+  select?: Prisma.MediaAssetSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the MediaAsset
+   */
+  omit?: Prisma.MediaAssetOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.MediaAssetInclude<ExtArgs> | null
+  where?: Prisma.MediaAssetWhereInput
+}
+
+/**
+ * PortfolioItem.beforeImage
+ */
+export type PortfolioItem$beforeImageArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   /**
    * Select specific fields to fetch from the MediaAsset
    */

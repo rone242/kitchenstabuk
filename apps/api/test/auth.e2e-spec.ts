@@ -108,7 +108,11 @@ describeWithDatabase('Administrative authentication (e2e)', () => {
       const category = await agent
         .post('/api/admin/categories')
         .set('X-CSRF-Token', csrf)
-        .send({ nameAr: 'تصنيف الاختبار', slug: `test-${userId}` })
+        .send({
+          nameAr: 'تصنيف الاختبار',
+          nameEn: 'Test Category',
+          slug: `test-${userId}`,
+        })
         .expect(201);
       categoryId = category.body.id;
       const service = await agent
@@ -117,6 +121,11 @@ describeWithDatabase('Administrative authentication (e2e)', () => {
         .send({
           categoryId,
           nameAr: 'خدمة الاختبار',
+          nameEn: 'Bilingual Test Service',
+          summaryEn: 'An English service summary.',
+          descriptionEn: 'English details for the bilingual service.',
+          benefitsEn: ['English benefit'],
+          processStepsEn: ['English step'],
           slug: `test-${userId}`,
           summary: 'وصف مختصر لخدمة الاختبار',
           description: 'وصف تفصيلي لخدمة الاختبار للتأكد من عمل إدارة الخدمات',
@@ -129,6 +138,41 @@ describeWithDatabase('Administrative authentication (e2e)', () => {
       await request(app.getHttpServer())
         .get(`/api/catalogue/services/test-${userId}`)
         .expect(200);
+      const english = await request(app.getHttpServer())
+        .get(`/api/catalogue/services/test-${userId}?locale=en`)
+        .expect(200);
+      expect(english.body).toMatchObject({
+        name: 'Bilingual Test Service',
+        summary: 'An English service summary.',
+        description: 'English details for the bilingual service.',
+        benefits: ['English benefit'],
+        processSteps: ['English step'],
+        category: { name: 'Test Category' },
+      });
+      const arabic = await request(app.getHttpServer())
+        .get(`/api/catalogue/services/test-${userId}?locale=ar`)
+        .expect(200);
+      expect(arabic.body.name).toBe('خدمة الاختبار');
+      expect(arabic.body.summary).toBe('وصف مختصر لخدمة الاختبار');
+      const search = await request(app.getHttpServer())
+        .get('/api/catalogue/services')
+        .query({ locale: 'en', search: 'Bilingual Test', categoryId })
+        .expect(200);
+      expect(search.body.data.map((item: { id: string }) => item.id)).toContain(
+        serviceId,
+      );
+      await request(app.getHttpServer())
+        .get('/api/catalogue/services?locale=fr')
+        .expect(400);
+      await agent
+        .patch(`/api/admin/services/${serviceId}`)
+        .set('X-CSRF-Token', csrf)
+        .send({ summaryEn: '' })
+        .expect(200);
+      const fallback = await request(app.getHttpServer())
+        .get(`/api/catalogue/services/test-${userId}?locale=en`)
+        .expect(200);
+      expect(fallback.body.summary).toBe(arabic.body.summary);
       await agent
         .patch(`/api/admin/services/${serviceId}`)
         .set('X-CSRF-Token', csrf)
@@ -176,6 +220,107 @@ describeWithDatabase('Administrative authentication (e2e)', () => {
         await prisma.service.deleteMany({ where: { id: serviceId } });
       if (categoryId)
         await prisma.category.deleteMany({ where: { id: categoryId } });
+    }
+  });
+
+  it('accepts private pending reviews and requires admin approval for publication', async () => {
+    const server = app.getHttpServer();
+    const reviewEmail = `review-${userId}@example.com`;
+    const input = {
+      customerName: 'Review test',
+      email: reviewEmail,
+      rating: 5,
+      body: 'A helpful service and clear communication.',
+    };
+    const agent = request.agent(server);
+    const login = await agent
+      .post('/api/auth/login')
+      .send({ identifier: email, password })
+      .expect(201);
+    const csrf = cookieValue(
+      login.headers['set-cookie'] as unknown as string[],
+      'kst_csrf',
+    );
+    try {
+      await request(server)
+        .post('/api/catalogue/reviews')
+        .send({ ...input, email: 'invalid', rating: 6 })
+        .expect(400);
+      await request(server)
+        .post('/api/catalogue/reviews')
+        .send({ ...input, status: 'APPROVED' })
+        .expect(400);
+      const submitted = await request(server)
+        .post('/api/catalogue/reviews')
+        .send(input)
+        .expect(201);
+      expect(submitted.body).toEqual({ status: 'PENDING' });
+      const row = await prisma.customerReview.findFirstOrThrow({
+        where: { email: reviewEmail },
+      });
+      expect(row.isActive).toBe(false);
+      const pending = await request(server)
+        .get('/api/catalogue/homepage')
+        .expect(200);
+      expect(
+        pending.body.reviews.some(
+          (review: { id: string }) => review.id === row.id,
+        ),
+      ).toBe(false);
+      await request(server).get('/api/admin/reviews').expect(401);
+      await request(server)
+        .patch(`/api/admin/reviews/${row.id}`)
+        .send({ status: 'APPROVED' })
+        .expect(401);
+      await request(server).delete(`/api/admin/reviews/${row.id}`).expect(401);
+      await agent
+        .patch(`/api/admin/reviews/${row.id}`)
+        .send({ status: 'APPROVED' })
+        .expect(401);
+      const listing = await agent
+        .get('/api/admin/reviews?status=PENDING')
+        .expect(200);
+      expect(
+        listing.body.data.some(
+          (review: { email: string }) => review.email === reviewEmail,
+        ),
+      ).toBe(true);
+      await agent
+        .patch(`/api/admin/reviews/${row.id}`)
+        .set('X-CSRF-Token', csrf)
+        .send({ status: 'APPROVED' })
+        .expect(200);
+      const approved = await request(server)
+        .get('/api/catalogue/homepage')
+        .expect(200);
+      const published = approved.body.reviews.find(
+        (review: { id: string }) => review.id === row.id,
+      );
+      expect(published).toBeDefined();
+      expect(published).not.toHaveProperty('email');
+      expect(JSON.stringify(approved.body)).not.toContain(reviewEmail);
+      await agent
+        .patch(`/api/admin/reviews/${row.id}`)
+        .set('X-CSRF-Token', csrf)
+        .send({ status: 'REJECTED' })
+        .expect(200);
+      const rejected = await request(server)
+        .get('/api/catalogue/homepage')
+        .expect(200);
+      expect(
+        rejected.body.reviews.some(
+          (review: { id: string }) => review.id === row.id,
+        ),
+      ).toBe(false);
+      await agent
+        .delete(`/api/admin/reviews/${row.id}`)
+        .set('X-CSRF-Token', csrf)
+        .expect(204);
+      expect(
+        await prisma.customerReview.findUnique({ where: { id: row.id } }),
+      ).toBeNull();
+    } finally {
+      await prisma.customerReview.deleteMany({ where: { email: reviewEmail } });
     }
   });
 

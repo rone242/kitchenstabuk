@@ -3156,6 +3156,10 @@ export type RefreshTokenScalarFieldEnum = (typeof RefreshTokenScalarFieldEnum)[k
 
 
 export const CategoryScalarFieldEnum = {
+  shortDescriptionEn: 'shortDescriptionEn',
+  descriptionEn: 'descriptionEn',
+  seoTitleEn: 'seoTitleEn',
+  seoDescriptionEn: 'seoDescriptionEn',
   id: 'id',
   nameAr: 'nameAr',
   nameEn: 'nameEn',
@@ -3178,6 +3182,13 @@ export type CategoryScalarFieldEnum = (typeof CategoryScalarFieldEnum)[keyof typ
 
 
 export const ServiceScalarFieldEnum = {
+  summaryEn: 'summaryEn',
+  descriptionEn: 'descriptionEn',
+  benefitsEn: 'benefitsEn',
+  processStepsEn: 'processStepsEn',
+  durationTextEn: 'durationTextEn',
+  seoTitleEn: 'seoTitleEn',
+  seoDescriptionEn: 'seoDescriptionEn',
   id: 'id',
   categoryId: 'categoryId',
   nameAr: 'nameAr',
@@ -3267,6 +3278,8 @@ export type CountryScalarFieldEnum = (typeof CountryScalarFieldEnum)[keyof typeo
 
 
 export const RegionScalarFieldEnum = {
+  seoTitleEn: 'seoTitleEn',
+  seoDescriptionEn: 'seoDescriptionEn',
   id: 'id',
   countryId: 'countryId',
   nameAr: 'nameAr',
@@ -3284,6 +3297,9 @@ export type RegionScalarFieldEnum = (typeof RegionScalarFieldEnum)[keyof typeof 
 
 
 export const CityScalarFieldEnum = {
+  shortDescriptionEn: 'shortDescriptionEn',
+  seoTitleEn: 'seoTitleEn',
+  seoDescriptionEn: 'seoDescriptionEn',
   id: 'id',
   regionId: 'regionId',
   nameAr: 'nameAr',
@@ -3302,6 +3318,8 @@ export type CityScalarFieldEnum = (typeof CityScalarFieldEnum)[keyof typeof City
 
 
 export const DistrictScalarFieldEnum = {
+  seoTitleEn: 'seoTitleEn',
+  seoDescriptionEn: 'seoDescriptionEn',
   id: 'id',
   cityId: 'cityId',
   nameAr: 'nameAr',
@@ -3319,6 +3337,10 @@ export type DistrictScalarFieldEnum = (typeof DistrictScalarFieldEnum)[keyof typ
 
 
 export const ServiceLocationScalarFieldEnum = {
+  localIntroductionEn: 'localIntroductionEn',
+  localPricingTextEn: 'localPricingTextEn',
+  seoTitleEn: 'seoTitleEn',
+  seoDescriptionEn: 'seoDescriptionEn',
   id: 'id',
   serviceId: 'serviceId',
   cityId: 'cityId',
@@ -3608,6 +3630,8 @@ export type AuditLogScalarFieldEnum = (typeof AuditLogScalarFieldEnum)[keyof typ
 
 
 export const CustomerReviewScalarFieldEnum = {
+  email: 'email',
+  status: 'status',
   id: 'id',
   customerName: 'customerName',
   cityName: 'cityName',
@@ -3628,6 +3652,7 @@ export const PortfolioItemScalarFieldEnum = {
   serviceId: 'serviceId',
   cityId: 'cityId',
   imageId: 'imageId',
+  beforeImageId: 'beforeImageId',
   titleAr: 'titleAr',
   description: 'description',
   completedAt: 'completedAt',
