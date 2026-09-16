@@ -1,5 +1,12 @@
 import { z } from 'zod';
 
+function optionalWhenEmpty<T extends z.ZodType>(schema: T) {
+  return z.preprocess(
+    (value) => (value === '' ? undefined : value),
+    schema.optional(),
+  );
+}
+
 const environmentSchema = z
   .object({
     NODE_ENV: z
@@ -14,7 +21,7 @@ const environmentSchema = z
     JWT_REFRESH_SECRET: z.string().min(32).optional(),
     JWT_ACCESS_EXPIRES_IN: z.string().min(2).default('15m'),
     JWT_REFRESH_EXPIRES_IN: z.string().min(2).default('30d'),
-    AUTH_COOKIE_DOMAIN: z.string().min(1).optional(),
+    AUTH_COOKIE_DOMAIN: optionalWhenEmpty(z.string().min(1)),
     AUTH_COOKIE_SECURE: z
       .enum(['true', 'false'])
       .transform((value) => value === 'true')
@@ -33,22 +40,21 @@ const environmentSchema = z
       .enum(['local', 's3', 'r2', 'cloudinary'])
       .default('local'),
     UPLOAD_LOCAL_DIR: z.string().min(1).default('uploads'),
-    CLOUDINARY_CLOUD_NAME: z
-      .string()
-      .regex(/^[a-zA-Z0-9_-]+$/)
-      .optional(),
-    CLOUDINARY_API_KEY: z.string().min(1).optional(),
-    CLOUDINARY_API_SECRET: z.string().min(1).optional(),
+    CLOUDINARY_CLOUD_NAME: optionalWhenEmpty(
+      z.string().regex(/^[a-zA-Z0-9_-]+$/),
+    ),
+    CLOUDINARY_API_KEY: optionalWhenEmpty(z.string().min(1)),
+    CLOUDINARY_API_SECRET: optionalWhenEmpty(z.string().min(1)),
     CLOUDINARY_FOLDER: z
       .string()
       .regex(/^[a-zA-Z0-9_/-]+$/)
       .default('kitchenstabuk'),
-    STORAGE_ENDPOINT: z.string().url().optional(),
+    STORAGE_ENDPOINT: optionalWhenEmpty(z.string().url()),
     STORAGE_REGION: z.string().min(1).default('auto'),
-    STORAGE_BUCKET: z.string().min(1).optional(),
-    STORAGE_ACCESS_KEY_ID: z.string().min(1).optional(),
-    STORAGE_SECRET_ACCESS_KEY: z.string().min(1).optional(),
-    STORAGE_PUBLIC_URL: z.string().url().optional(),
+    STORAGE_BUCKET: optionalWhenEmpty(z.string().min(1)),
+    STORAGE_ACCESS_KEY_ID: optionalWhenEmpty(z.string().min(1)),
+    STORAGE_SECRET_ACCESS_KEY: optionalWhenEmpty(z.string().min(1)),
+    STORAGE_PUBLIC_URL: optionalWhenEmpty(z.string().url()),
   })
   .passthrough();
 
