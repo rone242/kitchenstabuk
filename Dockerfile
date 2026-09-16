@@ -18,6 +18,10 @@ FROM dependencies AS source
 COPY . .
 
 FROM source AS api-build
+# Prisma loads its datasource configuration during client generation. This URL
+# is syntactically valid but is used only while building the image; the real
+# production DATABASE_URL is supplied by Docker Compose when the API runs.
+ENV DIRECT_URL=postgresql://build:build@localhost:5432/build
 RUN pnpm --filter database db:generate \
  && pnpm --filter database build \
  && pnpm --filter api build \
