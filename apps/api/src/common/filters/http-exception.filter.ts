@@ -4,11 +4,14 @@ import {
   ExceptionFilter,
   HttpException,
   HttpStatus,
+  Logger,
 } from '@nestjs/common';
 import type { Request, Response } from 'express';
 
 @Catch()
 export class HttpExceptionFilter implements ExceptionFilter {
+  private readonly logger = new Logger(HttpExceptionFilter.name);
+
   catch(exception: unknown, host: ArgumentsHost): void {
     const context = host.switchToHttp();
     const request = context.getRequest<Request>();
@@ -19,6 +22,14 @@ export class HttpExceptionFilter implements ExceptionFilter {
         : HttpStatus.INTERNAL_SERVER_ERROR;
     const body =
       exception instanceof HttpException ? exception.getResponse() : null;
+    const correlationId = String(response.getHeader('x-correlation-id') ?? '');
+    if (status === HttpStatus.INTERNAL_SERVER_ERROR) {
+      const error = exception instanceof Error ? exception : undefined;
+      this.logger.error(
+        `[${correlationId || 'unknown'}] ${request.method} ${request.originalUrl} ${error?.name ?? 'UnknownException'}: ${error?.message ?? String(exception)}`,
+        error?.stack,
+      );
+    }
     const message =
       typeof body === 'string'
         ? body
@@ -33,7 +44,7 @@ export class HttpExceptionFilter implements ExceptionFilter {
         statusCode: status,
         message,
         path: request.originalUrl,
-        correlationId: response.getHeader('x-correlation-id'),
+        correlationId,
         timestamp: new Date().toISOString(),
       },
     });

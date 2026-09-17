@@ -64,8 +64,8 @@ services:
       WEB_URL: ${WEB_URL:?set WEB_URL}
       ADMIN_URL: ${ADMIN_URL:?set ADMIN_URL}
       CORS_ORIGINS: ${CORS_ORIGINS:?set CORS_ORIGINS}
-      UPLOAD_PROVIDER: ${UPLOAD_PROVIDER:-local}
-      UPLOAD_LOCAL_DIR: /app/uploads
+      UPLOAD_PROVIDER: cloudinary
+      MAX_UPLOAD_SIZE_MB: ${MAX_UPLOAD_SIZE_MB:-10}
       SITE_PHONE: ${SITE_PHONE:-}
       SITE_WHATSAPP: ${SITE_WHATSAPP:-}
       CLOUDINARY_CLOUD_NAME: ${CLOUDINARY_CLOUD_NAME:-}
@@ -78,8 +78,6 @@ services:
       STORAGE_ACCESS_KEY_ID: ${STORAGE_ACCESS_KEY_ID:-}
       STORAGE_SECRET_ACCESS_KEY: ${STORAGE_SECRET_ACCESS_KEY:-}
       STORAGE_PUBLIC_URL: ${STORAGE_PUBLIC_URL:-}
-    volumes:
-      - uploads_data:/app/uploads
     ports:
       # Expose only to the VPS itself; Nginx is the public entry point.
       - "127.0.0.1:${API_PORT:-4400}:4400"
@@ -131,4 +129,3 @@ services:
 volumes:
   postgres_data:
   redis_data:
-  uploads_data:
