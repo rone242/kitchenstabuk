@@ -76,9 +76,12 @@ export default function SiteSettingsPage() {
           officeLatitude: String(form.get("officeLatitude") ?? "").trim(),
           officeLongitude: String(form.get("officeLongitude") ?? "").trim(),
           theme: form.get("theme"),
+          defaultLocale: form.get("defaultLocale"),
           logoMediaId: form.get("logoMediaId") || null,
           thumbnailMediaId: form.get("thumbnailMediaId") || null,
           heroBackgroundMediaId: form.get("heroBackgroundMediaId") || null,
+          heroArtMediaId: form.get("heroArtMediaId") || null,
+          faviconMediaId: form.get("faviconMediaId") || null,
           sliderMediaIds: sliders,
         }),
       });
@@ -194,10 +197,24 @@ export default function SiteSettingsPage() {
                 <option value="dark">{t("ليلي")}</option>
               </select>
             </div>
+            <div className="field">
+              <label htmlFor="defaultLocale">{t("اللغة الافتراضية للموقع")}</label>
+              <select
+                id="defaultLocale"
+                name="defaultLocale"
+                defaultValue={String(settings.defaultLocale || "ar")}
+              >
+                <option value="ar">{t("العربية")}</option>
+                <option value="en">{t("English")}</option>
+              </select>
+              <small>{t("تُستخدم للزائر الجديد الذي لم يختر لغة بعد.")}</small>
+            </div>
             {[
               ["logoMediaId", "شعار الموقع"],
               ["thumbnailMediaId", "صورة المشاركة"],
               ["heroBackgroundMediaId", "صورة خلفية الصفحة الرئيسية"],
+              ["heroArtMediaId", "رسم الصفحة الرئيسية"],
+              ["faviconMediaId", "أيقونة المتصفح (Favicon)"],
               ["sliderMediaIds", "صور شريط العرض"],
             ].map(([key, label]) => (
               <ImagePicker

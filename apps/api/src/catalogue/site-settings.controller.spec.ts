@@ -21,9 +21,12 @@ function input() {
     locationTitleAr: '',
     locationTitleEn: 'Services in Tabuk',
     theme: 'dark',
+    defaultLocale: 'en',
     logoMediaId: null,
     thumbnailMediaId: imageId,
     heroBackgroundMediaId: imageId,
+    heroArtMediaId: imageId,
+    faviconMediaId: imageId,
     officeTitleAr: 'مكتبنا',
     officeTitleEn: 'Our office',
     officeAddressAr: 'تبوك',
@@ -129,7 +132,7 @@ describe('Site settings', () => {
   it('saves supported settings and audits the change atomically', async () => {
     const { tx, controller } = fixture();
     await controller.save(input(), { user: { id: 'admin' } } as Request);
-    expect(tx.siteSetting.upsert).toHaveBeenCalledTimes(17);
+    expect(tx.siteSetting.upsert).toHaveBeenCalledTimes(20);
     expect(tx.siteSetting.upsert).toHaveBeenCalledWith(
       expect.objectContaining({
         where: { key: 'site.sliderMediaIds' },
@@ -150,6 +153,8 @@ describe('Site settings', () => {
       { key: 'site.sliderMediaIds', value: JSON.stringify([imageId]) },
       { key: 'site.thumbnailMediaId', value: imageId },
       { key: 'site.heroBackgroundMediaId', value: imageId },
+      { key: 'site.heroArtMediaId', value: imageId },
+      { key: 'site.faviconMediaId', value: imageId },
     ]);
     const result = await controller.publicSettings();
     expect(result.slides[0]?.id).toBe(imageId);
@@ -157,6 +162,8 @@ describe('Site settings', () => {
     expect(result.heroBackground?.publicUrl).toBe(
       'https://example.com/image.jpg',
     );
+    expect(result.heroArt?.publicUrl).toBe('https://example.com/image.jpg');
+    expect(result.favicon?.publicUrl).toBe('https://example.com/image.jpg');
     expect(tx.siteSetting.findMany).toHaveBeenCalledWith({
       where: {
         key: {

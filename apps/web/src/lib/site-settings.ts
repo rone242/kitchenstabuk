@@ -17,9 +17,12 @@ export interface SiteSettings {
   locationTitleAr?: string;
   locationTitleEn?: string;
   theme?: "light" | "dark" | "system";
+  defaultLocale?: Locale;
   logo?: ServiceImage | null;
   thumbnail?: ServiceImage | null;
   heroBackground?: ServiceImage | null;
+  heroArt?: ServiceImage | null;
+  favicon?: ServiceImage | null;
   slides?: (ServiceImage & { id: string })[];
 }
 export const getSiteSettings = cache(

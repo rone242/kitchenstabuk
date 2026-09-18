@@ -17,6 +17,7 @@ export async function generateMetadata(): Promise<Metadata> {
   const images = settings.thumbnail?.publicUrl
     ? [settings.thumbnail.publicUrl]
     : undefined;
+  const favicon = settings.favicon?.publicUrl;
   const path = (await headers()).get("x-site-path") ?? `/${locale}`;
   const suffix = path.replace(/^\/(ar|en)/, "");
   return {
@@ -32,6 +33,7 @@ export async function generateMetadata(): Promise<Metadata> {
       description,
       images,
     },
+    icons: favicon ? { icon: favicon } : undefined,
     alternates: {
       canonical: path,
       languages: {

@@ -62,9 +62,12 @@ export class SiteSettingsDto {
   @IsString() @MaxLength(160) locationTitleAr!: string;
   @IsString() @MaxLength(160) locationTitleEn!: string;
   @IsIn(['light', 'dark', 'system']) theme!: string;
+  @IsIn(['ar', 'en']) defaultLocale!: string;
   @IsOptional() @IsUUID() logoMediaId?: string | null;
   @IsOptional() @IsUUID() thumbnailMediaId?: string | null;
   @IsOptional() @IsUUID() heroBackgroundMediaId?: string | null;
+  @IsOptional() @IsUUID() heroArtMediaId?: string | null;
+  @IsOptional() @IsUUID() faviconMediaId?: string | null;
   @IsArray()
   @ArrayMaxSize(8)
   @ArrayUnique()
@@ -87,9 +90,12 @@ const fields = [
   'locationTitleAr',
   'locationTitleEn',
   'theme',
+  'defaultLocale',
   'logoMediaId',
   'thumbnailMediaId',
   'heroBackgroundMediaId',
+  'heroArtMediaId',
+  'faviconMediaId',
   'sliderMediaIds',
 ] as const;
 const settingKey = (field: (typeof fields)[number]) =>
@@ -127,6 +133,8 @@ export class SiteSettingsController {
       settings.logoMediaId,
       settings.thumbnailMediaId,
       settings.heroBackgroundMediaId,
+      settings.heroArtMediaId,
+      settings.faviconMediaId,
       ...settings.sliderMediaIds,
     ].filter((id): id is string => !!id);
     const media = await this.prisma.client.mediaAsset.findMany({
@@ -148,6 +156,8 @@ export class SiteSettingsController {
       heroBackground:
         media.find((image) => image.id === settings.heroBackgroundMediaId) ??
         null,
+      heroArt: media.find((image) => image.id === settings.heroArtMediaId) ?? null,
+      favicon: media.find((image) => image.id === settings.faviconMediaId) ?? null,
       slides: settings.sliderMediaIds
         .map((id) => media.find((image) => image.id === id))
         .filter(Boolean),
@@ -163,6 +173,8 @@ export class SiteSettingsController {
           input.logoMediaId,
           input.thumbnailMediaId,
           input.heroBackgroundMediaId,
+          input.heroArtMediaId,
+          input.faviconMediaId,
           ...input.sliderMediaIds,
         ].filter((id): id is string => !!id),
       ),

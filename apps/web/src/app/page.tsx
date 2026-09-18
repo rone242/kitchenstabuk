@@ -104,6 +104,16 @@ export default async function Home({
           </div>
           {settings.slides?.length ? (
             <HeroSlider slides={settings.slides} />
+          ) : settings.heroArt?.publicUrl ? (
+            <div className="hero-art hero-art-image" aria-hidden="true">
+              <Image
+                src={settings.heroArt.publicUrl}
+                alt=""
+                fill
+                sizes="(max-width: 800px) 70vw, 300px"
+                unoptimized
+              />
+            </div>
           ) : (
             <div className="hero-art" aria-hidden="true">
               <div className="roof" />
